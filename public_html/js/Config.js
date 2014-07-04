@@ -37,7 +37,7 @@ mesowx.Config = (function() {
         'windGust':         new meso.FieldDef('windGust',       mesowx.Unit.mps,        1,      meso.Agg.avg,   'Vindkast'),
         'windGustDir':      new meso.FieldDef('windGustDir',    mesowx.Unit.deg,        0,      meso.Agg.avg,   'Vindkastretning'),
         'outHumidity':      new meso.FieldDef('outHumidity',    mesowx.Unit.perc,       0,      meso.Agg.avg,   'Fuktighet Utendørs'),
-        'barometer':        new meso.FieldDef('barometer',      mesowx.Unit.hPa,        1,      meso.Agg.avg,   'Barometrisk Trykk'),
+        'barometer':        new meso.FieldDef('barometer',      mesowx.Unit.hPa,        1,      meso.Agg.avg,   'Lufttrykk'),
         'windchill':        new meso.FieldDef('windchill',      mesowx.Unit.c,          1,      meso.Agg.avg,   'Vindavkjølingseffekt'),
         'heatindex':        new meso.FieldDef('heatindex',      mesowx.Unit.c,          1,      meso.Agg.avg,   'Varmeindeks'),
         'inTemp':           new meso.FieldDef('inTemp',         mesowx.Unit.c,          1,      meso.Agg.avg,   'Temp. Innendørs'),
@@ -147,7 +147,7 @@ mesowx.Config = (function() {
             unit : Config.fieldDefaults.barometer.unit,
             highstockAxisOptions : {
                 title: {
-                    text: 'Barometer'
+                    text: 'Lufttrykk'
                 },
                 height : 180,
                 offset: 0,
