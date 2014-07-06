@@ -47,11 +47,22 @@ body {
 		text-align: center;
 		top: 580px;
 	}
-	div#chart-selector a{
+	#chart-selector a{
 		height: 30px;
 		line-height: 30px;
 		width: 150px;
 		display: inline-block;
+		color: black;
+		border-radius: 3px;
+	}
+	
+		#chart-selector a span{
+			font-family: 'Open Sans', sans-serif, Verdana, Geneva, sans-serif;
+			font-size: 12px;
+			font-weight: 600;
+		}
+	#chart-selector a:hover{
+		background-color: #eee;
 	}
 	#charts-container{
 		top: -5px;
