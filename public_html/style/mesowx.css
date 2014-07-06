@@ -41,9 +41,11 @@ body {
 	right: 0;
 }
 
-@media only screen and (max-width: 1279px) {
+/* ipad mini 1*/
+@media only screen and (max-width: 1024px) {
 	#chart-selector{
 		text-align: center;
+		top: 570px;
 	}
 	div#chart-selector a{
 		height: 30px;
@@ -51,7 +53,10 @@ body {
 		width: 150px;
 		display: inline-block;
 	}
-	#chart-selector a span{
+	#charts-container{
+		top: -5px;
+		height: 590px;
+		overflow: hidden;
 	}
 }
 
