@@ -7,7 +7,8 @@ html{
 }
 body {
     margin: 0;
-    padding: 0;
+    padding: 0;'
+	position: absolute;
 }
 #console {
     position: absolute;
@@ -31,9 +32,27 @@ body {
     right: 0;
 }*/
 #chart-selector {
+	display: block;
     position: absolute;
-    top: 600px;
-    left: 190px;
+    top: 590px;
+    margin-left: 190px;
+	height: auto;
+	left: 0;
+	right: 0;
+}
+
+@media only screen and (max-width: 1279px) {
+	#chart-selector{
+		text-align: center;
+	}
+	div#chart-selector a{
+		height: 40px;
+		width: 150px;
+		display: inline-block;
+		line-height: 40px;
+	}
+	#chart-selector a span{
+	}
 }
 
 
@@ -208,5 +227,14 @@ body {
     font-weight: 600;
     text-anchor: middle;
     baseline-shift: 10%;
+}
+
+
+
+
+
+
+#highcharts-2{
+	display: none;
 }
 

@@ -205,7 +205,7 @@ mesowx.Config = (function() {
                 },
                 height : 100,
                 top : 365,
-                offset: -40,
+                offset: -60,
                 minorTickInterval: 'auto',
                 minorGridLineColor: '#F0F0F0',
                 min: 0,
@@ -531,12 +531,12 @@ mesowx.Config = (function() {
                     text: '15m'
                 }, {
                     type: 'minute',
-                    count: 30,
-                    text: '30m'
+                    count: 20,
+                    text: '20m'
                 }, {
                     type: 'minute',
-                    count: 60,
-                    text: '60m'
+                    count: 25,
+                    text: '25m'
                 }],
                 inputDateFormat : "%H:%M:%S",
                 inputEditDateFormat : "%H:%M:%S"
