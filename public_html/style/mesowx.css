@@ -20,7 +20,7 @@ body {
     top: 0;
     left: 170px;
     right: 0px;
-    margin: 0 20px;
+    margin: 0 0 0 10px;
     height: 600px;
 }
 /*.chart-container {
