@@ -630,6 +630,7 @@ meso.AbstractHighstockChart = (function() {
         };
         chartOptions.navigator = {
             enabled : true,
+			height: 40,
             adaptToUpdatedData : !this._lazy,
             series : {
                 id : '__NAVIGATOR__' // used when the chart is lazy loaded to populate the navigator series

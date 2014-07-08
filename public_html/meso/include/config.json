@@ -9,18 +9,18 @@
     "dataSource" : {
         "weewx_mysql" : { // the data source ID
             "type" : "mysql",
-            "host" : "localhost",
-            "user" : "mesowx",
-            "password" : "mesowx",
+            "host" : "192.168.10.10",
+            "user" : "weewx",
+            "password" : "joknuden6250",
             "database" : "weewx"
-	},
-	"weewx_raw" : {
-	    "type" : "mysql",
-	    "host" : "localhost",
-	    "user" : "mesowx",
-	    "password" : "mesowx",
-	    "database" : "weewx"
-	}
+		},
+		"weewx_raw" : {
+			"type" : "mysql",
+			"host" : "192.168.10.10",
+			"user" : "weewx",
+			"password" : "joknuden6250",
+			"database" : "weewx"
+		}
     },
     /*
      * Define your data entities. Entities are effectively database tables containing columns

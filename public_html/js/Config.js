@@ -49,7 +49,8 @@ mesowx.Config = (function() {
         "0"   : "N",
         "90"  : "E",
         "180" : "Ø",
-        "270" : "V"
+        "270" : "V",
+        "360" : "NN"
     };
 
     // The cardinal direction labels in order starting at 0 degrees, assumes equal separation between ordinals
@@ -68,6 +69,8 @@ mesowx.Config = (function() {
         },
         // see http://api.highcharts.com/highstock#lang
         lang: {
+			months: ['Januar', 'Februar', 'Mars', 'April', 'Mai', 'Juni',  'Juli', 'August', 'September', 'Oktober', 'November', 'Desember'],
+			weekdays: ['Søndag', 'Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag']
         }
         // theme, see http://api.highcharts.com/highcharts#Highcharts.setOptions
     };
@@ -108,7 +111,13 @@ mesowx.Config = (function() {
             mesowx.Util.createDegreeToCardinalTextConverter(Config.windDirOrdinalText);
 
     // defaults for chart components (axes, series definitions, chart options, etc)
-    Config.chartDefaults = {};
+    Config.chartDefaults = {
+	};
+	
+	Config.chartDefaults.chart = {
+		margin: [0,0,0,0],
+		spacing: [0,0,0,0]
+	};
 
     // The common "bucket" of x-axis definitions, referred to by chart configurations.
     // Refer to http://api.highcharts.com/highstock#xAxis for highStockAxisOptions parameters
@@ -116,7 +125,14 @@ mesowx.Config = (function() {
         "dateTime" : {
             field: 'dateTime', // the dateTime entity field ID
             highstockAxisOptions : {
-                minRange : null //2*60*1000; // 2 minutes
+                minRange : null, //2*60*1000; // 2 minutes
+				top: 77,
+				tickLength: 5,
+				//tickPosition: 'outside',
+				labels: {
+					x: -1,
+					y: 16
+				}
             }
         }
     };
@@ -132,7 +148,10 @@ mesowx.Config = (function() {
                 title: {
                     text: 'Temperatur'
                 },
+				opposite: false,
+                top : 40,
                 height : 180,
+				offset: -43,
                 minorTickInterval: 'auto',
                 minorGridLineColor: '#F0F0F0',
                 //endOnTick: false,
@@ -149,9 +168,10 @@ mesowx.Config = (function() {
                 title: {
                     text: 'Lufttrykk'
                 },
+				opposite: true,
+                top : 40,
                 height : 180,
-                offset: 0,
-                opposite: true,
+                offset: -75,
                 //endOnTick: false,
                 //maxPadding: Y_AXIS_PADDING,
             },
@@ -164,10 +184,11 @@ mesowx.Config = (function() {
                 title: {
                     text: 'Vind'
                 },
-                height : 100,
+				opposite: false,
+                height : 110,
                 top : 240,
-                offset: 0,
-                minorTickInterval: 'auto',
+                offset: -60,
+                //minorTickInterval: 'auto',
                 minorGridLineColor: '#F0F0F0',
                 min: 0,
                 maxPadding: 0 
@@ -181,14 +202,18 @@ mesowx.Config = (function() {
                 title: {
                     text: 'Vindretning'
                 },
-                height : 100,
+				opposite: true,
+                height : 110,
                 top : 240,
-                offset: 0,
-                opposite: true,
+                offset: -35,
                 min: 0,
                 max: 360,
                 tickInterval: 90,
+                minorTickInterval: 45,
                 labels: {
+					//align: 'right',
+					//y: 2,
+					//x: -5,
                     formatter: function() {
                         return Config.degreeOrdinalLabels[this.value.toString()]; 
                     }
@@ -203,9 +228,10 @@ mesowx.Config = (function() {
                 title: {
                     //text: 'Rain'
                 },
+				opposite: false,
                 height : 100,
                 top : 365,
-                offset: -60,
+                offset: -110,
                 minorTickInterval: 'auto',
                 minorGridLineColor: '#F0F0F0',
                 min: 0,
@@ -219,9 +245,10 @@ mesowx.Config = (function() {
                 title: {
                     text: 'Nedbør'
                 },
+				opposite: false,
                 height : 100,
                 top : 365,
-                offset: 0,
+                offset: -55,
                 minorTickInterval: 'auto',
                 minorGridLineColor: '#F0F0F0',
                 min: 0,
@@ -235,10 +262,10 @@ mesowx.Config = (function() {
                 title: {
                     text: 'Fuktighet'
                 },
+                opposite: true,
                 height : 100,
                 top : 365,
-                offset: 0,
-                opposite: true,
+                offset: -45,
                 min: 0,
                 max: 100,
                 tickInterval: 25,
@@ -350,6 +377,23 @@ mesowx.Config = (function() {
                 },
             }
         },
+        // out humidity
+        "outHumidity" : {
+            fieldDef : Config.fieldDefaults.outHumidity,
+            axis : 'humidityAxis',
+            stats : [meso.Stat.min, meso.Stat.max],
+            highstockSeriesOptions : {
+            }
+        },
+        // in humidity
+        "inHumidity" : {
+            fieldDef : Config.fieldDefaults.inHumidity,
+            axis : 'humidityAxis',
+            stats : [meso.Stat.min, meso.Stat.max],
+            highstockSeriesOptions : {
+                visible: false // default to hidden state
+            }
+        },
         // day rain
         "dayRain" : {
             fieldDef : Config.fieldDefaults.dayRain,
@@ -372,29 +416,14 @@ mesowx.Config = (function() {
             stats : [meso.Stat.max],
             highstockSeriesOptions : {
             }
-        },
-        // out humidity
-        "outHumidity" : {
-            fieldDef : Config.fieldDefaults.outHumidity,
-            axis : 'humidityAxis',
-            stats : [meso.Stat.min, meso.Stat.max],
-            highstockSeriesOptions : {
-            }
-        },
-        // in humidity
-        "inHumidity" : {
-            fieldDef : Config.fieldDefaults.inHumidity,
-            axis : 'humidityAxis',
-            stats : [meso.Stat.min, meso.Stat.max],
-            highstockSeriesOptions : {
-                visible: false // default to hidden state
-            }
         }
     };
 
     // RawChart configuraion
     // Displays "raw"/LOOP data.
-    Config.rawChartOptions = {
+	// 24-hour chart
+    
+	Config.rawChartOptions = {
         aggregateDataProvider : Config.rawDataProvider,
         statsDataProvider: Config.rawStatsDataProvider,
         // the x-axis to use
@@ -440,39 +469,42 @@ mesowx.Config = (function() {
                 enabled: true,
                 borderWidth: 0
             },
+			navigator: {
+				enabled: true
+			},
+			scrollbar: {
+				enabled: true
+			},
             rangeSelector : {
+                allButtonsEnabled: false,
                 enabled: true,
-                selected : 5,
+                selected : 4,
                 buttons: [{
-                    type: 'minute',
-                    count: 15,
-                    text: '15m'
-                }, {
-                    type: 'hour',
-                    count: 1,
-                    text: '1h'
-                }, {
-                    type: 'hour',
-                    count: 3,
-                    text: '3h'
-                }, {
-                    type: 'hour',
-                    count: 6,
-                    text: '6h'
-                }, {
-                    type: 'hour',
-                    count: 12,
-                    text: '12h'
-                }, {
-                    type: 'all',
-                    text: '24h'
-                }],
+					type: 'hour',
+					count: 1,
+					text: '1t'
+				}, {
+					type: 'hour',
+					count: 3,
+					text: '3t'
+				}, {
+					type: 'hour',
+					count: 6,
+					text: '6t'
+				}, {
+					type: 'hour',
+					count: 12,
+					text: '12t'
+				}, {
+					type: 'all',
+					text: '24t'
+				}],
                 inputDateFormat : "%H:%M:%S",
                 inputEditDateFormat : "%H:%M:%S",
             }
         }
-    };
-
+    }
+	
     // RealTimeChart configuraion
     // Displays "raw"/LOOP data updated in real-time.
     Config.realTimeChartOptions = {
@@ -512,15 +544,16 @@ mesowx.Config = (function() {
         highstockChartOptions : {
             chart : {
                 renderTo: 'charts-container', 
-                minRange: 300000 // 2 minutes
+                minRange: 2*1000 // 2 seconds
             },
             legend : {
                 enabled: true,
                 borderWidth: 0
             },
             rangeSelector : {
+                allButtonsEnabled: true,
                 enabled: true,
-                selected : 3,
+                selected : 1,
                 buttons: [{
                     type: 'minute',
                     count: 5,
@@ -531,12 +564,12 @@ mesowx.Config = (function() {
                     text: '15m'
                 }, {
                     type: 'minute',
-                    count: 20,
-                    text: '20m'
+                    count: 30,
+                    text: '30m'
                 }, {
                     type: 'minute',
-                    count: 25,
-                    text: '25m'
+                    count: 60,
+                    text: '60m'
                 }],
                 inputDateFormat : "%H:%M:%S",
                 inputEditDateFormat : "%H:%M:%S"
@@ -550,7 +583,7 @@ mesowx.Config = (function() {
         aggregateDataProvider: Config.archiveDataProvider,
         statsDataProvider: Config.archiveStatsDataProvider,
         // the max range to fetch stats for, tweak as needed, or remove for no limit
-        maxStatRange: 10 * 365 * 86400000, // 10 years
+        //maxStatRange: 10 * 365 * 86400000, // 10 years
         xAxis : meso.Util.applyDefaults( {
             highstockAxisOptions : {
                 // have to set this otherwise the range selector buttons won't be enabled initially
@@ -593,6 +626,7 @@ mesowx.Config = (function() {
                 borderWidth: 0
             },
             rangeSelector : {
+				allButtonsEnabled: true,
                 enabled: true,
                 selected : 5,
                 buttons: [{
@@ -621,7 +655,7 @@ mesowx.Config = (function() {
             }
         }
     };
-
+	
     // console
     // Displays the latest "raw"/LOOP data fresh off of your station, updated in real-time.
     Config.consoleOptions = {
