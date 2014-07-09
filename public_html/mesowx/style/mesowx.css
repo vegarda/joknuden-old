@@ -17,11 +17,11 @@ body {
 }
 #charts-container {
     position: absolute;
-    top: 0;
+    top: 50px;
     left: 170px;
     right: 0px;
     margin: 0 0 0 10px;
-    height: 600px;
+    height: 580px;
 }
 /*.chart-container {
     height: 580px;
@@ -34,8 +34,8 @@ body {
 #chart-selector {
 	display: block;
     position: absolute;
-    top: 590px;
-    margin-left: 190px;
+    top: 60px;
+    margin-left: 600px;
 	height: auto;
 	left: 0;
 	right: 0;
@@ -76,8 +76,9 @@ body {
    console 
  */
 .wx-console {
-    padding: 5px;
-    color: #616161;
+	float: left;
+    margin: 5px;
+    color: #f4fcf0;
 	font-family: 'Open Sans', sans-serif, Verdana, Geneva, sans-serif;
 }
 .console-vertical {
@@ -88,7 +89,7 @@ body {
 }
 .reading-group {
     text-align: center;
-    background-color: #eee;
+    background-color: #686868;
     border-radius: 5px;
     padding: 2px;
 }
@@ -201,8 +202,8 @@ body {
 }
 .compass svg {
 	font-family: 'Open Sans', sans-serif, Verdana, Geneva, sans-serif;
-    color: #616161;
-    fill: #616161;
+    color: #f4fcf0;
+    fill: #f4fcf0;
 }
 .compass .edge {
     /*fill: none;
