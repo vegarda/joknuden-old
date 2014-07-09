@@ -41,35 +41,6 @@ body {
 	right: 0;
 }
 
-/* ipad mini 1*/
-@media only screen and (max-width: 1024px) {
-	#chart-selector{
-		text-align: center;
-		top: 580px;
-	}
-	#chart-selector a{
-		height: 30px;
-		line-height: 30px;
-		width: 150px;
-		display: inline-block;
-		color: black;
-		border-radius: 3px;
-	}
-	
-		#chart-selector a span{
-			font-family: 'Open Sans', sans-serif, Verdana, Geneva, sans-serif;
-			font-size: 12px;
-			font-weight: 600;
-		}
-	#chart-selector a:hover{
-		background-color: #eee;
-	}
-	#charts-container{
-		top: -5px;
-		height: 590px;
-		overflow: hidden;
-	}
-}
 
 
 /* 
@@ -253,8 +224,8 @@ body {
 div#webcam{
 	display: block;
 	position: absolute;
-	top: 10px;
-	left: 600px;
+	top: 8px;
+	left: 50%;
 }
 
 div#webcam a{
@@ -264,3 +235,38 @@ div#webcam a{
 	z-index: 1000;
 }
 
+
+/* ipad mini 1
+ * 1024
+ */
+@media only screen and (max-width: 1024px) {
+	#chart-selector{
+		text-align: center;
+		top: 580px;
+	}
+	#chart-selector a{
+		height: 30px;
+		line-height: 30px;
+		width: 150px;
+		display: inline-block;
+		color: black;
+		border-radius: 3px;
+	}
+	
+		#chart-selector a span{
+			font-family: 'Open Sans', sans-serif, Verdana, Geneva, sans-serif;
+			font-size: 12px;
+			font-weight: 600;
+		}
+	#chart-selector a:hover{
+		background-color: #eee;
+	}
+	#charts-container{
+		top: -5px;
+		height: 590px;
+		overflow: hidden;
+	}
+	div#webcam{
+		top: 5px;
+	}
+}
