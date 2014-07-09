@@ -246,11 +246,21 @@ body {
 }
 
 
-
-
-
-
 #highcharts-2{
 	display: none;
+}
+
+div#webcam{
+	display: block;
+	position: absolute;
+	top: 10px;
+	left: 600px;
+}
+
+div#webcam a{
+	font-family: 'Open Sans', sans-serif, Verdana, Geneva, sans-serif;
+	text-decoration: none;
+	font-weight: 600;
+	z-index: 1000;
 }
 
