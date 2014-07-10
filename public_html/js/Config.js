@@ -667,7 +667,7 @@ mesowx.Config = (function() {
     // console
     // Displays the latest "raw"/LOOP data fresh off of your station, updated in real-time.
     Config.consoleOptions = {
-        containerId : "mesowx-console",
+        containerId : "container",
         realTimeDataProvider : Config.realTimeDataProvider,
         // the fields to display
         // The 'id' property is used to alias the field so that it can be referenced elsewhere by it, it defaults to the fieldId

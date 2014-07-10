@@ -4,13 +4,13 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>Joknuden</title>		
-		<link rel="stylesheet" type="text/css" href="stylesheet.css"/>
 		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,700,600,300" rel="stylesheet" type="text/css">
 		<script type="text/javascript" src="jquery-2.1.1.min.js"></script>
 		<script type="text/javascript" src="analytics.js"></script>
 		<script type="text/javascript" src="navigation.js"></script>
-		
 		<link rel="stylesheet" type="text/css" href="mesowx/style/mesowx.css"/>
+		<link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+		
 		<script type="text/javascript" src="js/lib/d3.v3.min.js"></script>
 		<script type="text/javascript" src="js/lib/highstock.js"></script>
         <script type="text/javascript" src="meso/js/meso.js"></script>
@@ -27,16 +27,16 @@
         <script type="text/javascript" src="js/Config.js"></script>
         <script type="text/javascript" src="js/MesoWxApp.js"></script>
         <script type="text/javascript">
-            $(function() {
-                var mesowxConsole = new mesowx.MesoWxConsole(mesowx.Config.consoleOptions);
+			$( document ).ready(function() {
+				var mesowxConsole = new mesowx.MesoWxConsole(mesowx.Config.consoleOptions);
 				var windCompass = new mesowx.MesoWxWindCompass(mesowx.Config.windCompassOptions);
-            });
+			});
         </script>';
 echo '
 	</head>
 	<body>';
 		include('navbar.php');
-echo '<div class="container">';
+echo '<div id="container" class="container">';
 echo '
         '//<div id="mesowx-console" class="wx-console console-vertical" id="wx-console-vertical">
             .'<div class="outTemp-group reading-group">

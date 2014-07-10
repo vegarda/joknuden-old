@@ -16,7 +16,7 @@ $wind = mysql_fetch_array($wind_q) or die(mysql_error());
 $pressure = mysql_fetch_array($pressure_q) or die(mysql_error());
 
 echo'
-<div class="small-12 large-6 columns">
+<div class="hilo-temp hilo">
 	<table class="weather-summary">
 		<thead>
 			<tr>
@@ -56,7 +56,7 @@ echo'
  </div>';
 
 echo '
-<div class="small-12 large-6 columns">
+<div class="hilo-wind hilo">
 	<table class="weather-summary">
 		<thead>
 			<tr>
