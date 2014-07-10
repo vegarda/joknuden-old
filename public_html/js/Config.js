@@ -267,7 +267,7 @@ mesowx.Config = (function() {
         "inTemp" : {
             fieldDef : Config.fieldDefaults.inTemp,
             axis : 'tempAxis',
-            stats : [meso.Stat.min, meso.Stat.max],
+            //stats : [meso.Stat.min, meso.Stat.max],
             highstockSeriesOptions : {
                 visible: false // default to hidden state
             }
