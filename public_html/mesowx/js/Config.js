@@ -468,8 +468,10 @@ mesowx.Config = (function() {
             Config.chartDefaults.series.inTemp,
             Config.chartDefaults.series.inHumidity
         ],
+
         // see http://api.highcharts.com/highstock
         highstockChartOptions : {
+
             chart : {
                 renderTo: 'charts-container', 
             },
@@ -561,7 +563,7 @@ mesowx.Config = (function() {
             rangeSelector : {
                 allButtonsEnabled: true,
                 enabled: true,
-                selected : 1,
+                selected : 3,
                 buttons: [{
                     type: 'minute',
                     count: 5,

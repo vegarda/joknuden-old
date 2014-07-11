@@ -14,6 +14,9 @@ nav{
 	width: 100%;
 	background-color: #686868;
 }
+	.navbar-header a{
+		margin: 0 25px;
+	}
 	nav a{
 		display: block;
 		color: #f4fcf0;
@@ -57,7 +60,7 @@ nav{
 				}
 				
 		div.container div.collapse{
-			margin-left: 40px;
+			margin-left: 0px;
 		}
 
 .container{
@@ -66,39 +69,6 @@ nav{
 	position: relative;
 }
 
-	.reading-group{
-		width: 200px;
-		background-color: #f4fcf0;
-		position: absolute;
-		border-radius: 0;
-	}
-	
-	.outTemp-group{
-		top: 10px;
-		left: 450px;
-	}
-	.dewpoint-group{
-		left: 450px;
-		top: 50px;
-	}
-	.wind-group{
-		left: 700px;
-		height: 100px;
-		width: 100px;
-	}
-	.out-hum-group{
-		left: 450px;
-		top: 90px;
-	}
-	.bar-group{
-		left: 450px;
-		top: 150px;
-	}
-	.rain-group{
-		left: 450px;
-		top: 200px;
-	}
-
 .webcam{
 	display: block;
 }
@@ -106,15 +76,4 @@ div.webcam {
 	position: absolute;
 	top: 10px;
 	left: 0px;
-}
-
-.hilo-temp{
-	position: absolute;
-	top: 400px;
-}
-
-.hilo-wind{
-	position: absolute;
-	top: 400px;
-	left: 50%;
 }

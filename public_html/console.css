@@ -1,0 +1,87 @@
+.reading-group{
+	width: 140px;
+	background-color: #f4fcf0;
+	position: absolute;
+	border-radius: 0;
+}
+
+	.reading-value{
+		font-size: 26px;
+	}
+	
+	.unit-label{
+		font-size: 22px;
+	}
+	
+	.desc{
+		font-size: 14px;
+		position: relative;
+	}
+	
+.outTemp-group{
+	width: 200px;
+	top: 20px;
+	left: 470px;
+}
+	.outTemp-group .outTemp-value{
+		font-size: 60px;
+	}
+	
+	.outTemp-group .outTemp-unit{
+		font-size: 50px;	
+	}
+	
+	.outTemp-group .desc{
+		top: -15px;
+		font-size: 20px;
+	}
+	
+.dewpoint-group{
+	left: 460px;
+	top: 140px;
+}
+.wind-group{
+	top: 10px;
+	left: 740px;
+	height: 150px;
+	width: 130px;
+}
+.compass{
+	height: 130px
+}
+	.compass text{
+		color: #686868;
+		fill: #686868;
+	}
+.out-hum-group{
+	width: 100px;
+	left: 570px;
+	top: 140px;
+}
+.bar-group{
+	left: 500px;
+	top: 230px;
+}
+.rain-group{
+	left: 740px;
+	top: 200px;
+}
+
+.hilo-temp{
+position: absolute;
+top: 400px;
+}
+
+.hilo-wind{
+position: absolute;
+top: 400px;
+left: 50%;
+}
+
+.last-update{
+position: absolute;
+top: -34px;
+right: 30px;
+font-size: 16px;
+color: #f4fcf0;
+}

@@ -10,6 +10,7 @@
 		<script type="text/javascript" src="navigation.js"></script>
 		<link rel="stylesheet" type="text/css" href="mesowx/style/mesowx.css"/>
 		<link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+		<link rel="stylesheet" type="text/css" href="console.css"/>
 		
 		<script type="text/javascript" src="js/lib/d3.v3.min.js"></script>
 		<script type="text/javascript" src="js/lib/highstock.js"></script>
@@ -39,14 +40,7 @@ echo '
 echo '<div id="container" class="container">';
 echo '
         '//<div id="mesowx-console" class="wx-console console-vertical" id="wx-console-vertical">
-            .'<div class="outTemp-group reading-group">
-                <span class="outTemp-value reading-value"></span><span class="outTemp-unit unit-label"></span>
-                <div class="feels-like-container">feels like <span class="heatindex-value feels-like-value reading-value"></span>
-				<span class="windchill-value feels-like-value reading-value"></span>
-				<span class="windchill-unit unit-label"></span></div>
-                <span class="desc">temperatur<span>
-            </div>
-            <div class="dewpoint-group reading-group">
+            .'<div class="dewpoint-group reading-group">
                 <span class="dewpoint-value reading-value"></span><span class="dewpoint-unit unit-label"></span>
                 <span class="desc">duggpunkt</span>
             </div>
@@ -73,6 +67,13 @@ echo '
 				</div>
 				<span class="rainRate-unit unit-label"></span>
                 <span class="desc">regn</span>
+            </div>
+			<div class="outTemp-group reading-group">
+                <span class="outTemp-value reading-value"></span><span class="outTemp-unit unit-label"></span>
+                <div class="feels-like-container">feels like <span class="heatindex-value feels-like-value reading-value"></span>
+				<span class="windchill-value feels-like-value reading-value"></span>
+				<span class="windchill-unit unit-label"></span></div>
+                <span class="desc">temperatur</span>
             </div>
             <div class="last-update"><span class="dateTime-value"></span></div>
         '//</div>

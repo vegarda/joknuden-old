@@ -83,7 +83,7 @@ echo '
 				<td>Wind Direction</td>
 				<td>--</td>
 				<td>--</td>
-				<td>ENE</td>
+				<td>--</td>
 			</tr>
 			<tr class="data-pressure">
 				<td>Pressure</td>

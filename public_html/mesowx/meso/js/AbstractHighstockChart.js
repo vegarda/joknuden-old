@@ -9,9 +9,9 @@ meso.AbstractHighstockChart = (function() {
         // Note: this uses the same API and defaults as Highstock, see
         // http://api.highcharts.com/highstock#plotOptions.area.dataGrouping.units
         allowedGroupIntervals: {
-            'millisecond' : [1, 2, 5, 10, 20, 25, 50, 100, 200, 500],
-            'second' :      [1, 2, 5, 10, 15, 30],
-            'minute' :      [1, 2, 5, 10, 15, 30],
+            //'millisecond' : [500], //[1, 2, 5, 10, 20, 25, 50, 100, 200, 500],
+            //'second' :      [1, 2, 5, 10, 15, 30],
+            'minute' :      [1, 5, 10, 15, 30],
             'hour' :        [1, 2, 3, 4, 6, 8, 12],
             'day' :         [1],
             'week' :        [1],
@@ -871,6 +871,7 @@ meso.AbstractHighstockChart = (function() {
      * definition.
      */
     AbstractHighstockChart.prototype._buildSeriesDataGroupingOption = function(fieldDef) {
+		console.log(fieldDef);
         return {
             units: null, // will use highcarts defaults
             approximation: AGG_TO_GROUP_APPROXIMATION[fieldDef.agg]

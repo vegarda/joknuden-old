@@ -7,19 +7,11 @@ mesowx.RawChart = (function() {
     };
 
     var NON_LAZY_DATA_GROUPING_OPTION = {
-        units : [[
-            'second',
-            [2, 4, 8, 10, 30]
-        ], [
-            'minute',
-            [1, 2]
-        ], [
-            'hour',
-            [1]
-        ], [
-            'day',
-            null
-        ]]
+        units : [
+		['minute',  [1, 5]], 
+		['hour',    [1]], 
+		['day',     null]
+		]
     };
 
     var RawChart = function(options) {
@@ -57,7 +49,10 @@ mesowx.RawChart = (function() {
             navigator : {
                 enabled: true, // can't get it to work properly without this enabled, zooming out/panning in particular
                 adaptToUpdatedData : false
-            }
+            },
+			//series: {
+				pointInterval: 60*60*1000
+			//}
         }
         return meso.Util.applyDefaults(coreOptions, chartOptions);
     }
