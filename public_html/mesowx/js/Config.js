@@ -468,8 +468,10 @@ mesowx.Config = (function() {
             Config.chartDefaults.series.inTemp,
             Config.chartDefaults.series.inHumidity
         ],
+
         // see http://api.highcharts.com/highstock
         highstockChartOptions : {
+
             chart : {
                 renderTo: 'charts-container', 
             },
@@ -561,7 +563,7 @@ mesowx.Config = (function() {
             rangeSelector : {
                 allButtonsEnabled: true,
                 enabled: true,
-                selected : 1,
+                selected : 3,
                 buttons: [{
                     type: 'minute',
                     count: 5,
@@ -667,7 +669,7 @@ mesowx.Config = (function() {
     // console
     // Displays the latest "raw"/LOOP data fresh off of your station, updated in real-time.
     Config.consoleOptions = {
-        containerId : "container",
+        containerId : "mesowx-console",
         realTimeDataProvider : Config.realTimeDataProvider,
         // the fields to display
         // The 'id' property is used to alias the field so that it can be referenced elsewhere by it, it defaults to the fieldId

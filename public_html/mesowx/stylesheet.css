@@ -1,0 +1,73 @@
+
+html{
+	background-color: #f4fcf0;
+}
+
+body{
+	margin: 0;
+	padding: 0;
+	font-family: 'Open Sans', sans-serif, Verdana, Geneva, sans-serif;
+}
+
+nav{
+	height: 50px;
+	width: 100%;
+	background-color: #686868;
+}
+	nav a{
+		display: block;
+		color: #f4fcf0;
+		text-decoration: none;
+		height: 50px;
+	}
+	nav .navbar-container{
+		width:  960px;
+		height: 50px;
+		margin: 0 auto;
+	}
+		nav div div{
+			float: left;
+		}
+			nav div div a{
+				font-size: 20px;
+				line-height: 50px;
+				font-weight: 500;
+			}
+		nav ul{
+			float: left;
+			margin: 0;
+			padding: 0;
+		}
+			nav ul li{
+				display: block;
+				float: left;
+				margin-right: 1px;
+			}
+				nav ul li.active{
+					background-color: #5c5c5c;
+				}
+				nav ul li a{
+					line-height: 50px;
+					font-size: 18px;
+					font-weight: 400;
+					padding: 0 25px;
+				}
+				nav ul li a:hover{
+					background-color: #757575;
+				}
+				
+		div.container div.collapse{
+			margin-left: 40px;
+		}
+
+.container{
+	width: 960px;
+	margin: 0 auto;
+}
+
+.webcam{
+	display: block;
+}
+div.webcam {
+	float: left;
+}

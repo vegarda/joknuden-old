@@ -29,7 +29,7 @@ mesowx.RealTimeChart = (function() {
     RealTimeChart.prototype._buildFetchDataQuery = function(successCallback, fieldDefs, start, end) {
         var query = _super._buildFetchDataQuery.call(this, successCallback, fieldDefs, start, end);
         query.start = {
-            value: 1200, // 20 minutes
+            value: 3600, // 60 minutes
             type: 'ago'
         };
         return query;

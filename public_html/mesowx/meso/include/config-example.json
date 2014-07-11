@@ -9,18 +9,11 @@
     "dataSource" : {
         "weewx_mysql" : { // the data source ID
             "type" : "mysql",
-            "host" : "192.168.10.10",
+            "host" : "localhost",
             "user" : "weewx",
-            "password" : "joknuden6250",
+            "password" : "weewx",
             "database" : "weewx"
-		},
-		"weewx_raw" : {
-			"type" : "mysql",
-			"host" : "192.168.10.10",
-			"user" : "weewx",
-			"password" : "joknuden6250",
-			"database" : "weewx"
-		}
+        }
     },
     /*
      * Define your data entities. Entities are effectively database tables containing columns
@@ -42,12 +35,12 @@
                 // for allowing remote updating of data
                 "update" : {
                     // set 'allow' to true to allow this entity's data to be updated
-                    "allow" : false,
+                    "allow" : true,
                     // the securityKey that must be sent along with each request to update
                     // it's recommended to generate a random key, i.e. 
                     // http://www.random.org/strings/?num=1&len=20&digits=on&upperalpha=on&loweralpha=on&unique=on&format=html&rnd=new
                     // An empty key is not allowed.
-                    "securityKey" : "AJHcbowFAALhx7FIvXpX"
+                    "securityKey" : ""
                 }
             },
             // The table columns to expose and their definitions. Only the columns listed here 
@@ -64,20 +57,20 @@
             "columns" : {
                 "dateTime" :    {"type" : "number", "unit" : "s"},
                 "interval" :    {},
-                "barometer" :   {"unit" : "hPa"},
-                "inTemp" :      {"unit" : "c"},
-                "outTemp" :     {"unit" : "c"},
+                "barometer" :   {"unit" : "inHg"},
+                "inTemp" :      {"unit" : "f"},
+                "outTemp" :     {"unit" : "f"},
                 "inHumidity" :  {"unit" : "perc"},
                 "outHumidity" : {"unit" : "perc"},
-                "windSpeed" :   {"unit" : "mps"},
+                "windSpeed" :   {"unit" : "mph"},
                 "windDir" :     {"unit" : "deg"},
-                "windGust" :    {"unit" : "mps"},
+                "windGust" :    {"unit" : "mph"},
                 "windGustDir" : {"unit" : "deg"},
-                "rainRate" :    {"unit" : "mmHr"},
-                "rain" :        {"unit" : "mm"},
-                "dewpoint" :    {"unit" : "c"},
-                "windchill" :   {"unit" : "c"},
-                "heatindex" :   {"unit" : "c"}
+                "rainRate" :    {"unit" : "inHr"},
+                "rain" :        {"unit" : "in"},
+                "dewpoint" :    {"unit" : "f"},
+                "windchill" :   {"unit" : "f"},
+                "heatindex" :   {"unit" : "f"}
             },
             // constraints on the data, only primaryKey is supported currently
             "constraints" : {
@@ -95,8 +88,7 @@
             "accessControl" : {
                 "update" : {
                     "allow" : true,
-		   // "securityKey" : "mesowx" 
-                   "securityKey" : "ktL8g2Q7pVI0Brj3jkIa"
+                    "securityKey" : ""
                 }
             },
             // The retention policy defines how this data is retained over time. It is only really
@@ -113,18 +105,18 @@
             },
             "columns" : {
                 "dateTime" :    {"unit" : "s"},
-                "barometer" :   {"unit" : "hPa"},
-                "inTemp" :      {"unit" : "c"},
-                "outTemp" :     {"unit" : "c"},
+                "barometer" :   {"unit" : "inHg"},
+                "inTemp" :      {"unit" : "f"},
+                "outTemp" :     {"unit" : "f"},
                 "inHumidity" :  {"unit" : "perc"},
                 "outHumidity" : {"unit" : "perc"},
-                "windSpeed" :   {"unit" : "mps"},
+                "windSpeed" :   {"unit" : "mph"},
                 "windDir" :     {"unit" : "deg"},
-                "rainRate" :    {"unit" : "mmHr"},
-                "dayRain" :     {"unit" : "mm"},
-                "dewpoint" :    {"unit" : "c"},
-                "windchill" :   {"unit" : "c"},
-                "heatindex" :   {"unit" : "c"}
+                "rainRate" :    {"unit" : "inHr"},
+                "dayRain" :     {"unit" : "in"},
+                "dewpoint" :    {"unit" : "f"},
+                "windchill" :   {"unit" : "f"},
+                "heatindex" :   {"unit" : "f"}
             },
             "constraints" : {
                 "primaryKey" : "dateTime"
