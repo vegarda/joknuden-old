@@ -12,7 +12,7 @@
 		<link rel="stylesheet" type="text/css" href="stylesheet.css"/>
 		<link rel="stylesheet" type="text/css" href="console.css"/>
 		
-		<script type="text/javascript" src="js/lib/d3.v3.min.js"></script>
+		'/*<script type="text/javascript" src="js/lib/d3.v3.min.js"></script>
 		<script type="text/javascript" src="js/lib/highstock.js"></script>
         <script type="text/javascript" src="meso/js/meso.js"></script>
         <script type="text/javascript" src="js/mesowx.js"></script>
@@ -26,7 +26,29 @@
         <script type="text/javascript" src="js/MesoWxConsole.js"></script>
         <script type="text/javascript" src="js/MesoWxWindCompass.js"></script>
         <script type="text/javascript" src="js/Config.js"></script>
+        <script type="text/javascript" src="js/MesoWxApp.js"></script>*/
+		
+        .'
+        <script type="text/javascript" src="js/lib/d3.v3.min.js"></script>
+        <script type="text/javascript" src="js/lib/highstock.js"></script>
+        <script type="text/javascript" src="meso/js/meso.js"></script>
+        <script type="text/javascript" src="js/mesowx.js"></script>
+        <script type="text/javascript" src="meso/js/ChangeIndicatedValue.js"></script>
+        <script type="text/javascript" src="js/WindCompass.js"></script>
+        <script type="text/javascript" src="meso/js/AggregateDataProvider.js"></script>
+        <script type="text/javascript" src="meso/js/AbstractRealTimeRawDataProvider.js"></script>
+        <script type="text/javascript" src="meso/js/PollingRealTimeRawDataProvider.js"></script>
+        <script type="text/javascript" src="meso/js/StatsDataProvider.js"></script>
+        <script type="text/javascript" src="meso/js/AbstractHighstockChart.js"></script>
+        <script type="text/javascript" src="meso/js/MesoConsole.js"></script>
+        <script type="text/javascript" src="js/MesoWxConsole.js"></script>
+        <script type="text/javascript" src="js/MesoWxWindCompass.js"></script>
+        <script type="text/javascript" src="js/RawChart.js"></script>
+        <script type="text/javascript" src="js/ArchiveChart.js"></script>
+        <script type="text/javascript" src="js/RealTimeChart.js"></script>
+        <script type="text/javascript" src="js/Config.js"></script>
         <script type="text/javascript" src="js/MesoWxApp.js"></script>
+		
         <script type="text/javascript">
 			$( document ).ready(function() {
 				var mesowxConsole = new mesowx.MesoWxConsole(mesowx.Config.consoleOptions);

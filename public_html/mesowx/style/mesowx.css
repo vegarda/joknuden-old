@@ -351,3 +351,7 @@ nav{
 div.webcam {
 	float: left;
 }
+
+.last-update span{
+	color: #686868;
+}

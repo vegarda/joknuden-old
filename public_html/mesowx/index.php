@@ -11,7 +11,6 @@
 		<script type="text/javascript" src="../analytics.js"></script>
 		<script type="text/javascript" src="../navigation.js"></script>
 		
-		
         <script type="text/javascript" src="js/lib/jquery-2.0.3.min.js"></script>
         <script type="text/javascript" src="js/lib/d3.v3.min.js"></script>
         <script type="text/javascript" src="js/lib/highstock.js"></script>
