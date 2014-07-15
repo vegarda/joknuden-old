@@ -47,8 +47,8 @@ mesowx.Config = (function() {
     // the cardinal direction labels to use (typically used for charts)
     Config.degreeOrdinalLabels = {
         "0"   : "N",
-        "90"  : "E",
-        "180" : "Ø",
+        "90"  : "Ø",
+        "180" : "S",
         "270" : "V",
         "360" : "NN"
     };
