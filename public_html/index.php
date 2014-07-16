@@ -51,6 +51,7 @@
 		
         <script type="text/javascript">
 			$( document ).ready(function() {
+				Highcharts.setOptions(mesowx.Config.highchartsOptions);
 				var mesowxConsole = new mesowx.MesoWxConsole(mesowx.Config.consoleOptions);
 				var windCompass = new mesowx.MesoWxWindCompass(mesowx.Config.windCompassOptions);
 			});
