@@ -1,2 +1,3 @@
 *.pyc
 /public_html/meso/include/config.json
+/publig_html/timelapse/*

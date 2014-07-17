@@ -65,8 +65,26 @@ nav{
 
 .container{
 	width: 960px;
-	margin: 0 auto;
+	margin: 0 auto 50px auto;
 	position: relative;
+}
+
+.hilo-temp{
+position: absolute;
+top: 380px;
+}
+
+.hilo-wind{
+position: absolute;
+top: 380px;
+left: 50%;
+}
+
+.weather-summary thead th{
+	padding: 2px 10px;
+}
+.weather-summary tbody td{
+	padding: 0 10px 3px 10px;
 }
 
 .webcam{
@@ -76,4 +94,9 @@ div.webcam {
 	position: absolute;
 	top: 10px;
 	left: 0px;
+}
+
+div#timelapse{
+	margin: 0 auto;
+	top: 550px;
 }
