@@ -11,19 +11,29 @@ body{
 
 .container{
 	width: 960px;
-	margin: 0 auto 50px auto;
+	margin: 10px auto 50px auto;
 	position: relative;
+	display: block;
+}
+.container:after{
+    clear: both;
+    content: "";
+    display: block;
+}
+
+.hilo{
+	float:left;
+	margin-top: 20px;
 }
 
 .hilo-temp{
-position: absolute;
-top: 380px;
+	float: left;
+	margin-left: 10px;
 }
 
 .hilo-wind{
-position: absolute;
-top: 380px;
-left: 50%;
+	float: left;
+	margin-left: 100px;
 }
 
 .weather-summary thead th{
@@ -36,10 +46,12 @@ left: 50%;
 .webcam{
 	display: block;
 }
+
+.console{
+	float: right;
+}
 div.webcam {
-	position: absolute;
-	top: 10px;
-	left: 0px;
+
 }
 
 div#timelapse{

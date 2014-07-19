@@ -1,3 +1,12 @@
+#console{
+	position: initial !important;
+	left: initial !important;
+	top: initial !important;
+	right: initial !important;
+	bottom: initial !important;
+	height: 350px;
+	width: 520px;
+}
 .reading-group{
 	width: 140px;
 	background-color: #f4fcf0;
@@ -70,7 +79,7 @@
 
 .last-update{
 position: absolute;
-top: -34px;
+top: -44px;
 right: 70px;
 font-size: 16px;
 color: #f4fcf0;

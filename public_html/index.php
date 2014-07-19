@@ -72,7 +72,7 @@ echo '
 		include('navbar.php');
 echo '<div id="container" class="container">';
 echo '
-
+		<div id="console" class="console">
 			<div class="dewpoint-group reading-group">
                 <span class="dewpoint-value reading-value"></span><span class="dewpoint-unit unit-label"></span>
                 <span class="desc">duggpunkt</span>
@@ -109,6 +109,7 @@ echo '
                 <span class="desc">temperatur</span>
             </div>
             <div class="last-update"><span class="dateTime-value"></span></div>
+		</div>
 		<div class="webcam"><a class="fancybox webcam webcam-anchor" href="../video-js/iframe.html"><img class="webcam webcam-image" src="sd.jpg" /></a></div>';
 		include('hilo.php');
 		//include('timelapse.php');
