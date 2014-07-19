@@ -10,6 +10,7 @@
 		<script type="text/javascript" src="navigation.js"></script>
 		<link rel="stylesheet" type="text/css" href="mesowx/style/mesowx.css"/>
 		<link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+		<link rel="stylesheet" type="text/css" href="navigation.css"/>
 		<link rel="stylesheet" type="text/css" href="console.css"/>
 
         <script type="text/javascript" src="js/lib/d3.v3.min.js"></script>

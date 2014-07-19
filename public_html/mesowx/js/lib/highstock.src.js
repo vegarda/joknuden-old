@@ -20748,41 +20748,80 @@ RangeSelector.prototype = {
 			newMin = mathMax(newMax - range, dataMin);
 			newMax = mathMin(newMin + range, dataMax);
 		
-		} else if (type === 'ytd') {
+		} else if (type === 'ytd') {                                              // else if(o === 'ttd')
 
 			// On user clicks on the buttons, or a delayed action running from the beforeRender 
 			// event (below), the baseAxis is defined.
-			if (baseAxis) {
+			if (baseAxis) {                                                       // if(h)
 
 				// When "ytd" is the pre-selected button for the initial view, its calculation
 				// is delayed and rerun in the beforeRender event (below). When the series
 				// are initialized, but before the chart is rendered, we have access to the xData
 				// array (#942).
-				if (dataMax === UNDEFINED) {
-					dataMin = Number.MAX_VALUE;
-					dataMax = Number.MIN_VALUE;
-					each(chart.series, function (series) {
-						var xData = series.xData; // reassign it to the last item
-						dataMin = mathMin(xData[0], dataMin);
-						dataMax = mathMax(xData[xData.length - 1], dataMax);
+				if (dataMax === UNDEFINED) {                                        // if(k===r)
+					dataMin = Number.MAX_VALUE;                                     // j = Number.MAX_
+					dataMax = Number.MIN_VALUE;                                     // k = Number.MIN_
+					each(chart.series, function (series) {                          // p(e.series,function(a){
+						var xData = series.xData; // reassign it to the last item   // a=a.xData;
+						dataMin = mathMin(xData[0], dataMin);                       // j=A(a[0],j);
+						dataMax = mathMax(xData[xData.length - 1], dataMax);        // k=v(a[a.length-1],k)
 					});
-					redraw = false;
+					redraw = false;                                                 // b=!1;
 				}
-				now = new Date(dataMax);
-				year = now.getFullYear();
-				newMin = rangeMin = mathMax(dataMin || 0, Date.UTC(year, 0, 1));
-				now = now.getTime();
-				newMax = mathMin(dataMax || now, now);
+				now = new Date(dataMax);                                            // m=new Date(k);
+				year = now.getFullYear();                                           // t=m.getFullYear();
+				newMin = rangeMin = mathMax(dataMin || 0, Date.UTC(year, 0, 1));    // l=t=v(j||0,Date.UTC(t,0,1));
+				now = now.getTime();                                                // m=m.getTime();
+				newMax = mathMin(dataMax || now, now);                              // m=A(k||m,m);
 
 			// "ytd" is pre-selected. We don't yet have access to processed point and extremes data
 			// (things like pointStart and pointInterval are missing), so we delay the process (#942)
 			} else {
-				addEvent(chart, 'beforeRender', function () {
-					rangeSelector.clickButton(i);
+				addEvent(chart, 'beforeRender', function () {                       // z(e,"beforeRender",function(){
+					rangeSelector.clickButton(i);                                   // c.clickButton(a)
 				});
 				return;
 			}
-		} else if (type === 'all' && baseAxis) {
+		}
+		
+		
+		
+		else if (type === 'ttd') {                                              // else if(o === 'ttd')
+
+			if (baseAxis) {                                                       // if(h)
+				
+			   /*
+				*if (dataMax === UNDEFINED) {                                        // if(k===r)
+				*	dataMin = Number.MAX_VALUE;                                     // j = Number.MAX_
+				*	dataMax = Number.MIN_VALUE;                                     // k = Number.MIN_
+				*	each(chart.series, function (series) {                          // p(e.series,function(a){
+				*		var xData = series.xData; // reassign it to the last item   // a=a.xData;
+				*		dataMin = mathMin(xData[0], dataMin);                       // j=A(a[0],j);
+				*		dataMax = mathMax(xData[xData.length - 1], dataMax);        // k=v(a[a.length-1],k)
+				*	});
+				*	redraw = false;                                                 // b=!1;
+				*}
+				*/
+
+				now = new Date(dataMax);                                              // m=new Date(k);
+				//year = now.getFullYear();                                             // t=m.getFullYear();
+				startofday = newMin = rangeMin = now.setHours(0,0,0,0);
+				//newMin = rangeMin = mathMax(dataMin || 0, Date.UTC(year, 0, 1));      // l=t=v(j||0,Date.UTC(t,0,1));
+				now = now.getTime();                                                  // m=m.getTime();
+				//newMax = mathMin(dataMax || now, now);                                // m=A(k||m,m);
+				newMax = now;
+				
+			} else {
+				addEvent(chart, 'beforeRender', function () {                         // z(e,"beforeRender",function(){
+					rangeSelector.clickButton(i);                                     // c.clickButton(a)
+				});
+				return;
+			}
+		}
+		
+		
+		
+		else if (type === 'all' && baseAxis) {
 			newMin = dataMin;
 			newMax = dataMax;
 		}

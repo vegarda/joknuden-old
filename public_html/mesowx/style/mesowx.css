@@ -34,14 +34,25 @@ body {
 #chart-selector {
 	display: block;
     position: absolute;
-    top: 60px;
-    margin-left: 600px;
+    top: 52px;
+    left: 45%;
 	height: auto;
-	left: 0;
-	right: 0;
 }
 
+	#chart-selector a{
+		height: 40px;
+		line-height: 40px;
+		padding: 0 20px;
+		display: inline-block;
+		color: black;
+		border-radius: 3px;
+	}
 
+		#chart-selector a span{
+			font-family: 'Open Sans', sans-serif, Verdana, Geneva, sans-serif;
+			font-size: 14px;
+			font-weight: 600;
+		}
 
 /* 
    console 
@@ -221,9 +232,6 @@ body {
 	display: none;
 }
 
-
-
-
 #highcharts-2{
 	display: none;
 }
@@ -249,33 +257,22 @@ div#webcam a{
 @media only screen and (max-width: 1024px) {
 	#chart-selector{
 		text-align: center;
-		top: 580px;
+		position: absolute;
+		left: 49%;
+		top: 50px;
+		margin-left: initial;
+		width: initial;
+		right: initial;
 	}
+
 	#chart-selector a{
-		height: 30px;
-		line-height: 30px;
-		width: 150px;
-		display: inline-block;
-		color: black;
-		border-radius: 3px;
+		padding: 0 10px;
 	}
-	
+
 		#chart-selector a span{
-			font-family: 'Open Sans', sans-serif, Verdana, Geneva, sans-serif;
 			font-size: 12px;
-			font-weight: 600;
 		}
-	#chart-selector a:hover{
-		background-color: #eee;
-	}
-	#charts-container{
-		top: -5px;
-		height: 590px;
-		overflow: hidden;
-	}
-	div#webcam{
-		top: 5px;
-	}
+
 }
 
 
@@ -288,57 +285,6 @@ body{
 	padding: 0;
 	font-family: 'Open Sans', sans-serif, Verdana, Geneva, sans-serif;
 }
-
-nav{
-	height: 50px;
-	width: 100%;
-	background-color: #686868;
-}
-	nav a{
-		display: block;
-		color: #f4fcf0;
-		text-decoration: none;
-		height: 50px;
-	}
-	nav .navbar-container{
-		width:  960px;
-		height: 50px;
-		margin: 0 auto;
-	}
-		nav div div{
-			float: left;
-		}
-			nav div div a{
-				font-size: 20px;
-				line-height: 50px;
-				font-weight: 500;
-			}
-		nav ul{
-			float: left;
-			margin: 0;
-			padding: 0;
-		}
-			nav ul li{
-				display: block;
-				float: left;
-				margin-right: 1px;
-			}
-				nav ul li.active{
-					background-color: #5c5c5c;
-				}
-				nav ul li a{
-					line-height: 50px;
-					font-size: 18px;
-					font-weight: 400;
-					padding: 0 25px;
-				}
-				nav ul li a:hover{
-					background-color: #757575;
-				}
-				
-		div.container div.collapse{
-			margin-left: 40px;
-		}
 
 .container{
 	width: 960px;

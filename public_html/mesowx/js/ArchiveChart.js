@@ -9,7 +9,7 @@ mesowx.ArchiveChart = (function() {
     var NON_LAZY_DATA_GROUPING_OPTION = {
         units : [[
             'minute',
-            [30]
+            [15]
         ], [
             'hour',
             [1]

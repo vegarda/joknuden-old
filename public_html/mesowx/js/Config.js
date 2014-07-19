@@ -640,6 +640,9 @@ mesowx.Config = (function() {
                 enabled: true,
                 selected : 5,
                 buttons: [{
+                    type: 'today',
+                    text: 'today'
+                }, {
                     type: 'day',
                     count: 1,
                     text: '1d'
