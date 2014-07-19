@@ -1,6 +1,6 @@
 *.pyc
 /public_html/meso/include/config.json
-/publig_html/timelapse/*
-/publig_html/*.jpg
-Thumbs.db
+/public_html/timelapse/*
+/public_html/*.jpg
+*.db
 *.mp4
