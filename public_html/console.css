@@ -41,18 +41,28 @@
 	}
 	
 	.outTemp-group .desc{
-		top: -15px;
+		top: -5px;
 		font-size: 20px;
 	}
 	
+	.feels-like-container{
+		margin-top: -10px;
+	}
+		.feels-like-container  .reading-value{
+			font-size: 20px;
+		}
+				.feels-like-container  .unit-label{
+			font-size: 18px;
+		}
+	
 .dewpoint-group{
 	left: 460px;
-	top: 140px;
+	top: 150px;
 }
 .out-hum-group{
 	width: 100px;
 	left: 570px;
-	top: 140px;
+	top: 150px;
 }
 .bar-group{
 	left: 500px;
