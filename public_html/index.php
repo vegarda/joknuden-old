@@ -111,7 +111,7 @@ echo '
             <div class="last-update"><span class="dateTime-value"></span></div>
 		</div>
 		<div class="webcam"><a class="fancybox webcam webcam-anchor" href="../video-js/iframe.html"><img class="webcam webcam-image" src="sd.jpg" /></a></div>';
-		//include('hilo.php');
+		include('hilo.php');
 		//include('timelapse.php');
 echo '
 	</div>

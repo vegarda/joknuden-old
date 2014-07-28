@@ -9,14 +9,14 @@
     "dataSource" : {
         "weewx_mysql" : { // the data source ID
             "type" : "mysql",
-            "host" : "192.168.10.10",
+            "host" : "joknuden.no",
             "user" : "weewx",
             "password" : "joknuden6250",
             "database" : "weewx"
 		},
 		"weewx_raw" : {
 			"type" : "mysql",
-			"host" : "192.168.10.10",
+			"host" : "joknuden.no",
 			"user" : "weewx",
 			"password" : "joknuden6250",
 			"database" : "weewx"
