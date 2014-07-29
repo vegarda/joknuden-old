@@ -22,19 +22,22 @@ $archive10_q = mysql_query("SELECT * FROM archive ORDER BY dateTime DESC LIMIT 1
 $windspeed10 = 0;
 $winddir10 = 0;
 $gust10 = 0;
+$wind10x = 0;
+$wind10y = 0;
 $gust10x = 0;
 $gust10y = 0;
 while ($archive10 = mysql_fetch_array($archive10_q)) {
 	$windspeed10 += $archive10['windSpeed'];
-	$winddir10 += $archive10['windDir'];
+	$wind10x += cos($archive10['windDir']*3.14/180)*$archive10['windSpeed'];
+	$wind10y += sin($archive10['windDir']*3.14/180)*$archive10['windSpeed'];
 	$gust10 += $archive10['windGust'];
 	$gust10x += cos($archive10['windGustDir']*3.14/180)*$archive10['windGust'];
 	$gust10y += sin($archive10['windGustDir']*3.14/180)*$archive10['windGust'];
 }
 $windspeed10 = $windspeed10/10;
-$winddir10 = $winddir10/10;
 $gust10 = $gust10/10;
 $gustdir10 = atan($gust10x/$gust10y)*180/3.14/10;
+$winddir10 = atan($wind10x/$wind10y)*180/3.14/10;
 
 $startOfDay = $temperature['dateTime'];
 $WindSpeedMax_q = mysql_query("SELECT MAX(windSpeed) FROM archive WHERE dateTime > ".$startOfDay."") or die(mysql_error());
