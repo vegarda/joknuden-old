@@ -9,9 +9,9 @@
 		<script type="text/javascript" src="analytics.js"></script>
 		<script type="text/javascript" src="navigation.js"></script>
 		<link rel="stylesheet" type="text/css" href="mesowx/style/mesowx.css"/>
-		<link rel="stylesheet" type="text/css" href="stylesheet.css"/>
-		<link rel="stylesheet" type="text/css" href="navigation.css"/>
-		<link rel="stylesheet" type="text/css" href="console.css"/>
+		<link rel="stylesheet" type="text/css" href="css/stylesheet.css"/>
+		<link rel="stylesheet" type="text/css" href="css/navigation.css"/>
+		<link rel="stylesheet" type="text/css" href="css/console.css"/>
 
         <script type="text/javascript" src="js/lib/d3.v3.min.js"></script>
         <script type="text/javascript" src="js/lib/highstock.js"></script>
@@ -110,7 +110,7 @@ echo '
             </div>
             <div class="last-update"><span class="dateTime-value"></span></div>
 		</div>
-		<div class="webcam"><a class="fancybox webcam webcam-anchor" href="../video-js/iframe.html"><img class="webcam webcam-image" src="sd.jpg" /></a></div>';
+		<div class="webcam"><a class="fancybox webcam webcam-anchor" href="../video-js/iframe.html"><img class="webcam webcam-image" src="/timelapse/sd.jpg" /></a></div>';
 		include('hilo.php');
 		//include('timelapse.php');
 echo '
