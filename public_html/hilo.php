@@ -17,33 +17,49 @@ $pressure = mysql_fetch_array($pressure_q) or die(mysql_error());
 
 mysql_select_db("weewx") or die(mysql_error()); 
 
-$archive10_q = mysql_query("SELECT * FROM archive ORDER BY dateTime DESC LIMIT 10") or die(mysql_error());
+$raw10_q = mysql_query("SELECT * FROM raw ORDER BY dateTime DESC LIMIT 240") or die(mysql_error());
 
 $windspeed10 = 0;
-$winddir10 = 0;
-$gust10 = 0;
 $wind10x = 0;
 $wind10y = 0;
+$windCount = 0;
+$gust10 = 0;
 $gust10x = 0;
 $gust10y = 0;
-while ($archive10 = mysql_fetch_array($archive10_q)) {
-	$windspeed10 += $archive10['windSpeed'];
-	$wind10x += cos($archive10['windDir']*3.14/180)*$archive10['windSpeed'];
-	$wind10y += sin($archive10['windDir']*3.14/180)*$archive10['windSpeed'];
-	$gust10 += $archive10['windGust'];
-	$gust10x += cos($archive10['windGustDir']*3.14/180)*$archive10['windGust'];
-	$gust10y += sin($archive10['windGustDir']*3.14/180)*$archive10['windGust'];
+$gustCount = 0;
+while ($raw10 = mysql_fetch_array($raw10_q)){
+	if ($raw10['windSpeed'] != NULL & $raw10['windDir'] != NULL){
+		$windspeed10 += $raw10['windSpeed'];
+		$wind10x += cos($raw10['windDir']*3.14/180)*$raw10['windSpeed'];
+		$wind10y += sin($raw10['windDir']*3.14/180)*$raw10['windSpeed'];
+		$windCount++;
+	}
+	if ($raw10['windGust'] != NULL & $raw10['windGustDir'] != NULL){
+		$gust10 += $raw10['windGust'];
+		$gust10x += cos($raw10['windGustDir']*3.14/180)*$raw10['windGust'];
+		$gust10y += sin($raw10['windGustDir']*3.14/180)*$raw10['windGust'];
+		$gustCount++;
+	}
 }
-$windspeed10 = $windspeed10/10;
-$gust10 = $gust10/10;
-$gustdir10 = atan($gust10x/$gust10y)*180/3.14/10;
-$winddir10 = atan($wind10x/$wind10y)*180/3.14/10;
+if ($windCount > 0){
+	$windspeed10 = $windspeed10/$windCount;
+	$gust10 = $gust10/$gustCount;
+}
+else {
+	$windspeed10 = 0;
+	$gust10 = 0;
+}
+function minusTo360($degrees){
+	return $degrees < 0 ? 360 + $degrees : $degrees;
+}
+$gustdir10 = minusTo360(atan($gust10x/$gust10y)*180/3.14);
+$winddir10 = minusTo360(atan($wind10x/$wind10y)*180/3.14);
 
 $startOfDay = $temperature['dateTime'];
 $WindSpeedMax_q = mysql_query("SELECT MAX(windSpeed) FROM archive WHERE dateTime > ".$startOfDay."") or die(mysql_error());
 $WindSpeedMax = mysql_fetch_array($WindSpeedMax_q)['MAX(windSpeed)'] or die(mysql_error());
 
-$windDirAvg = atan($wind['xsum']/$wind['ysum'])*180/3.14;
+$windDirAvg = minusTo360(atan($wind['xsum']/$wind['ysum'])*180/3.14);
 
 echo'
 <div class="hilo">
@@ -91,7 +107,7 @@ echo'
 			<tr>
 				<th>&nbsp;</th>
 				<th>High</th>
-				<th>Last 10</th>
+				<th>Last 10 avg</th>
 				<th>Average</th>
 			</tr>
 		</thead>
