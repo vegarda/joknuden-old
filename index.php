@@ -206,8 +206,8 @@ echo '
                 </div>
             </div>
             <div class="container-fluid">
-                <div class="row tempchart-container">
-                    <div id="tempchart" class="col-md-12"></div>
+                <div class="row topChart-container">
+                    <div id="topChart" class="col-md-12"></div>
                 </div>
             </div>
             <br>';
@@ -300,16 +300,14 @@ include('hilo.php');
 
 echo'
         <br>
-        <br>
-        <br>    
-        <br>    
-        <br>    
         </div>
     </div><!-- /.container -->
         <!-- jQuery (necessary for Bootstrap\'s JavaScript plugins) -->
         <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script-->
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="/js/bootstrap.min.js"></script>
+    <footer>
+    </footer>
     </body>
 </html>';
 

@@ -128,3 +128,9 @@ ul#windTab>li>a,
 ul#multiTab>li>a{
     background-color: rgba(250,250,250,0.95);
 }
+
+footer{
+    height: 100px;
+    background-color: #222;
+    border-color: #080808;
+}

@@ -13,10 +13,20 @@ $(function() {
         async: true,
         dataType: "json",
         success: function(chartdata){
-            var pointStart = chartdata.dateTime[0];
+            var pointStart = chartdata.dateTime[0] * 1000;
             //var chartConfig = function(renderTo, height, yAxis, pointStart, series){
             //var yAxisSchema = function(labelUnit, opposite, min, max, minRange, tickInterval){
             //var seriesSchema = function(name, type, color, yAxisNumber, data, dashStyle, tooltipSuffix, tooltipDecimals){
+            
+            window['topChart'] = new Highcharts.StockChart(
+                chartConfig('topChart', 250, 
+                            [yAxisSchema('°C', true, null, null, 5, null),
+                             yAxisSchema(' hPa', false, null, null, 5, null),
+                             yAxisSchema(' mm', true, 0, null, 50, null)], pointStart, 
+                            [seriesSchema('Temperature', 'spline', '#5cb85c', 0, chartdata.outTemp, null, '°C', 1),
+                             seriesSchema('Pressure', 'spline', '#f0ad4e', 1, chartdata.barometer, 'dash', ' hPa', 1),
+                             seriesSchema('Rain', 'spline', '#428bca', 2, chartdata.dayRain, 'Solid', ' mm', 1)]));    
+        
             window['windChart'] = new Highcharts.StockChart(
                 chartConfig('windChart', 250, 
                             [yAxisSchema(' m/s', true, 0, null, 5, null)], pointStart, 
