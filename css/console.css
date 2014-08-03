@@ -1,0 +1,241 @@
+
+/* 
+   console 
+ */
+.wx-console {
+	float: left;
+    margin: 5px;
+    color: #fff;
+}
+.console-vertical {
+    width: 170px;
+}
+.console-horizontal {
+    overflow: hidden; /* this clears the float */
+}
+.reading-group {
+    text-align: center;
+    border-radius: 5px;
+    padding: 2px;
+}
+.console-vertical .reading-group {
+    margin-bottom: 5px;
+}
+.console-horizontal .reading-group {
+    margin-right: .4em;
+    float: left;
+    width: 150px;
+}
+.reading-value {
+    font-size: 30px;
+    font-weight: 300;
+}
+.unit-label{
+	font-size: 24px;
+	font-weight: 300;
+}
+.value-up {
+    animation-duration: 2s;
+    -webkit-animation-duration: 2s;
+    animation-name: value-up;
+    -webkit-animation-name: value-up;
+}
+@keyframes value-up {
+    10% { color: #00C90D; }
+}
+@-webkit-keyframes value-up {
+    10% { color: #00C90D; }
+}
+.value-down {
+    animation-duration: 2s;
+    -webkit-animation-duration: 2s;
+    animation-name: value-down;
+    -webkit-animation-name: value-down;
+}
+@keyframes value-down {
+    75% { color: #E00000; }
+}
+@-webkit-keyframes value-down {
+    75% { color: #E00000; }
+}
+.last-update {
+    font-size: 10px;
+    text-align: center;
+}
+.last-update-value {
+    font-size: 30px;
+    font-weight: normal;
+}
+
+
+/* 
+  compass 
+ */
+.compass {
+	height: 166px;
+}
+.compass svg {
+    color: #333;
+    fill: #333;
+}
+.compass .edge {
+    /*fill: none;
+    stroke: #d9d9d9;
+    stroke-width: 1;*/
+    display: none;
+}
+.compass .tick {
+    stroke: #333;
+    stroke-width: 1;
+}
+.compass .tick45 {
+    stroke-width: 2;
+}
+.compass .tick90 {
+    stroke-width: 4;
+}
+.compass .currDir {
+    stroke-width: 1;
+}
+.compass .prevDir {
+    stroke-width: 1;
+    color: #bfbfbf;
+    fill: #bfbfbf;
+}
+.compass .speedDisplay {
+    font-weight: 300;
+    font-size: 32px;
+    kerning: .03em;
+    alignment-baseline: central;
+    text-anchor: middle;
+}
+.compass .speedSuffix {
+    font-size: 32px;
+}
+.compass .ordinalDisplay {
+    font-size: 26px;
+    font-weight: 600;
+    text-anchor: middle;
+    baseline-shift: 10%;
+}
+
+/*****/
+
+
+
+.console{
+    position: relative;
+}
+
+#console{
+    justify-content: space-between;
+    display: flex;
+    height: 140px;
+    background: none;
+    padding: 0;
+}
+.reading-group{
+	width: 14.2%;
+    max-width: 150px;
+    float: left;
+	border-radius: 0;
+}
+
+	.reading-value{
+		font-size: 20px;
+	}
+	
+	.unit-label{
+		font-size: 18px;
+        margin-left: 3px;
+	}
+	
+	.reading-group i{
+		font-size: 26px;
+	}
+	
+    .outTemp-group{
+    }
+        .outTemp-group .outTemp-value{
+        
+        }
+
+        .outTemp-group .outTemp-unit{
+        	
+        }
+
+        .feels-like-container{
+            /*margin-top: -10px;*/
+        }
+            .feels-like-container  .reading-value{
+                font-size: 16px;
+            }
+                    .feels-like-container  .unit-label{
+                font-size: 14px;
+            }
+
+    .wind-group{;
+
+    }
+    .out-hum-group{
+    }
+    .dewpoint-group{
+    }
+    .bar-group{
+    }
+
+    .rain-group{
+    }
+.compass{
+	height: 80%;
+    width: 80% ;
+    margin: 0 auto;
+}	
+
+
+@media (max-width: 767px) {
+    #console{
+        display: block;
+        height: auto;
+    }
+    .reading-group{
+        float: none;
+        width: 100%;
+        min-width: 100px;
+        max-width: 150px;
+        height: auto;
+    }
+}
+@media (min-width: 768px) {
+    #console{
+        height: 105px;   
+    }
+    .reading-group{
+        margin-top: 25px
+    }
+    .wind-group{
+        margin-top: 0px
+    }
+}
+@media (min-width: 992px) {
+    #console{
+        height: 135px;   
+    }
+    .reading-group{
+        margin-top: 40px
+    }
+    .wind-group{
+        margin-top: 0px
+    }
+}
+@media (min-width: 1200px) {
+    #console{
+        height: 150px;   
+    }
+    .reading-group{
+        margin-top: 50px
+    }
+    .wind-group{
+        margin-top: 0px
+    }
+}
