@@ -25,7 +25,7 @@ $end = isset($end) ? $end : strtotime("now");
 
 if(is_integer($start) && (is_integer($end))){
 
-    $joknuden = mysqli_connect("joknuden.no", "weewx", "joknuden6250") or die(mysql_error()); 
+    $joknuden = mysqli_connect("127.0.0.1", "weewx", "joknuden6250") or die(mysql_error()); 
 
     $query = mysqli_query($joknuden, 
     "SELECT dateTime, barometer, outTemp, outHumidity, windSpeed, windDir, windGust, windGustDir, rain, rainRate, dayRain, dewpoint
