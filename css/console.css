@@ -135,8 +135,8 @@
     padding: 0;
 }
 .reading-group{
-	width: 14.2%;
-    max-width: 150px;
+	width: 16.5%;
+    max-width: 180px;
     float: left;
 	border-radius: 0;
 }
@@ -187,8 +187,8 @@
     .rain-group{
     }
 .compass{
-	height: 80%;
-    width: 80% ;
+	height: 90%;
+    width: 90% ;
     margin: 0 auto;
 }	
 

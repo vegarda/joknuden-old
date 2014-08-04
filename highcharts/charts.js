@@ -57,9 +57,10 @@ var yAxisSchema = function(labelUnit, opposite, min, max, minRange, tickInterval
     }; 
 };
 
-var seriesSchema = function(name, type, color, yAxisNumber, data, dashStyle, tooltipSuffix, tooltipDecimals){
+var seriesSchema = function(name, id, type, color, yAxisNumber, data, dashStyle, tooltipSuffix, tooltipDecimals){
     return {
         name: name,
+        id: id,
         type: type,
         color: color,
         yAxis: yAxisNumber,
@@ -76,6 +77,37 @@ var seriesSchema = function(name, type, color, yAxisNumber, data, dashStyle, too
     };
 };
 
+var flagSchema = function(name, seriesID, max, maxtime, min, mintime, color, unit){
+    return {
+        type : 'flags',
+        data : [{
+            x : maxtime * 1000,
+            title : max.toFixed(1) + unit,
+            text : name + ': ' + max.toFixed(1) + unit
+        }, {
+            x : mintime * 1000,
+            title : min.toFixed(1) + unit,
+            text : name + ': ' + min.toFixed(1) + unit
+        }],
+        onSeries : seriesID,
+        shape : 'squarepin',
+        width : null,
+        showInLegend: false,
+        color: color,
+        fillColor: color,
+        zIndex: 1000,
+        stackDistance: 20,
+        style: { // text style
+            color: 'rgba(254,254,254,0.95)',
+        },
+        states : {
+            hover : {
+                fillColor: color
+            }
+        }
+    };
+};
+
 //var tempchartconfig = function(tempchartdata){
 //var tripleChartConfig = function(renderTo, height, yAxis1, yAxis2, yAxis3, pointStart, series1, series2, series3){
 var chartConfig = function(renderTo, height, yAxis, pointStart, series){
@@ -89,7 +121,11 @@ var chartConfig = function(renderTo, height, yAxis, pointStart, series){
             text: null  
         },
         legend: {
-            enabled: false 
+            enabled: true,
+            floating: true,
+            verticalAlign: 'top',
+            backgroundColor: 'rgba(254,254,254,0.5)',
+            borderColor: '#222'
         },
         exporting: {
             enabled: false   
@@ -125,7 +161,7 @@ var chartConfig = function(renderTo, height, yAxis, pointStart, series){
 };
 
 
-var windrosechart = function(renderTo, title, labelUnit, tooltipSuffix, seriesName, seriesData){
+var windrosechart = function(renderTo, title, subtitle, labelUnit, tooltipSuffix, seriesName, seriesData){
     return {
         chart: {
             renderTo: renderTo,
@@ -138,7 +174,7 @@ var windrosechart = function(renderTo, title, labelUnit, tooltipSuffix, seriesNa
             text: title
         },
         subtitle: {
-            text: null
+            text: subtitle
         },
         pane: {
             size: '85%'
@@ -192,75 +228,3 @@ var windrosechart = function(renderTo, title, labelUnit, tooltipSuffix, seriesNa
         }]
     };
 };
-
-
-
-
-var multichartconfig = function(renderTo, labelUnit, floor, minRange, pointStart, seriesName, seriesData, seriesType, tooltipSuffix){
-    //barometer, outTemp, outHumidity, windSpeed, windDir, windGust, windGustDir, rain, rainRate, dayRain, dewpoint
-    return {
-        chart: {
-            renderTo: renderTo,
-            height: 250,
-            backgroundColor: 'rgba(0,0,0,0)'
-        },
-        title: {
-            text: null  
-        },
-        legend: {
-            enabled: false 
-        },
-        exporting: {
-            enabled: false   
-        },
-        navigator: {
-            enabled: false
-        },
-        scrollbar: {
-            enabled: false
-        },
-        rangeSelector: {
-            enabled: false
-        },
-
-        yAxis: [{ // Primary yAxis
-            labels: {
-                format: '{value}' + labelUnit,
-                style: {
-                }
-            },
-            title: {
-                text: null,
-                style: {
-                }
-            },
-            opposite: true,
-            floor: floor,
-            minRange: minRange
-
-        }],
-        xAxis: {
-                type: 'datetime',
-                title: {
-                    text: ''
-                }
-            },
-        plotOptions: {
-            series: {
-                pointStart: pointStart * 1000,
-                pointInterval: 60*1000
-            }
-        },
-        series: [{
-            name: seriesName,
-            data: seriesData,
-            type: seriesType,
-            tooltip: {
-                valueSuffix: tooltipSuffix,
-                valueDecimals: 1
-            },
-            dataGrouping: groupingOptions
-        }]
-    };
-};
-

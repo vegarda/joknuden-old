@@ -47,7 +47,7 @@ function WindCompass(config) {
         .append("svg:svg")
         .attr("width", config.size)
         .attr("height", config.size)
-        .attr("viewBox", "11 -11 220 220");
+        .attr("viewBox", "-26 -11 260 260");
     // compass edge
     compass.append("svg:circle")
         .attr("class", "edge")
@@ -57,8 +57,8 @@ function WindCompass(config) {
     // speed display
     var speedDisplay = compass.append("text")
         .attr("class", "speedDisplay")
-        .attr("dx", "47%") 
-        .attr("dy", "50%");
+        .attr("dx", "40%") 
+        .attr("dy", "43%");
         // speed readout
         speedDisplay
             .append("tspan").attr("class", "speedReadout")
@@ -154,8 +154,8 @@ function WindCompass(config) {
             .data(data);
         degreeDisplay.enter().append("text")
             .attr("class", "ordinalDisplay")
-            .attr("dx", "45%") 
-            .attr("dy", "65%")
+            .attr("dx", "39%") 
+            .attr("dy", "57%")
             .text(function(d){ return config.windDirToCardinalLabelConverterFunction(config.dirValueFunction(d)); });
     }
 

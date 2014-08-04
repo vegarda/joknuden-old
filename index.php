@@ -191,10 +191,10 @@ echo '
                         <span class="outHumidity-value reading-value"></span><span class="outHumidity-unit unit-label"></span>
                         <div><i class="fa fa-tachometer"></i></div>
                     </div>
-                    <div class="dewpoint-group reading-group">
+                    <!--div class="dewpoint-group reading-group">
                         <span class="dewpoint-value reading-value"></span><span class="dewpoint-unit unit-label"></span>
                         <div><i class="wi wi-thermometer-exterior"></i></div>
-                    </div>
+                    </div-->
                     <div class="rain-group reading-group">
                         <span class="dayRain-value reading-value"></span><span class="dayRain-unit unit-label"></span> 
                         <div><i class="wi wi-sprinkles"></i></div>

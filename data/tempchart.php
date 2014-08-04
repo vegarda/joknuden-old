@@ -1,31 +1,10 @@
 <?php
-
-$what = isset($_GET['w']) ? $_GET['w'] : null;
-$amount = isset($_GET['a']) ? $_GET['a'] : null;
-
-//echo $what;
-//echo $amount;
-
-if (isset($what)){
-    if ($what == "today" || $what == "yesterday"){
-        $start = strtotime($what);
-        if ($what == "yesterday"){
-            $end = strtotime("today");   
-        }
-    }
-    else if ($amount > 0){
-        $start = strtotime("now - ".$amount." ".$what."s");
-    }
-}
-else{
-    $start = strtotime("today");
-}
-
-$end = isset($end) ? $end : strtotime("now");
+include('host.php');
+include('startend.php');
 
 if(is_integer($start) && (is_integer($end))){
 
-    $joknuden = mysqli_connect("127.0.0.1", "weewx", "joknuden6250") or die(mysql_error()); 
+    $joknuden = mysqli_connect($host, "weewx", "joknuden6250") or die(mysql_error()); 
 
     $query = mysqli_query($joknuden, 
     "SELECT dateTime, barometer, outTemp, outHumidity, windSpeed, windDir, windGust, windGustDir, rain, rainRate, dayRain, dewpoint
