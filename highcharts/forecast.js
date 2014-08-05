@@ -731,18 +731,20 @@ Meteogram.prototype.parseYrData = function () {
 // End of the Meteogram protype
 
 $(function() {
-    var place = 'Norway/Rogaland/Hå/Joknuden';
-    var yrxml = 'http://www.yr.no/place/' + place + '/forecast_hour_by_hour.xml';
-    var jsonlink = 'http://www.highcharts.com/samples/data/jsonp.php?url=' + yrxml + '&callback=?';
-    $.ajax({
-        url: jsonlink,
-        type: 'GET',
-        async: true,
-        dataType: 'json',
-        success: function(forecastdata){
-            var meteogram = new Meteogram(forecastdata, 'forecast');
-        }
-    });
+    setTimeout(function(){
+        var place = 'Norway/Rogaland/Hå/Joknuden';
+        var yrxml = 'http://www.yr.no/place/' + place + '/forecast_hour_by_hour.xml';
+        var jsonlink = 'http://www.highcharts.com/samples/data/jsonp.php?url=' + yrxml + '&callback=?';
+        $.ajax({
+            url: jsonlink,
+            type: 'GET',
+            async: true,
+            dataType: 'json',
+            success: function(forecastdata){
+                var meteogram = new Meteogram(forecastdata, 'forecast');
+            }
+        });
+    }, 500);
 });
 
 /*
