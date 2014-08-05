@@ -43,38 +43,40 @@ $(function() {
                         extremedata.barometer.min, extremedata.barometer.mintime, '#f0ad4e', ' hPa'));
                 }
             }).then(window['topChart'].redraw());
-                             
-            window['windChart'] = new Highcharts.StockChart(
-                chartConfig('windChart', 250, 
-                            [yAxisSchema(' m/s', true, 0, null, 5, null)], pointStart, 
-                            [seriesSchema('Wind Speed', 'windSpeed', 'spline', '#428bca', 0, chartdata.windSpeed, null, ' m/s', 1),
-                             seriesSchema('Wind Gust', 'windGust', 'spline', '#d9534f', 0, chartdata.windGust, 'Solid', ' m/s', 1)]));
-            window['windDirChart'] = new Highcharts.StockChart(
-                chartConfig('windDirChart', 250, 
-                            [yAxisSchema('°', true, 0, 360, null, 90)], pointStart, 
-                            [seriesSchema('Wind Direction', 'windDir', 'spline', '#428bca', 0, chartdata.windDir, 'Solid', '°', 0)]));
             
-            window['barometerChart'] = new Highcharts.StockChart(
-                chartConfig('barometerChart', 250, 
-                            [yAxisSchema(' hPa', true, null, null, 5, null)], pointStart, 
-                            [seriesSchema('Pressure', 'barometer', 'spline', '#428bca', 0, chartdata.barometer, 'Dash', ' hPa', 1)]));
-            
-            window['humidityChart'] = new Highcharts.StockChart(
-                chartConfig('humidityChart', 250, 
-                            [yAxisSchema('%', true, 0, 100, null, 10)], pointStart, 
-                            [seriesSchema('Humidity', 'outHumidity', 'spline', '#428bca', 0, chartdata.outHumidity, null, '%', 0)]));
-            
-            window['rainChart'] = new Highcharts.StockChart(
-                chartConfig('rainChart', 250, 
-                            [yAxisSchema(' mm/hr', false, 0, null, 50, null), 
-                             yAxisSchema(' mm', true, 0, null, 5, null)], pointStart, 
-                            [seriesSchema('Rain Rate', 'rainRate', 'spline', '#5bc0de', 0, chartdata.rainRate, 'Dash', ' mm/hr', 1),
-                             seriesSchema('Accumulated Rain', 'dayRain', 'spline', '#428bca', 1, chartdata.dayRain, null, ' mm', 1)]));
-            
-            window['tempChart'] = new Highcharts.StockChart(
-                chartConfig('tempChart', 250, 
-                            [yAxisSchema('°C', true, null, null, 5, null)], pointStart, 
-                            [seriesSchema('Temperature', 'outTemp', 'spline', '#428bca', 0, chartdata.outTemp, null, '°C', 1)])); 
+            setTimeout(function(){                           
+                window['windChart'] = new Highcharts.StockChart(
+                    chartConfig('windChart', 250, 
+                                [yAxisSchema(' m/s', true, 0, null, 5, null)], pointStart, 
+                                [seriesSchema('Wind Speed', 'windSpeed', 'spline', '#428bca', 0, chartdata.windSpeed, null, ' m/s', 1),
+                                 seriesSchema('Wind Gust', 'windGust', 'spline', '#d9534f', 0, chartdata.windGust, 'Solid', ' m/s', 1)]));
+                window['windDirChart'] = new Highcharts.StockChart(
+                    chartConfig('windDirChart', 250, 
+                                [yAxisSchema('°', true, 0, 360, null, 90)], pointStart, 
+                                [seriesSchema('Wind Direction', 'windDir', 'spline', '#428bca', 0, chartdata.windDir, 'Solid', '°', 0)]));
+
+                window['barometerChart'] = new Highcharts.StockChart(
+                    chartConfig('barometerChart', 250, 
+                                [yAxisSchema(' hPa', true, null, null, 5, null)], pointStart, 
+                                [seriesSchema('Pressure', 'barometer', 'spline', '#428bca', 0, chartdata.barometer, 'Dash', ' hPa', 1)]));
+
+                window['humidityChart'] = new Highcharts.StockChart(
+                    chartConfig('humidityChart', 250, 
+                                [yAxisSchema('%', true, 0, 100, null, 10)], pointStart, 
+                                [seriesSchema('Humidity', 'outHumidity', 'spline', '#428bca', 0, chartdata.outHumidity, null, '%', 0)]));
+
+                window['rainChart'] = new Highcharts.StockChart(
+                    chartConfig('rainChart', 250, 
+                                [yAxisSchema(' mm/hr', false, 0, null, 50, null), 
+                                 yAxisSchema(' mm', true, 0, null, 5, null)], pointStart, 
+                                [seriesSchema('Rain Rate', 'rainRate', 'spline', '#5bc0de', 0, chartdata.rainRate, 'Dash', ' mm/hr', 1),
+                                 seriesSchema('Accumulated Rain', 'dayRain', 'spline', '#428bca', 1, chartdata.dayRain, null, ' mm', 1)]));
+
+                window['tempChart'] = new Highcharts.StockChart(
+                    chartConfig('tempChart', 250, 
+                                [yAxisSchema('°C', true, null, null, 5, null)], pointStart, 
+                                [seriesSchema('Temperature', 'outTemp', 'spline', '#428bca', 0, chartdata.outTemp, null, '°C', 1)])); 
+            }, 2000);
         }
     });
     
@@ -113,38 +115,40 @@ $(function() {
         }
     });
     
-    $.ajax({
-        url: '/data/windrose10.php',
-        type: 'GET',
-        async: true,
-        dataType: "json",
-        success: function(windrosedata10){
-            window['windFreqencyChart10'] = new Highcharts.Chart(
-                windrosechart('windFreqencyChart10', 
-                              'Wind Direction Frequency 10 Min', 
-                              null, 
-                              '%', 
-                              '%', 
-                              'Frequency', 
-                              windrosedata10[0]));
-            
-            window['windVelocityChart10'] = new Highcharts.Chart(
-                windrosechart('windVelocityChart10', 
-                              'Wind Velocity 10 Min', 
-                              'Average wind speed by direction', 
-                              ' m/s', 
-                              ' m/s', 
-                              'Vector', 
-                              windrosedata10[1]));
-            
-            window['windVectorChart10'] = new Highcharts.Chart(
-                windrosechart('windVectorChart10', 
-                              'Wind Vector 10 Min', 
-                              'Average wind speed from direction', 
-                              ' m/s', 
-                              ' m/s', 
-                              'Vector', 
-                              windrosedata10[2]));
-        }
-    });
+    setTimeout(function(){
+        $.ajax({
+            url: '/data/windrose10.php',
+            type: 'GET',
+            async: true,
+            dataType: "json",
+            success: function(windrosedata10){
+                window['windFreqencyChart10'] = new Highcharts.Chart(
+                    windrosechart('windFreqencyChart10', 
+                                  'Wind Direction Frequency 10 Min', 
+                                  null, 
+                                  '%', 
+                                  '%', 
+                                  'Frequency', 
+                                  windrosedata10[0]));
+
+                window['windVelocityChart10'] = new Highcharts.Chart(
+                    windrosechart('windVelocityChart10', 
+                                  'Wind Velocity 10 Min', 
+                                  'Average wind speed by direction', 
+                                  ' m/s', 
+                                  ' m/s', 
+                                  'Vector', 
+                                  windrosedata10[1]));
+
+                window['windVectorChart10'] = new Highcharts.Chart(
+                    windrosechart('windVectorChart10', 
+                                  'Wind Vector 10 Min', 
+                                  'Average wind speed from direction', 
+                                  ' m/s', 
+                                  ' m/s', 
+                                  'Vector', 
+                                  windrosedata10[2]));
+            }
+        });
+    }, 1000);
 });
