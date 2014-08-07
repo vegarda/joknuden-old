@@ -14,7 +14,6 @@
             'Accept-Encoding: gzip,deflate,sdch'
 
         ));
-        $data = curl_exec($ch);
         if (curl_exec($ch) === FALSE) {
             die("Curl failed: " . curl_error($ch));
         }
