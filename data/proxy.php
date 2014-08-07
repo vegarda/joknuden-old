@@ -12,10 +12,11 @@
             'Accept: application/json',
             'Accept-Language: nb-no,nb;q=0.9,no-no;q=0.8,no;q=0.6,nn-no;q=0.5,nn;q=0.4,en-us;q=0.3,en;q=0.1',
             'Accept-Encoding: gzip,deflate,sdch'
-
         ));
-        if (curl_exec($ch) === FALSE) {
-            die("Curl failed: " . curl_error($ch));
+        curl_exec($ch);
+        if(curl_errno($ch))
+        {
+            echo 'Curl error: ' . curl_error($ch);
         }
         curl_close($ch);    
     };
