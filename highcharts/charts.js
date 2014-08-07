@@ -107,8 +107,7 @@ var chartConfig = function(renderTo, height, yAxis, pointStart, pointInterval, s
         chart: {
             renderTo: renderTo,
             height: height,
-            backgroundColor: 'rgba(0,0,0,0)',
-            spacing: [10, -100, 15, 10]
+            backgroundColor: 'rgba(0,0,0,0)'
         },
         title: {
             text: null  
