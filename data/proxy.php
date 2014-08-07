@@ -5,7 +5,8 @@
         'yr',
         'met'
     );
-    if(in_array(explode('.', parse_url($_GET['url'])['host'])[1], $whitelist)){
+
+    /*if(in_array(explode('.', parse_url($_GET['url'])['host'])[1], $whitelist)){
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $_GET['url']);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
@@ -37,5 +38,6 @@
         
         echo $response;
         
-    };
+    };*/
+        
 ?>
