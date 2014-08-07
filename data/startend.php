@@ -12,6 +12,7 @@ if (isset($what)){
             $end = strtotime("today");   
         }
     }
+    // how many days, weeks, months?
     else if ($amount > 0){
         $start = strtotime("tomorrow - ".$amount." ".$what."s") - 86400;
     }

@@ -1,12 +1,5 @@
 "use strict";
 
-var w = window.location.pathname.slice(1).split("/")[0];
-var a = window.location.pathname.slice(1).split("/")[1];
-
-var get = '';
-if (a){var get = '?w='+w+'&a='+a}
-else if (w){var get = '?w='+w}
-
 var groupingOptions = {
     approximation: 'close',
     enabled: true,
@@ -18,7 +11,7 @@ var groupingOptions = {
     []
     ], [
     'minute',
-    [5,10,15,30,40,45,50]
+    [1,5,10,15,30,40,45,50]
     ], [
     'hour',
     [1,2,3,6,12]
@@ -108,9 +101,61 @@ var flagSchema = function(name, seriesID, max, maxtime, min, mintime, color, uni
     };
 };
 
-//var tempchartconfig = function(tempchartdata){
-//var tripleChartConfig = function(renderTo, height, yAxis1, yAxis2, yAxis3, pointStart, series1, series2, series3){
-var chartConfig = function(renderTo, height, yAxis, pointStart, series){
+
+var chartConfig = function(renderTo, height, yAxis, pointStart, pointInterval, series){
+    return {
+        chart: {
+            renderTo: renderTo,
+            height: height,
+            backgroundColor: 'rgba(0,0,0,0)',
+            spacing: [10, -100, 15, 10]
+        },
+        title: {
+            text: null  
+        },
+        legend: {
+            enabled: true,
+            floating: true,
+            verticalAlign: 'top',
+            backgroundColor: 'rgba(254,254,254,0.5)',
+            borderColor: '#222'
+        },
+        exporting: {
+            enabled: false   
+        },
+        navigator: {
+            enabled: false
+        },
+        scrollbar: {
+            enabled: false
+        },
+        rangeSelector: {
+            enabled: false
+        },
+
+        yAxis: yAxis,
+        xAxis: {
+                type: 'datetime',
+                title: {
+                    text: ''
+                }
+            },
+        plotOptions: {
+            series: {
+                pointStart: pointStart,
+                pointInterval: pointInterval
+            }
+        },
+        tooltip: {
+            shared: true
+        },
+        series: series
+    };
+};
+
+
+
+var rawChartConfig = function(renderTo, height, yAxis, pointStart, pointInterval, series){
     return {
         chart: {
             renderTo: renderTo,
@@ -150,7 +195,7 @@ var chartConfig = function(renderTo, height, yAxis, pointStart, series){
         plotOptions: {
             series: {
                 pointStart: pointStart,
-                pointInterval: 60*1000
+                pointInterval: pointInterval
             }
         },
         tooltip: {

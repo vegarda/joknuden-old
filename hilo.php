@@ -1,5 +1,5 @@
 <?php
-include('data/host.php');
+include('/data/host.php');
 
 $joknuden = mysqli_connect($host, "weewx", "joknuden6250") or die(mysql_error()); 
 $temperature_q = mysqli_query($joknuden, "SELECT * FROM stats.outTemp ORDER BY dateTime DESC LIMIT 1") or die(mysqli_error()); 
