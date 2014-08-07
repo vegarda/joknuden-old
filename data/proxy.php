@@ -16,10 +16,6 @@
             'Accept-Encoding: gzip,deflate,sdch'
         ));
 
-        /* timeout after the specified number of seconds. assuming that this script runs
-        on a server, 20 seconds should be plenty of time to verify a valid URL.  */
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 15);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 20);
         curl_exec($ch);
         
         if(curl_errno($ch)){
