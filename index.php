@@ -98,6 +98,7 @@ echo '
         <script type="text/javascript" src="/console/js/MesoWxApp.js"></script>
 
     
+	<script type="text/javascript" src="/js/warning.js"></script>
     <script type="text/javascript" src="/highcharts/js/highstock.js"></script>
     <script type="text/javascript" src="/highcharts/js/highcharts-more.js"></script>
     <script type="text/javascript" src="/highcharts/charts.js"></script>
@@ -203,6 +204,10 @@ echo '
                         <span class="dateTime-value reading-value"></span>
                         <div><i class="fa fa-clock-o"></i></div>
                     </div>
+                </div>
+            </div>
+            <div class="container-fluid" style="background-color: rgba(0,0,0,0); border: none; display: none;">
+                <div id="warning" class="warning-container" style="background-color: rgba(0,0,0,0);">
                 </div>
             </div>
             <div class="container-fluid">

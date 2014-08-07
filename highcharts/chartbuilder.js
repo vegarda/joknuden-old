@@ -1,7 +1,6 @@
 "use strict";
 
 $(function() {
-    
 
     var w = window.location.pathname.slice(1).split("/")[0];
     var a = window.location.pathname.slice(1).split("/")[1];

@@ -6,7 +6,8 @@
     );
 
     if(in_array($_SERVER['REMOTE_ADDR'], $whitelist)){
-        $host = 'joknuden.no';
+        //$host = 'joknuden.no';
+        $host = '192.168.10.10';
     };
 
 ?>
