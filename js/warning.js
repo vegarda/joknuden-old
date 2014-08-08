@@ -2,7 +2,8 @@
 
 var now = new Date();
 var today = now.getFullYear() + '-' + (now.getMonth()+1) + '-' + now.getDate() + '/';
-var nveurl = '/data/proxy.php?url=http://api01.nve.no/hydrology/forecast/flood/v1.0.2/api/WarningByMunicipality/1119/1/' + today + today + '&type=json';
+//var nveurl = '/data/proxy.php?url=http://api01.nve.no/hydrology/forecast/flood/v1.0.2/api/WarningByMunicipality/1119/1/' + today + today + '&type=json';
+var nveurl = '/data/proxy.php?url=http://api01.nve.no/hydrology/forecast/flood/v1.0.2/api/WarningByMunicipality/1119/1/&type=json';
 
 
 function alertSchema(warningText, warningLevel){
@@ -41,21 +42,22 @@ $( document ).ready(function() {
 console.log('warning.js');
         
     $.ajax({
-        url: nveurl,
+        url: '/data/proxy.php?url=http://api01.nve.no/hydrology/forecast/flood/v1.0.2/api/WarningByMunicipality/1119/1/&type=json',
         type: 'GET',
         async: true,
         dataType: 'json',
         success: function(nvedata){
-            console.log('Activitylevel: ' + nvedata[0]['ActivityLevel']);
-            if(nvedata[0]['ActivityLevel'] > 1){
-                var ActivityLevel = nvedata[0]['ActivityLevel'];
-                var MainText = nvedata[0]['MainText'];
-                var WarningText = nvedata[0]['WarningText'];
+            $(nvedata).each(function(index, value){
+                if(value['ActivityLevel'] > 1){
+                    var ActivityLevel = value['ActivityLevel'];
+                    var MainText = value['MainText'];
+                    var WarningText = value['WarningText'];
 
-                var warning = alertSchema(MainText, ActivityLevel);
-                document.getElementById('warning').appendChild(warning);
-                document.getElementById('warning').parentNode.style.display = 'block';
-            }
+                    var warning = alertSchema(MainText, ActivityLevel);
+                    document.getElementById('warning').appendChild(warning);
+                    document.getElementById('warning').parentNode.style.display = 'block';
+                }
+            })
         }
     });
     
@@ -67,13 +69,39 @@ console.log('warning.js');
         success: function(obsdata){
             $(obsdata).find("[forecast_origin='VV_Obsvarsel']").each(function(index, value){
                 $(value).find("location[name='Rogaland']").each(function(index, value){
-                    //console.log($(value).find('in')[0]);
                     var warningText = $(value).find('in')[0].textContent;
 
                     var warning = alertSchema(warningText, 2);
                     document.getElementById('warning').appendChild(warning);
                     document.getElementById('warning').parentNode.style.display = 'block';
                 });
+            });
+        }
+    });
+    
+        $.ajax({
+        url: 'http://api.yr.no/weatherapi/forestfireindex/1.1/',
+        type: 'GET',
+        async: true,
+        dataType: 'xml',
+        success: function(forestfiredata){
+            $(forestfiredata).find('time').each(function(index, value){
+                var dangerIndex = $(value).find("location[stationid='44300']").find("forest-fire[unit='danger-index']")[0].attributes[1].value;
+                if (dangerIndex > 70){
+                    var warning = alertSchema("Meget stor skogbrannfare", 3);
+                    document.getElementById('warning').appendChild(warning);
+                    document.getElementById('warning').parentNode.style.display = 'block';
+                }
+                else if (dangerIndex > 40){
+                    var warning = alertSchema("Stor skogbrannfare", 2);
+                    document.getElementById('warning').appendChild(warning);
+                    document.getElementById('warning').parentNode.style.display = 'block';
+                }
+                else if (dangerIndex > 20){
+                    var warning = alertSchema("Skogbrannfare", 1);
+                    document.getElementById('warning').appendChild(warning);
+                    document.getElementById('warning').parentNode.style.display = 'block';
+                };
             });
         }
     });
