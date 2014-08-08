@@ -78,8 +78,8 @@ console.log('warning.js');
             });
         }
     });
-    
-        $.ajax({
+
+    $.ajax({
         url: 'http://api.yr.no/weatherapi/forestfireindex/1.1/',
         type: 'GET',
         async: true,
@@ -106,6 +106,19 @@ console.log('warning.js');
                     };
                 }
             });
+        }
+    });
+    $.ajax({
+        url: 'http://api.yr.no/weatherapi/textforecast/1.6/?forecast=gale;language=nb',
+        type: 'GET',
+        async: true,
+        dataType: 'xml',
+        success: function(galedata){
+            var warningText = $(galedata).find("location[id='50644']").find("in")[0].textContent;
+            
+            var warning = alertSchema(warningText, 2);
+            document.getElementById('warning').appendChild(warning);
+            document.getElementById('warning').parentNode.style.display = 'block';
         }
     });
 });
