@@ -69,9 +69,18 @@ echo '
 <html lang="en">
     <head>
     <meta charset="utf-8">
+    <meta name="description" content="Joknuden weather station located at the south west coast of Norway, bordering the open waters of the North Sea.">
+    <meta name="keywords" content="Joknuden,Weather Station,Weather,wx">
+    <meta name="author" content="Vegard Andersen">
+    <link rel=”author” href=”https://plus.google.com/113629300948788892639“/>
+    <meta property=”og:title” content=”Joknuden Weather Station”/>
+    <meta property=”og:url” content=”http://joknuden.no”/>
+    <meta property=”og:description” content=”Joknuden weather station located at the south west coast of Norway, bordering the open waters of the North Sea.”/>
+    <meta property=”fb:admins” content=”vegarda”/>
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Joknuden | Bootstrap</title>
+    <title>Joknuden Weather Station</title>
 
     <!-- Bootstrap -->
 	<script type="text/javascript" src="/js/jquery-2.1.1.min.js"></script>
@@ -178,7 +187,7 @@ echo '
             <li><a id="month" href="/month/1/">Month</a></li>
             <li><a id="6-month" href="/month/6/">6 Month</a></li>
             <li><a id="year" href="/year/1/">Year</a></li>
-            <li><a id="radar" class="fancybox" rel="group" href="http://api.yr.no/weatherapi/radar/1.4/?radarsite=southwest_norway;type=reflectivity;content=image;size=large#.jpg" alt="">RADAR</a></li>
+            <li><a id="radar" class="fancybox" rel="group" title="<a href=\'http://www.yr.no\'>Forecast from yr.no</a>" href="http://api.yr.no/weatherapi/radar/1.4/?radarsite=southwest_norway;type=reflectivity;content=animation;size=large#.jpg" alt="">RADAR</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
