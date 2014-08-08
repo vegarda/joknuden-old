@@ -86,22 +86,25 @@ console.log('warning.js');
         dataType: 'xml',
         success: function(forestfiredata){
             $(forestfiredata).find('time').each(function(index, value){
-                var dangerIndex = $(value).find("location[stationid='44300']").find("forest-fire[unit='danger-index']")[0].attributes[1].value;
-                if (dangerIndex > 70){
-                    var warning = alertSchema("Meget stor skogbrannfare", 3);
-                    document.getElementById('warning').appendChild(warning);
-                    document.getElementById('warning').parentNode.style.display = 'block';
+                // limit to one day warning
+                if (index == 0){
+                    var dangerIndex = $(value).find("location[stationid='44300']").find("forest-fire[unit='danger-index']")[0].attributes[1].value;
+                    if (dangerIndex > 70){
+                        var warning = alertSchema("Meget stor skogbrannfare", 3);
+                        document.getElementById('warning').appendChild(warning);
+                        document.getElementById('warning').parentNode.style.display = 'block';
+                    }
+                    else if (dangerIndex > 40){
+                        var warning = alertSchema("Stor skogbrannfare", 2);
+                        document.getElementById('warning').appendChild(warning);
+                        document.getElementById('warning').parentNode.style.display = 'block';
+                    }
+                    else if (dangerIndex > 20){
+                        var warning = alertSchema("Skogbrannfare", 1);
+                        document.getElementById('warning').appendChild(warning);
+                        document.getElementById('warning').parentNode.style.display = 'block';
+                    };
                 }
-                else if (dangerIndex > 40){
-                    var warning = alertSchema("Stor skogbrannfare", 2);
-                    document.getElementById('warning').appendChild(warning);
-                    document.getElementById('warning').parentNode.style.display = 'block';
-                }
-                else if (dangerIndex > 20){
-                    var warning = alertSchema("Skogbrannfare", 1);
-                    document.getElementById('warning').appendChild(warning);
-                    document.getElementById('warning').parentNode.style.display = 'block';
-                };
             });
         }
     });
