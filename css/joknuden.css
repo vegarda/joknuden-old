@@ -136,3 +136,9 @@ footer{
     background-color: #222;
     border-color: #080808;
 }
+
+.alert-amber{
+    background-color: #F7EBE1;
+    color: #9A593F;
+    border-color: #F3DCCF;
+}
