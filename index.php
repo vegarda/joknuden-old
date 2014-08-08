@@ -176,7 +176,7 @@ echo '
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">Joknuden</a>
+          <a class="navbar-brand fancybox" rel="group" title="View from Joknuden" href="/sd.jpg" alt="">Joknuden</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -188,6 +188,7 @@ echo '
             <li><a id="6-month" href="/month/6/">6 Month</a></li>
             <li><a id="year" href="/year/1/">Year</a></li>
             <li><a id="radar" class="fancybox" rel="group" title="<a href=\'http://www.yr.no\'>Forecast from yr.no</a>" href="http://api.yr.no/weatherapi/radar/1.4/?radarsite=southwest_norway;type=reflectivity;content=animation;size=large#.jpg" alt="">RADAR</a></li>
+            <li><a id="webcam" class="fancybox" rel="group" title="View from Joknuden" href="/sd.jpg" alt="">Webcam</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
