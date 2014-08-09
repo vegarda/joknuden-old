@@ -26,7 +26,7 @@ var groupingOptions = {
     [1]
     ], [
     'year',
-    []
+    [1]
     ]]
 };
    
