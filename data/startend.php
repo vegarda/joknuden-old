@@ -1,24 +1,16 @@
 <?php
-$what = isset($_GET['w']) ? $_GET['w'] : null;
-$amount = isset($_GET['a']) ? $_GET['a'] : null;
+$what = isset($_GET['w']) ? $_GET['w'] : "today";
+$amount = isset($_GET['a']) ? $_GET['a'] : 1;
 
-//echo $what;
-//echo $amount;
 
-if (isset($what)){
-    if ($what == "today" || $what == "yesterday"){
-        $start = strtotime($what);
-        if ($what == "yesterday"){
-            $end = strtotime("today");   
-        }
-    }
-    // how many days, weeks, months?
-    else if ($amount > 0){
-        $start = strtotime("tomorrow - ".$amount." ".$what."s") - 86400;
+if ($what == "today" || $what == "yesterday"){
+    $start = strtotime($what);
+    if ($what == "yesterday"){
+        $end = strtotime("today");   
     }
 }
 else{
-    $start = strtotime("today");
+    $start = strtotime("today - ".$amount." ".$what."s");
 }
 
 $end = isset($end) ? $end : strtotime("tomorrow");
