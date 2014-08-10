@@ -114,7 +114,7 @@ console.log('warning.js');
         async: true,
         dataType: 'xml',
         success: function(galedata){
-            var warningText = $(galedata).find("location[id='50644']").find("in")[0].textContent;
+            var warningText = $(galedata).find("location[name='Åna-Sira - Obrestad']").find("in")[0].textContent;
             
             var warning = alertSchema(warningText, 2);
             document.getElementById('warning').appendChild(warning);
