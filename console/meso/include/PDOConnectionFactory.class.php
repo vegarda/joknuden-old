@@ -20,7 +20,7 @@ class PDOConnectionFactory {
     }
 
     private static function openMySQLConnection( $dbConfig ) {
-        if ($_SERVER['HTTP_HOST'] == 'localhost' || 'vegard.me'){
+        if ($_SERVER['SERVER_NAME'] == 'vegard.me' || 'yr.vegard.me'){
             $host = 'joknuden.no';
         }
         else{
