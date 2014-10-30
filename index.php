@@ -11,6 +11,7 @@ else{
     $amount = null;
     $today = true;   
 }
+$host = '127.0.0.1';
 include($REQUEST_URI.'data/host.php');
 if ($host == 'joknuden.no'){
     $indicesServer = array('PHP_SELF', 
