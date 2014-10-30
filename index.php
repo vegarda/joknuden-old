@@ -1,4 +1,6 @@
 <?php
+header('Content-Encoding: gzip; Content-type: text/html; charset=utf-8');
+$REQUEST_URI = '/';
 
 $what = isset($_GET['what']) ? $_GET['what'] : null;
 $today = false;
@@ -9,66 +11,71 @@ else{
     $amount = null;
     $today = true;   
 }
+include($REQUEST_URI.'data/host.php');
+if ($host == 'joknuden.no'){
+    $indicesServer = array('PHP_SELF', 
+    'argv', 
+    'argc', 
+    'GATEWAY_INTERFACE', 
+    'SERVER_ADDR', 
+    'SERVER_NAME', 
+    'SERVER_SOFTWARE', 
+    'SERVER_PROTOCOL', 
+    'REQUEST_METHOD', 
+    'REQUEST_TIME', 
+    'REQUEST_TIME_FLOAT', 
+    'QUERY_STRING', 
+    'DOCUMENT_ROOT', 
+    'HTTP_ACCEPT', 
+    'HTTP_ACCEPT_CHARSET', 
+    'HTTP_ACCEPT_ENCODING', 
+    'HTTP_ACCEPT_LANGUAGE', 
+    'HTTP_CONNECTION', 
+    'HTTP_HOST', 
+    'HTTP_REFERER', 
+    'HTTP_USER_AGENT', 
+    'HTTPS', 
+    'REMOTE_ADDR', 
+    'REMOTE_HOST', 
+    'REMOTE_PORT', 
+    'REMOTE_USER', 
+    'REDIRECT_REMOTE_USER', 
+    'SCRIPT_FILENAME', 
+    'SERVER_ADMIN', 
+    'SERVER_PORT', 
+    'SERVER_SIGNATURE', 
+    'PATH_TRANSLATED', 
+    'SCRIPT_NAME', 
+    'REQUEST_URI', 
+    'PHP_AUTH_DIGEST', 
+    'PHP_AUTH_USER', 
+    'PHP_AUTH_PW', 
+    'AUTH_TYPE', 
+    'PATH_INFO', 
+    'ORIG_PATH_INFO') ;
 
-/*
-$indicesServer = array('PHP_SELF', 
-'argv', 
-'argc', 
-'GATEWAY_INTERFACE', 
-'SERVER_ADDR', 
-'SERVER_NAME', 
-'SERVER_SOFTWARE', 
-'SERVER_PROTOCOL', 
-'REQUEST_METHOD', 
-'REQUEST_TIME', 
-'REQUEST_TIME_FLOAT', 
-'QUERY_STRING', 
-'DOCUMENT_ROOT', 
-'HTTP_ACCEPT', 
-'HTTP_ACCEPT_CHARSET', 
-'HTTP_ACCEPT_ENCODING', 
-'HTTP_ACCEPT_LANGUAGE', 
-'HTTP_CONNECTION', 
-'HTTP_HOST', 
-'HTTP_REFERER', 
-'HTTP_USER_AGENT', 
-'HTTPS', 
-'REMOTE_ADDR', 
-'REMOTE_HOST', 
-'REMOTE_PORT', 
-'REMOTE_USER', 
-'REDIRECT_REMOTE_USER', 
-'SCRIPT_FILENAME', 
-'SERVER_ADMIN', 
-'SERVER_PORT', 
-'SERVER_SIGNATURE', 
-'PATH_TRANSLATED', 
-'SCRIPT_NAME', 
-'REQUEST_URI', 
-'PHP_AUTH_DIGEST', 
-'PHP_AUTH_USER', 
-'PHP_AUTH_PW', 
-'AUTH_TYPE', 
-'PATH_INFO', 
-'ORIG_PATH_INFO') ;
 
-echo '<table cellpadding="10">' ; 
-foreach ($indicesServer as $arg) { 
-    if (isset($_SERVER[$arg])) { 
-        echo '<tr><td>'.$arg.'</td><td>' . $_SERVER[$arg] . '</td></tr>' ; 
+    echo '<table cellpadding="10">' ; 
+    foreach ($indicesServer as $arg) { 
+        if (isset($_SERVER[$arg])) { 
+            echo '<tr><td>'.$arg.'</td><td>' . $_SERVER[$arg] . '</td></tr>' ; 
+        } 
+        else { 
+            echo '<tr><td>'.$arg.'</td><td>-</td></tr>' ; 
+        } 
     } 
-    else { 
-        echo '<tr><td>'.$arg.'</td><td>-</td></tr>' ; 
-    } 
-} 
-echo '</table>' ; 
-*/
+    echo '</table>' ;
+}
+
+
+
 
 echo '
 <!DOCTYPE html>
 <html lang="en">
     <head>
     <meta charset="utf-8">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <meta name="description" content="Joknuden weather station located at the south west coast of Norway, bordering the open waters of the North Sea.">
     <meta name="keywords" content="Joknuden,Weather Station,Weather,wx">
     <meta name="author" content="Vegard Andersen">
@@ -83,49 +90,49 @@ echo '
     <title>Joknuden Weather Station</title>
 
     <!-- Bootstrap -->
-	<script type="text/javascript" src="/js/jquery-2.1.1.min.js"></script>
-	<script type="text/javascript" src="/js/analytics.js"></script>
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/console.css" rel="stylesheet">
-    <link href="/css/joknuden.css" rel="stylesheet">
-    <link href="/weather-icons/css/weather-icons.min.css" rel="stylesheet">
-    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<script type="text/javascript" src="'.$REQUEST_URI.'js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="'.$REQUEST_URI.'js/analytics.js"></script>
+    <link href="'.$REQUEST_URI.'css/bootstrap.min.css" rel="stylesheet">
+    <link href="'.$REQUEST_URI.'css/console.css" rel="stylesheet">
+    <link href="'.$REQUEST_URI.'css/joknuden.css" rel="stylesheet">
+    <link href="'.$REQUEST_URI.'weather-icons/css/weather-icons.min.css" rel="stylesheet">
+    <link href="'.$REQUEST_URI.'font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
-        <script type="text/javascript" src="/console/js/lib/d3.v3.min.js"></script>
-        <script type="text/javascript" src="/console/meso/js/meso.js"></script>
-        <script type="text/javascript" src="/console/js/mesowx.js"></script>
-        <script type="text/javascript" src="/console/meso/js/ChangeIndicatedValue.js"></script>
-        <script type="text/javascript" src="/console/js/WindCompass.js"></script>
-        <script type="text/javascript" src="/console/meso/js/AggregateDataProvider.js"></script>
-        <script type="text/javascript" src="/console/meso/js/AbstractRealTimeRawDataProvider.js"></script>
-        <script type="text/javascript" src="/console/meso/js/PollingRealTimeRawDataProvider.js"></script>
-        <script type="text/javascript" src="/console/meso/js/StatsDataProvider.js"></script>
-        <script type="text/javascript" src="/console/meso/js/MesoConsole.js"></script>
-        <script type="text/javascript" src="/console/js/MesoWxConsole.js"></script>
-        <script type="text/javascript" src="/console/js/MesoWxWindCompass.js"></script>
-        <script type="text/javascript" src="/console/js/Config.js"></script>
-        <script type="text/javascript" src="/console/js/MesoWxApp.js"></script>
+        <script type="text/javascript" src="'.$REQUEST_URI.'console/js/lib/d3.v3.min.js"></script>
+        <script type="text/javascript" src="'.$REQUEST_URI.'console/meso/js/meso.js"></script>
+        <script type="text/javascript" src="'.$REQUEST_URI.'console/js/mesowx.js"></script>
+        <script type="text/javascript" src="'.$REQUEST_URI.'console/meso/js/ChangeIndicatedValue.js"></script>
+        <script type="text/javascript" src="'.$REQUEST_URI.'console/js/WindCompass.js"></script>
+        <script type="text/javascript" src="'.$REQUEST_URI.'console/meso/js/AggregateDataProvider.js"></script>
+        <script type="text/javascript" src="'.$REQUEST_URI.'console/meso/js/AbstractRealTimeRawDataProvider.js"></script>
+        <script type="text/javascript" src="'.$REQUEST_URI.'console/meso/js/PollingRealTimeRawDataProvider.js"></script>
+        <script type="text/javascript" src="'.$REQUEST_URI.'console/meso/js/StatsDataProvider.js"></script>
+        <script type="text/javascript" src="'.$REQUEST_URI.'console/meso/js/MesoConsole.js"></script>
+        <script type="text/javascript" src="'.$REQUEST_URI.'console/js/MesoWxConsole.js"></script>
+        <script type="text/javascript" src="'.$REQUEST_URI.'console/js/MesoWxWindCompass.js"></script>
+        <script type="text/javascript" src="'.$REQUEST_URI.'console/js/Config.js"></script>
+        <script type="text/javascript" src="'.$REQUEST_URI.'console/js/MesoWxApp.js"></script>
 
     
-	<script type="text/javascript" src="/js/warning.js"></script>
-	<script type="text/javascript" src="/js/sun.js"></script>
-    <script type="text/javascript" src="/highcharts/js/highstock.js"></script>
-    <script type="text/javascript" src="/highcharts/js/highcharts-more.js"></script>
-    <script type="text/javascript" src="/highcharts/charts.js"></script>
-    <script type="text/javascript" src="/highcharts/chartbuilder.js"></script>
-    <script type="text/javascript" src="/highcharts/forecast.js"></script>
+	<script type="text/javascript" src="'.$REQUEST_URI.'js/warning.js"></script>
+	<script type="text/javascript" src="'.$REQUEST_URI.'js/sun.js"></script>
+    <script type="text/javascript" src="'.$REQUEST_URI.'highcharts/js/highstock.js"></script>
+    <script type="text/javascript" src="'.$REQUEST_URI.'highcharts/js/highcharts-more.js"></script>
+    <script type="text/javascript" src="'.$REQUEST_URI.'highcharts/charts.js"></script>
+    <script type="text/javascript" src="'.$REQUEST_URI.'highcharts/chartbuilder.js"></script>
+    <script type="text/javascript" src="'.$REQUEST_URI.'highcharts/forecast.js"></script>
     
     <!-- Add fancyBox -->
-    <link rel="stylesheet" href="/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
-    <script type="text/javascript" src="/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+    <link rel="stylesheet" href="'.$REQUEST_URI.'fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+    <script type="text/javascript" src="'.$REQUEST_URI.'fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
     <!-- Optionally add helpers - button, thumbnail and/or media -->
-    <link rel="stylesheet" href="/fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
-    <script type="text/javascript" src="/fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
-    <script type="text/javascript" src="/fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+    <link rel="stylesheet" href="'.$REQUEST_URI.'fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
+    <script type="text/javascript" src="'.$REQUEST_URI.'fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+    <script type="text/javascript" src="'.$REQUEST_URI.'fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
 
-    <link rel="stylesheet" href="/fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
-    <script type="text/javascript" src="/fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+    <link rel="stylesheet" href="'.$REQUEST_URI.'fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
+    <script type="text/javascript" src="'.$REQUEST_URI.'fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
     
     <script type="text/javascript">
         $( document ).ready(function() {
@@ -176,19 +183,35 @@ echo '
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand fancybox" rel="group" title="View from Joknuden" href="/sd.jpg" alt="">Joknuden</a>
+          <a class="navbar-brand fancybox" rel="nogroup" title="View from Joknuden" href="/sd.jpg" alt="">Joknuden</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a id="yesterday" href="/yesterday/">Yesterday</a></li>
-            <li><a id="today" href="/">Today</a></li>
-            <li><a id="3day" href="/day/3/">3 day</a></li>
-            <li><a id="week" href="/week/1/">Week</a></li>
-            <li><a id="month" href="/month/1/">Month</a></li>
-            <li><a id="6-month" href="/month/6/">6 Month</a></li>
-            <li><a id="year" href="/year/1/">Year</a></li>
-            <li><a id="radar" class="fancybox" rel="group" title="<a href=\'http://www.yr.no\'>Forecast from yr.no</a>" href="http://api.yr.no/weatherapi/radar/1.4/?radarsite=southwest_norway;type=reflectivity;content=animation;size=large#.jpg" alt="">RADAR</a></li>
-            <li><a id="webcam" class="fancybox" rel="group" title="View from Joknuden" href="/sd.jpg" alt="">Webcam</a></li>
+            <li><a id="yesterday" href="'.$REQUEST_URI.'yesterday/">Yesterday</a></li>
+            <li><a id="today" href="'.$REQUEST_URI.'">Today</a></li>
+            <li><a id="3day" href="'.$REQUEST_URI.'day/3/">3 day</a></li>
+            <li><a id="week" href="'.$REQUEST_URI.'week/1/">Week</a></li>
+            <li><a id="month" href="'.$REQUEST_URI.'month/1/">Month</a></li>
+            <li><a id="6-month" href="'.$REQUEST_URI.'month/6/">6 Month</a></li>
+            <li><a id="year" href="'.$REQUEST_URI.'year/1/">Year</a></li>
+            <li><a id="radar" class="fancybox" rel="radar" title="<a href=\'http://www.yr.no\'>Forecast from yr.no</a>" href="http://api.yr.no/weatherapi/radar/1.4/?radarsite=southwest_norway;type=reflectivity;content=animation;size=large#.jpg" alt="">RADAR</a></li>
+            <li id="webcam-images">
+				<a id="webcam" class="fancybox" rel="webcam" title="View from Joknuden" href="'.$REQUEST_URI.'sd.jpg" alt="">Webcam</a>';
+
+if ($host == '127.0.0.1'){
+	$day    = date("Y-m-d");
+	$dir    = '/var/www/html/timelapse/'.$day;
+	$images = scandir($dir, 1);
+	$images = array_slice($images,1);
+
+	foreach ($images as $image){
+		echo '
+				<a id="webcam" class="fancybox hidden" rel="webcam" title="View from Joknuden" href="$REQUEST_URI/$day/$image.jpg" alt="">$image</a>';
+	}
+}
+
+echo '
+			</li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

@@ -1,13 +1,13 @@
 <?php
     $host = '127.0.0.1';
     $whitelist = array(
-        '127.0.0.1',
-        '::1'
+        'localhost',
+        'vegard.me',
+		'yr.vegard.me'
     );
 
-    if(in_array($_SERVER['REMOTE_ADDR'], $whitelist)){
-        //$host = 'joknuden.no';
-        $host = '192.168.10.10';
+    if(in_array($_SERVER['HTTP_HOST'], $whitelist)){
+        $host = 'joknuden.no';
     };
 
 ?>

@@ -42,7 +42,7 @@ $(function() {
     }*/
 
     $.ajax({
-        url: '/data/archivedata.php'+get,
+        url: window.location.origin+'/data/archivedata.php'+get,
         type: 'GET',
         async: true,
         dataType: "json",
@@ -69,7 +69,7 @@ $(function() {
                 
                 setInterval(function() {
                             $.ajax({
-                                    url: '/data/archive.php',
+                                    url: window.location.origin+'/data/archive.php',
                                     type: 'GET',
                                     async: true,
                                     dataType: "json",
@@ -85,7 +85,7 @@ $(function() {
                 }, 60 * 1000);
                 
                 $.ajax({
-                    url: '/data/extreme.php'+get,
+                    url: window.location.origin+'/data/extreme.php'+get,
                     type: 'GET',
                     async: true,
                     dataType: "json",
@@ -144,7 +144,7 @@ $(function() {
     });
     
     $.ajax({
-        url: '/data/windrose.php'+get,
+        url: window.location.origin+'/data/windrose.php'+get,
         type: 'GET',
         async: true,
         dataType: "json",
@@ -180,7 +180,7 @@ $(function() {
     
     setTimeout(function(){
         $.ajax({
-            url: '/data/windrose10.php',
+            url: window.location.origin+'/data/windrose10.php',
             type: 'GET',
             async: true,
             dataType: "json",

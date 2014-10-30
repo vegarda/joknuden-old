@@ -16,7 +16,7 @@ $( document ).ready(function() {
 console.log('sun.js');
         
     $.ajax({
-            url: 'http://api.yr.no/weatherapi/sunrise/1.0/?lat=48.492;lon=5.8252;date=' + today,
+            url: window.location.origin+'/data/proxy.php?url=http://api.yr.no/weatherapi/sunrise/1.0/?lat=48.492;lon=5.8252;date=' + today,
             type: 'GET',
             async: true,
             dataType: 'xml',

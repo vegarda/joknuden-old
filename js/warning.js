@@ -1,9 +1,9 @@
-"use strict";
+'use strict';
 
 var now = new Date();
 var today = now.getFullYear() + '-' + (now.getMonth()+1) + '-' + now.getDate() + '/';
 //var nveurl = '/data/proxy.php?url=http://api01.nve.no/hydrology/forecast/flood/v1.0.2/api/WarningByMunicipality/1119/1/' + today + today + '&type=json';
-var nveurl = '/data/proxy.php?url=http://api01.nve.no/hydrology/forecast/flood/v1.0.2/api/WarningByMunicipality/1119/1/&type=json';
+var nveurl = window.location.origin+'/data/proxy.php?url=http://api01.nve.no/hydrology/forecast/flood/v1.0.2/api/WarningByMunicipality/1119/1/&type=json';
 
 
 function alertSchema(warningText, warningLevel){
@@ -42,7 +42,7 @@ $( document ).ready(function() {
 console.log('warning.js');
         
     $.ajax({
-        url: '/data/proxy.php?url=http://api01.nve.no/hydrology/forecast/flood/v1.0.2/api/WarningByMunicipality/1119/1/&type=json',
+        url: window.location.origin+'/data/proxy.php?url=http://api01.nve.no/hydrology/forecast/flood/v1.0.2/api/WarningByMunicipality/1119/1/&type=json',
         type: 'GET',
         async: true,
         dataType: 'json',
@@ -62,7 +62,7 @@ console.log('warning.js');
     });
     
     $.ajax({
-        url: 'http://api.yr.no/weatherapi/textforecast/1.6/?forecast=obs;language=nb',
+        url: window.location.origin+'/data/proxy.php?url=http://api.yr.no/weatherapi/textforecast/1.6/?forecast=obs;language=nb',
         type: 'GET',
         async: true,
         dataType: 'xml',
@@ -80,7 +80,7 @@ console.log('warning.js');
     });
 
     $.ajax({
-        url: 'http://api.yr.no/weatherapi/forestfireindex/1.1/',
+        url: window.location.origin+'/data/proxy.php?url=http://api.yr.no/weatherapi/forestfireindex/1.1/',
         type: 'GET',
         async: true,
         dataType: 'xml',
@@ -109,7 +109,7 @@ console.log('warning.js');
         }
     });
     $.ajax({
-        url: 'http://api.yr.no/weatherapi/textforecast/1.6/?forecast=gale;language=nb',
+        url: window.location.origin+'/data/proxy.php?url=http://api.yr.no/weatherapi/textforecast/1.6/?forecast=gale;language=nb',
         type: 'GET',
         async: true,
         dataType: 'xml',

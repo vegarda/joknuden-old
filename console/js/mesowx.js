@@ -1,4 +1,4 @@
-var mesowx = mesowx || {};
+﻿var mesowx = mesowx || {};
 
 mesowx.Util = {
     createDegreeToCardinalTextConverter : function(labels) {

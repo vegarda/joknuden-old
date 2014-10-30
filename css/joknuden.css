@@ -142,3 +142,7 @@ footer{
     color: #9A593F;
     border-color: #F3DCCF;
 }
+
+a.hidden{
+	display: none;
+}
