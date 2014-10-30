@@ -207,7 +207,7 @@ if ($host == '127.0.0.1'){
 
 	foreach ($images as $image){
 		echo '
-				<a id="webcam" class="fancybox hidden" rel="webcam" title="View from Joknuden" href="'.$REQUEST_URI.'timelapse/'.$day.'/'.$image.'.jpg" alt="">'.$image.'</a>';
+				<a id="webcam" class="fancybox hidden" rel="webcam" title="View from Joknuden" href="'.$REQUEST_URI.'timelapse/'.$day.'/'.$image.'" alt="">'.$image.'</a>';
 	}
 }
 
