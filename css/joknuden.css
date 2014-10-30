@@ -146,3 +146,13 @@ footer{
 a.hidden{
 	display: none;
 }
+
+.footer-container{
+	padding-top: 35px;
+	color: white;
+	text-align: center;
+}
+
+.footer-container a{
+	color: white;
+}

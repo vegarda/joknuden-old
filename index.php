@@ -362,6 +362,9 @@ echo'
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="/js/bootstrap.min.js"></script>
     <footer>
+		<div class="footer-container container">
+			<p>© '.(date("Y")).' <a href="mailto:ferska.vara@gmail.com">Vegard Andersen</a></p>
+		</div>
     </footer>
     </body>
 </html>';
