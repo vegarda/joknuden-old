@@ -41,6 +41,10 @@ $(function() {
         });
     }*/
 
+
+	/*
+	 * 
+	 */
     $.ajax({
         url: window.location.origin+'/data/archivedata.php'+get,
         type: 'GET',
@@ -48,12 +52,14 @@ $(function() {
         dataType: "json",
         success: function(chartdata){
             var pointStart = chartdata.dateTime[0] * 1000;
+            var pointEnd = chartdata.dateTime[chartdata.dateTime.length -1] * 1000;
+			console.log(pointStart);
+			console.log(pointEnd);
             var pointInterval = ((chartdata.dateTime[chartdata.dateTime.length - 1] - chartdata.dateTime[0])/chartdata.dateTime.length) * 1000;
-            //var chartConfig = function(renderTo, height, yAxis, pointStart, series){
-            //var yAxisSchema = function(labelUnit, opposite, min, max, minRange, tickInterval){
-            //var flagSchema = function(name, seriesID, max, maxtime, min, mintime, color, unit){
-            //var seriesSchema = function(name, type, color, yAxisNumber, data, dashStyle, tooltipSuffix, tooltipDecimals){
 
+			/*
+			 * Top chart
+			 */
             setTimeout(function(){
                 console.log('archive');
                 window['topChart'] = new Highcharts.StockChart(
@@ -84,6 +90,9 @@ $(function() {
                             });
                 }, 60 * 1000);
                 
+				/*
+				 * Extremevalues for top chart
+				 */
                 $.ajax({
                     url: window.location.origin+'/data/extreme.php'+get,
                     type: 'GET',
@@ -101,6 +110,10 @@ $(function() {
                 }).then(window['topChart'].redraw());
             }, 250);
 
+
+			/*
+			 * Lower wind chart
+			 */
             setTimeout(function(){                           
                 window['windChart'] = new Highcharts.StockChart(
                     chartConfig('windChart', 250, 
@@ -108,24 +121,40 @@ $(function() {
                                 [seriesSchema('Wind Speed', 'windSpeed', 'spline', '#428bca', 0, chartdata.windSpeed, 1.5, {}, null, ' m/s', 1),
                                  seriesSchema('Wind Gust', 'windGust', 'spline', '#d9534f', 0, chartdata.windGust, 1.5, {}, 'Solid', ' m/s', 1)]));
             }, 1000);
+
+			/*
+			 * Lower wind direction chart
+			 */
             setTimeout(function(){                           
                 window['windDirChart'] = new Highcharts.Chart(
                     chartConfig('windDirChart', 250, 
                                 [yAxisSchema('°', true, 0, 360, null, 90)], pointStart, pointInterval,
                                 [seriesSchema('Wind Direction', 'windDir', 'spline', '#428bca', 0, chartdata.windDir, 0, {enabled:true,radius:1}, 'Solid', '°', 0)]));
             }, 1250);
+
+			/*
+			 * Lower barometer chart
+			 */
             setTimeout(function(){                           
                 window['barometerChart'] = new Highcharts.StockChart(
                     chartConfig('barometerChart', 250, 
                                 [yAxisSchema(' hPa', true, null, null, 5, null)], pointStart, pointInterval,
                                 [seriesSchema('Pressure', 'barometer', 'spline', '#428bca', 0, chartdata.barometer, 1.5, {}, 'Dash', ' hPa', 1)]));
             }, 1500);
+
+			/*
+			 * Lower humidity chart
+			 */
             setTimeout(function(){                           
                 window['humidityChart'] = new Highcharts.StockChart(
                     chartConfig('humidityChart', 250, 
                                 [yAxisSchema('%', true, 0, 100, null, 10)], pointStart, pointInterval,
                                 [seriesSchema('Humidity', 'outHumidity', 'spline', '#428bca', 0, chartdata.outHumidity, 1.5, {}, null, '%', 0)]));
             }, 1750);
+
+			/*
+			 * Lower rain chart
+			 */
             setTimeout(function(){                           
                 window['rainChart'] = new Highcharts.StockChart(
                     chartConfig('rainChart', 250, 
@@ -134,6 +163,10 @@ $(function() {
                                 [seriesSchema('Rain Rate', 'rainRate', 'spline', '#5bc0de', 0, chartdata.rainRate, 1.5, {}, 'Dash', ' mm/hr', 1),
                                  seriesSchema('Accumulated Rain', 'dayRain', 'spline', '#428bca', 1, chartdata.dayRain, 1.5, {}, null, ' mm', 1)]));
             }, 2000);
+
+			/*
+			 * Lower temperature chart
+			 */
             setTimeout(function(){                           
                 window['tempChart'] = new Highcharts.StockChart(
                     chartConfig('tempChart', 250, 
@@ -142,7 +175,10 @@ $(function() {
             }, 2250);
         }
     });
-    
+
+	/*
+	 * Windrose
+	 */
     $.ajax({
         url: window.location.origin+'/data/windrose.php'+get,
         type: 'GET',
@@ -177,7 +213,10 @@ $(function() {
                               windrosedata[2]));
         }
     });
-    
+
+	/*
+	 * Windrose 10 min
+	 */
     setTimeout(function(){
         $.ajax({
             url: window.location.origin+'/data/windrose10.php',

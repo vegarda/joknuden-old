@@ -40,7 +40,10 @@ function alertSchema(warningText, warningLevel){
 
 $( document ).ready(function() {
 console.log('warning.js');
-        
+    
+	/*
+	 * Flom
+	 */
     $.ajax({
         url: window.location.origin+'/data/proxy.php?url=http://api01.nve.no/hydrology/forecast/flood/v1.0.2/api/WarningByMunicipality/1119/1/&type=json',
         type: 'GET',
@@ -60,7 +63,10 @@ console.log('warning.js');
             })
         }
     });
-    
+
+	/*
+	 * OBS varsel
+	 */
     $.ajax({
         url: window.location.origin+'/data/proxy.php?url=http://api.yr.no/weatherapi/textforecast/1.6/?forecast=obs;language=nb',
         type: 'GET',
@@ -79,6 +85,9 @@ console.log('warning.js');
         }
     });
 
+	/*
+	 * Skogbrann
+	 */
     $.ajax({
         url: window.location.origin+'/data/proxy.php?url=http://api.yr.no/weatherapi/forestfireindex/1.1/',
         type: 'GET',
@@ -108,6 +117,10 @@ console.log('warning.js');
             });
         }
     });
+
+	/*
+	 * Stormvarsel
+	 */
     $.ajax({
         url: window.location.origin+'/data/proxy.php?url=http://api.yr.no/weatherapi/textforecast/1.6/?forecast=gale;language=nb',
         type: 'GET',

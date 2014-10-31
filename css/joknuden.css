@@ -6,6 +6,10 @@ body{
     background-image: url(subtle_grunge.png)   
 }
 
+a.navlink{
+	background-color: #222;
+}
+
 /*.highcharts-container{
     background-color: #fff;
 }*/

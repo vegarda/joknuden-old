@@ -1,5 +1,8 @@
 <?php
 
+$a=array("red","green","blue","yellow","brown","purple", "pink");
+print_r(array_slice($a,1,a.length - 2));
+
 $indicesServer = array('PHP_SELF', 
 'argv', 
 'argc', 
