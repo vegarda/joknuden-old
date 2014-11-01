@@ -19,6 +19,10 @@ RewriteCond %{REQUEST_FILENAME} -l
 RewriteRule ^ - [L]
 
 
+RewriteRule ^ytd/(.+)$ ytd/ [R,L,NC]
+
 RewriteRule ^([^/]+)/([^/]+)/?$ ?what=$1&amount=$2 [L,QSA]
 
 RewriteRule ^([^/]+)/?$ ?what=$1&amount=1 [L,QSA]
+
+RewriteRule . / [L,R=301]

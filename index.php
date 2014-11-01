@@ -87,12 +87,18 @@ echo '
 				var request_uri = window.location.pathname;
 				$("div.collapse ul.nav li a").each(function(){
 					var active = false;
-					if (!(request_uri == "/") && (this.href.search(request_uri) > 0)){
-						$(this).parent().addClass("active");
-						active = true;
+					if (!(request_uri == "/")){ 
 						var w = window.location.pathname.slice(1).split("/")[0];
 						var a = window.location.pathname.slice(1).split("/")[1];
+						if (w == "ytd"){
+							w = "Year to date";
+							//a = "";
+						}
 						window.document.title = "Joknuden | " + a + " " + w.charAt(0).toUpperCase() + w.slice(1) + (a > 1 ? "s" : "");
+						if (this.href.search(request_uri) > 0){
+							$(this).parent().addClass("active");
+							active = true;
+						}
 					}
 					else if((request_uri == "/")&&(this.id == "today")){
 						$(this).parent().addClass("active");
@@ -144,7 +150,9 @@ echo '
 					<li><a class="navlink" id="3day" href="/day/3/">3 day</a></li>
 					<li><a class="navlink" id="week" href="/week/1/">Week</a></li>
 					<li><a class="navlink" id="month" href="/month/1/">Month</a></li>
+					<li><a class="navlink" id="3-month" href="/month/3/">3 Month</a></li>
 					<li><a class="navlink" id="6-month" href="/month/6/">6 Month</a></li>
+					<li><a class="navlink" id="ytd" href="/ytd/">YTD</a></li>
 					<li><a class="navlink" id="year" href="/year/1/">Year</a></li>
 					<li><a class="navlink fancybox" id="radar" rel="radar" title="<a href=\'http://www.yr.no\'>Forecast from yr.no</a>" href="http://api.yr.no/weatherapi/radar/1.4/?radarsite=southwest_norway;type=reflectivity;content=animation;size=large#.jpg" alt="">RADAR</a></li>
 					<li id="webcam-images">

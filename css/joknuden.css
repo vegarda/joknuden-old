@@ -6,8 +6,19 @@ body{
     background-image: url(subtle_grunge.png)   
 }
 
-a.navlink{
+.nav>li>a.navlink{
 	background-color: #222;
+	padding: 15px 8px;
+	font-size: 13px;
+}
+
+@media (min-width: 992px){
+	.nav>li>a.navlink{
+		background-color: #222;
+		padding: 15px 15px;
+		font-size: 14px;
+	}
+
 }
 
 /*.highcharts-container{
