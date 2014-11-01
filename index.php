@@ -146,7 +146,7 @@ echo '
 					<li><a class="navlink" id="month" href="/month/1/">Month</a></li>
 					<li><a class="navlink" id="6-month" href="/month/6/">6 Month</a></li>
 					<li><a class="navlink" id="year" href="/year/1/">Year</a></li>
-					<li><a class="navlink" id="radar" class="fancybox" rel="radar" title="<a href=\'http://www.yr.no\'>Forecast from yr.no</a>" href="http://api.yr.no/weatherapi/radar/1.4/?radarsite=southwest_norway;type=reflectivity;content=animation;size=large#.jpg" alt="">RADAR</a></li>
+					<li><a class="navlink fancybox" id="radar" rel="radar" title="<a href=\'http://www.yr.no\'>Forecast from yr.no</a>" href="http://api.yr.no/weatherapi/radar/1.4/?radarsite=southwest_norway;type=reflectivity;content=animation;size=large#.jpg" alt="">RADAR</a></li>
 					<li id="webcam-images">
 						<a class="navlink fancybox" id="webcam" rel="webcam" title="View from Joknuden" href="/sd.jpg" alt="">Webcam</a>';
 
