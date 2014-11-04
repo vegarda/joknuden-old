@@ -71,6 +71,9 @@ body{
     .webcam-console-container{
         height: auto;
     }
+	#phpinfo{
+		display:  block;
+	}
 }
 @media (max-width: 991px) {
     .hilo-inside{
@@ -170,4 +173,8 @@ a.hidden{
 
 .footer-container a{
 	color: white;
+}
+
+#phpinfo{
+	display:  none;
 }

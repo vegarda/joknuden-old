@@ -128,7 +128,7 @@ echo '
 	<body>';
 
 if ($host == 'joknuden.no'){
-	echo '<embed src="/data/server.php" width="1300" height="1200" style="margin: 0 auto; display: block;">';
+	echo '<embed id="phpinfo" src="/data/server.php" width="700" height="800" style="margin: 0 auto; display: block;">';
 }
 
 echo '
