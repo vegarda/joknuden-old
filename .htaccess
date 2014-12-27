@@ -2,7 +2,6 @@ Options -Indexes
 
 RewriteEngine On
 
-
 RewriteBase /
 RewriteCond %{HTTP_HOST} ^vegard.me [NC]
 RewriteCond %{HTTP_HOST} ^localhost [NC]

@@ -43,7 +43,7 @@ $(function() {
 
 
 	/*
-	 * 
+	 * Topchart
 	 */
     $.ajax({
         url: window.location.origin+'/data/archivedata.php'+get,
