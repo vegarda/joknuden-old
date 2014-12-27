@@ -50,12 +50,13 @@ var yAxisSchema = function(labelUnit, opposite, min, max, minRange, tickInterval
     }; 
 };
 
-var seriesSchema = function(name, id, type, color, nagativeColor, yAxisNumber, data, lineWidth, marker, dashStyle, tooltipSuffix, tooltipDecimals){
+var seriesSchema = function(name, id, type, color, negativeColor, yAxisNumber, data, lineWidth, marker, dashStyle, tooltipSuffix, tooltipDecimals){
     return {
         name: name,
         id: id,
         type: type,
         color: color,
+		negativeColor: negativeColor,
         yAxis: yAxisNumber,
         data: data,
         lineWidth: lineWidth,
@@ -204,7 +205,7 @@ var rawChartConfig = function(renderTo, height, yAxis, pointStart, pointInterval
 };
 
 
-var windrosechart = function(renderTo, title, subtitle, labelUnit, tooltipSuffix, seriesName, seriesData){
+var windrosechart = function(renderTo, title, subtitle, labelUnit, tooltipSuffix, seriesName, seriesData, color){
     return {
         chart: {
             renderTo: renderTo,
@@ -265,6 +266,7 @@ var windrosechart = function(renderTo, title, subtitle, labelUnit, tooltipSuffix
          series: [{
             name: seriesName,
             data: seriesData,
+			color: color,
             tooltip: {
                 valueDecimals: 1
             }
