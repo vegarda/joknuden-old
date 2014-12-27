@@ -50,7 +50,7 @@ var yAxisSchema = function(labelUnit, opposite, min, max, minRange, tickInterval
     }; 
 };
 
-var seriesSchema = function(name, id, type, color, yAxisNumber, data, lineWidth, marker, dashStyle, tooltipSuffix, tooltipDecimals){
+var seriesSchema = function(name, id, type, color, nagativeColor, yAxisNumber, data, lineWidth, marker, dashStyle, tooltipSuffix, tooltipDecimals){
     return {
         name: name,
         id: id,

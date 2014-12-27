@@ -68,10 +68,10 @@ $(function() {
                                  yAxisSchema(' mm/hr', false, 0, null, 200, null),
                                  yAxisSchema(' hPa', true, null, null, 5, null),
                                  yAxisSchema('°C', true, null, null, 5, null)], pointStart, pointInterval, 
-                                [seriesSchema('Rain', 'dayRain', 'spline', '#428bca', 0, chartdata.dayRain, 1.5, {}, 'Dot', ' mm', 1),
-                                 seriesSchema('Rain Rate', 'rainRate', 'spline', '#428bca', 1, chartdata.rainRate, 1.5, {}, 'Solid', ' mm/hr', 1),
-                                 seriesSchema('Pressure', 'barometer', 'spline', '#f0ad4e', 2, chartdata.barometer, 1.5, {}, 'dash', ' hPa', 1),
-                                 seriesSchema('Temperature', 'outTemp', 'spline', '#5cb85c', 3, chartdata.outTemp, 1.5, {}, null, '°C', 1)]));
+                                [seriesSchema('Rain', 'dayRain', 'spline', '#428bca', '#428bca', 0, chartdata.dayRain, 1.5, {}, 'Dot', ' mm', 1),
+                                 seriesSchema('Rain Rate', 'rainRate', 'spline', '#428bca', '#428bca', 1, chartdata.rainRate, 1.5, {}, 'Solid', ' mm/hr', 1),
+                                 seriesSchema('Pressure', 'barometer', 'spline', '#f0ad4e', '#f0ad4e', 2, chartdata.barometer, 1.5, {}, 'dash', ' hPa', 1),
+                                 seriesSchema('Temperature', 'outTemp', 'spline', '#F73E3E', '#596FF0', 3, chartdata.outTemp, 1.5, {}, null, '°C', 1)]));
                 
                 setInterval(function() {
                             $.ajax({
@@ -118,8 +118,8 @@ $(function() {
                 window['windChart'] = new Highcharts.StockChart(
                     chartConfig('windChart', 250, 
                                 [yAxisSchema(' m/s', true, 0, null, 5, null)], pointStart, pointInterval,
-                                [seriesSchema('Wind Speed', 'windSpeed', 'spline', '#428bca', 0, chartdata.windSpeed, 1.5, {}, null, ' m/s', 1),
-                                 seriesSchema('Wind Gust', 'windGust', 'spline', '#d9534f', 0, chartdata.windGust, 1.5, {}, 'Solid', ' m/s', 1)]));
+                                [seriesSchema('Wind Speed', 'windSpeed', 'spline', '#428bca', '#428bca', 0, chartdata.windSpeed, 1.5, {}, null, ' m/s', 1),
+                                 seriesSchema('Wind Gust', 'windGust', 'spline', '#d9534f', '#d9534f', 0, chartdata.windGust, 1.5, {}, 'Solid', ' m/s', 1)]));
             }, 1000);
 
 			/*
@@ -129,7 +129,7 @@ $(function() {
                 window['windDirChart'] = new Highcharts.Chart(
                     chartConfig('windDirChart', 250, 
                                 [yAxisSchema('°', true, 0, 360, null, 90)], pointStart, pointInterval,
-                                [seriesSchema('Wind Direction', 'windDir', 'spline', '#428bca', 0, chartdata.windDir, 0, {enabled:true,radius:1}, 'Solid', '°', 0)]));
+                                [seriesSchema('Wind Direction', 'windDir', 'spline', '#428bca', '#428bca', 0, chartdata.windDir, 0, {enabled:true,radius:1}, 'Solid', '°', 0)]));
             }, 1250);
 
 			/*
@@ -139,7 +139,7 @@ $(function() {
                 window['barometerChart'] = new Highcharts.StockChart(
                     chartConfig('barometerChart', 250, 
                                 [yAxisSchema(' hPa', true, null, null, 5, null)], pointStart, pointInterval,
-                                [seriesSchema('Pressure', 'barometer', 'spline', '#428bca', 0, chartdata.barometer, 1.5, {}, 'Dash', ' hPa', 1)]));
+                                [seriesSchema('Pressure', 'barometer', 'spline', '#428bca', '#428bca', 0, chartdata.barometer, 1.5, {}, 'Dash', ' hPa', 1)]));
             }, 1500);
 
 			/*
@@ -149,7 +149,7 @@ $(function() {
                 window['humidityChart'] = new Highcharts.StockChart(
                     chartConfig('humidityChart', 250, 
                                 [yAxisSchema('%', true, 0, 100, null, 10)], pointStart, pointInterval,
-                                [seriesSchema('Humidity', 'outHumidity', 'spline', '#428bca', 0, chartdata.outHumidity, 1.5, {}, null, '%', 0)]));
+                                [seriesSchema('Humidity', 'outHumidity', 'spline', '#428bca', '#428bca', 0, chartdata.outHumidity, 1.5, {}, null, '%', 0)]));
             }, 1750);
 
 			/*
@@ -160,8 +160,8 @@ $(function() {
                     chartConfig('rainChart', 250, 
                                 [yAxisSchema(' mm/hr', false, 0, null, 50, null), 
                                  yAxisSchema(' mm', true, 0, null, 5, null)], pointStart, pointInterval,
-                                [seriesSchema('Rain Rate', 'rainRate', 'spline', '#5bc0de', 0, chartdata.rainRate, 1.5, {}, 'Dash', ' mm/hr', 1),
-                                 seriesSchema('Accumulated Rain', 'dayRain', 'spline', '#428bca', 1, chartdata.dayRain, 1.5, {}, null, ' mm', 1)]));
+                                [seriesSchema('Rain Rate', 'rainRate', 'spline', '#5bc0de', '#5bc0de', 0, chartdata.rainRate, 1.5, {}, 'Dash', ' mm/hr', 1),
+                                 seriesSchema('Accumulated Rain', 'dayRain', 'spline', '#428bca', '#428bca', 1, chartdata.dayRain, 1.5, {}, null, ' mm', 1)]));
             }, 2000);
 
 			/*
@@ -171,7 +171,7 @@ $(function() {
                 window['tempChart'] = new Highcharts.StockChart(
                     chartConfig('tempChart', 250, 
                                 [yAxisSchema('°C', true, null, null, 5, null)], pointStart, pointInterval,
-                                [seriesSchema('Temperature', 'outTemp', 'spline', '#428bca', 0, chartdata.outTemp, 1.5, {}, null, '°C', 1)])); 
+                                [seriesSchema('Temperature', 'outTemp', 'spline', '#428bca', '#428bca', 0, chartdata.outTemp, 1.5, {}, null, '°C', 1)])); 
             }, 2250);
         }
     });
