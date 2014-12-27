@@ -63,6 +63,7 @@ echo '
 		<script type="text/javascript" src="/js/warning.js"></script>
 		<script type="text/javascript" src="/js/sun.js"></script>
 		<script type="text/javascript" src="/highcharts/js/highstock.js"></script>
+		<script type="text/javascript" src="/highcharts/js/highcharts.js"></script>
 		<script type="text/javascript" src="/highcharts/js/highcharts-more.js"></script>
 		<script type="text/javascript" src="/highcharts/charts.js"></script>
 		<script type="text/javascript" src="/highcharts/chartbuilder.js"></script>
