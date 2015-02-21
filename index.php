@@ -1,18 +1,36 @@
 <?php
+
+//$what = null;
+//$amount = null;
+include('data/startend.php');
+include('data/host.php');
+
+header('what: '.$what);
+header('amount: '.$amount);
+header('start: '.date("Y-m-d H:i:s", $start));
+header('end: '.date("Y-m-d H:i:s", $end));
+
 //header('Content-Encoding: gzip; Content-type: text/html; charset=utf-8');
 //$REQUEST_URI = '/';
 //$REQUEST_URI = $_SERVER['REQUEST_URI'];
 $REQUEST_URI = 'http://'.$_SERVER['HTTP_HOST'].'/';
 
-$what = isset($_GET['what']) ? $_GET['what'] : null;
+ini_set('display_startup_errors',1);
+ini_set('display_errors',1);
+error_reporting(-1);
+
+
 $today = false;
-if (isset($_GET['amount'])){
+
+//$what = isset($_GET['what']) ? $_GET['what'] : null;
+/*if (isset($_GET['amount'])){
     $amount = isset($_GET['amount']);
 }
 else{
     $amount = null;
     $today = true;   
-}
+}*/
+
 $host = '127.0.0.1';
 include('data/host.php');
 
@@ -311,7 +329,7 @@ echo '
                 </div>
             </div>
             <br>';
-include('hilo.php');
+include('data/hilo.php');
 
 echo'
         <br>

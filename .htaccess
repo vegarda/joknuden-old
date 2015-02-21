@@ -6,7 +6,7 @@ RewriteBase /
 RewriteCond %{HTTP_HOST} ^vegard.me [NC]
 RewriteCond %{HTTP_HOST} ^localhost [NC]
 RewriteRule ^(.*)$ (http://)?(www.)?vegard.me$1 [L,R=301]
-RedirectMatch 301 ^/joknuden/(.*)$ http://yr.vegard.me/$1
+RedirectMatch 302 ^/joknuden/(.*)$ http://yr.vegard.me/$1
 
 ## If the request is for a valid directory
 RewriteCond %{REQUEST_FILENAME} -d [OR]
