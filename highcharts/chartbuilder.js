@@ -17,30 +17,6 @@ $(function() {
     
     // create real-time chart or archive chart?
     var raw = false;
-    /*if (get == '' || w == 'today' || w == ''){
-        console.log('raw');
-        raw = true;
-        $.ajax({
-            url: '/data/rawdata.php',
-            type: 'GET',
-            async: true,
-            dataType: "json",
-            success: function(rawChartData){
-                var pointStart = rawChartData.dateTime[0] * 1000;
-                var pointInterval = (rawChartData.dateTime[rawChartData.dateTime.length - 1] - rawChartData.dateTime[0])/rawChartData.dateTime.length * 1000;
-                console.log(pointInterval);
-                window['topChart'] = new Highcharts.StockChart(
-                    rawChartConfig('topChart', 300, 
-                                [yAxisSchema(' mm', true, 0, null, 50, null),
-                                 yAxisSchema(' hPa', false, null, null, 5, null),
-                                 yAxisSchema('°C', true, null, null, 5, null)], pointStart, pointInterval,
-                                [seriesSchema('Rain', 'dayRain', 'spline', '#596FF0', 0, rawChartData.dayRain, 'Solid', ' mm', 1),
-                                 seriesSchema('Pressure', 'barometer', 'spline', '#f0ad4e', 1, rawChartData.barometer, 'dash', ' hPa', 1),
-                                 seriesSchema('Temperature', 'outTemp', 'spline', '#5cb85c', 2, rawChartData.outTemp, null, '°C', 1)]));
-            }
-        });
-    }*/
-
 
 	/*
 	 * Topchart
@@ -51,6 +27,7 @@ $(function() {
         async: true,
         dataType: "json",
         success: function(chartdata){
+			//console.log();
             var pointStart = chartdata.dateTime[0] * 1000;
             var pointEnd = chartdata.dateTime[chartdata.dateTime.length -1] * 1000;
 			console.log(pointStart);
