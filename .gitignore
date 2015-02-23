@@ -6,3 +6,4 @@
 *.mp4
 sd.jpg
 timelapse/*.jpg
+/console/meso/include/config.json
