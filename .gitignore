@@ -2,5 +2,5 @@
 *.db
 *.mp4
 sd.jpg
-timelapse/*
+timestamp.jpg
 data/config.php
