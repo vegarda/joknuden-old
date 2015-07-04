@@ -148,7 +148,7 @@ if ($host == 'joknuden.no'){
 
 if ($host == '127.0.0.1'){
 	$day    = date("Y-m-d");
-	$dir    = '/var/www/html/timelapse/'.$day;
+	$dir    = 'timelapse/'.$day;
 	$images = scandir($dir, 1);
 	$images = array_slice($images,1);
 
