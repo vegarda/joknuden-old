@@ -30,17 +30,7 @@ body{
   text-align: center;
 }
 
-.webcam{
-    position: relative;
-	display: block;
-    width: 100%;
-}
 
-.webcam a{
-    max-width: 432px;
-    max-height: 324px;
-    margin: 0 auto;
-}
 .webcam-console-container{
     height: 324px;
     width: 100%;
@@ -62,10 +52,12 @@ body{
     }
 }
 @media (max-width: 767px) {
+/*
     .reading-group{
         position: static;
         margin: 0 auto 10px auto;
     }
+	*/
 }
 @media (min-width: 768px) {
     .webcam-console-container{
@@ -87,10 +79,6 @@ body{
     .webcam-console-container{
         height: 432px;
     }
-    .webcam{
-        width: 432px;
-        float: left;
-    }
     .hilo-inside{
         display: none;
     }
@@ -108,9 +96,9 @@ table.hilo th{
 }
 
 .row{
-    background-color: rgba(254,254,254,0.95);
+    /*background-color: rgba(254,254,254,0.95);
     padding: 5px;
-    margin: 0;
+    margin: 0;*/
 }
 
 .windrose{
@@ -123,10 +111,12 @@ table.hilo th{
     padding: 0;
 }
 
+/*
 .container-console{
     border: 0px;
     background-color: rgba(0,0,0,0);
 }
+*/
 
 #windTab,
 #multiTab{

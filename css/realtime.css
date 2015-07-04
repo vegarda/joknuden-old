@@ -1,0 +1,139 @@
+﻿
+#realtime{
+	background: transparent;
+	font-size: 20px;
+}
+
+
+.realtime-group {
+	text-align: center;
+	height: 100%;
+}
+
+.realtime-row,
+.realtime-column{
+	height: 200px;
+}
+
+.stats-container{
+	text-align: left;
+}
+
+.stats-title{
+	width: 100px;
+	display: inline-block;
+}
+
+.stats-high-low{
+	text-align: center;
+}
+
+.realtime-value-unit{
+}
+
+.realtime-value{
+
+}
+
+.realtime-unit{
+
+}
+
+.realtime-icon{
+	font-size: 14px;
+}
+
+.wind.realtime-group{
+	/*border-radius: 75px;
+    border: 2px solid black;
+	width: 150px;
+	top: 0;*/
+}
+
+
+.wind.realtime-group .wind-arrow{
+	font-size: 12px;
+	position: relative;
+	top: 1em;
+	margin-top: -2em;
+	top: 12px;
+	margin-top: -24px;
+}
+
+
+.tick{
+	color: black;
+	fill: black;
+	stroke: black;
+}
+
+.tick90{
+	stroke-width: 4;
+}
+
+.tick45{
+	stroke-width: 3;
+}
+
+.tick22{
+	stroke-width: 2;
+}
+
+.tick11{
+	stroke-width: 1;
+}
+
+.realtime-column:before{
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    width: 0;
+    margin-left: -4px;
+}
+
+.realtime-container{
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+}
+
+.vertical:before{
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    /*width: 5px;
+    margin-left: -5px;*/
+}
+
+.vertical:first-child{
+	display: inline-block;
+}
+.realtime-column:before{
+
+}
+
+.webcam-image-container{
+	display: inline-block;
+	vertical-align: middle;
+    width: 160px;
+    height: 160px;
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto;
+}
+
+
+.webcam-image{
+    position:absolute;
+    left: -100%;
+    right: -100%;
+    top: -90%;
+    bottom: -100%;
+    margin: auto;
+    min-height: 100%;
+    min-width: 100%;
+
+	height: 110%;
+}
