@@ -1,8 +1,6 @@
 *.pyc
-/public_html/meso/include/config.json
-/public_html/timelapse/*
-/public_html/*.jpg
 *.db
 *.mp4
 sd.jpg
-timelapse/*.jpg
+timelapse/*
+data/config.php
