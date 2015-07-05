@@ -150,8 +150,7 @@ if ($host == '127.0.0.1'){
 	$day    = date("Y-m-d");
 	$dir    = 'timelapse/'.$day;
 	$images = scandir($dir, 1);
-	$images = array_slice($images,1);
-
+	$images = array_slice($images, 1, -2);
 	foreach ($images as $image){
 		echo '
 				<a id="webcam" class="lightbox hidden" rel="webcam" title="View from Joknuden" data-lightbox="webcam" href="/timelapse/'.$day.'/'.$image.'" alt="">'.$image.'</a>';
