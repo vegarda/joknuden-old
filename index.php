@@ -290,7 +290,9 @@ if ($host == '127.0.0.1'){
 				<div class="webcam webcam-group realtime-group vertical col-md-3 col-xs-12">
 					<div class="realtime-container">
 						<div class="webcam-image-container img-circle">
-							<img src="/sd.jpg" class="webcam-image">
+							<a class="webcam-link lightbox" rel="webcam" data-lightbox="webcam" title="View from Joknuden" href="/sd.jpg" alt="">
+								<img src="/sd.jpg" class="webcam-image">
+							</a>	
 						</div>
 					</div>
 				</div>
