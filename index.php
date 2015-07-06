@@ -142,22 +142,7 @@ if ($host == 'joknuden.no'){
 					<li><a class="navlink" id="year" href="/year/1/">Year</a></li>
 					<li><a class="navlink fancybox" id="radar" rel="radar" title="<a href=\'http://www.yr.no\'>Forecast from yr.no</a>" href="http://api.yr.no/weatherapi/radar/1.4/?radarsite=southwest_norway;type=reflectivity;content=animation;size=large#.jpg" alt="">RADAR</a></li>
 					<li id="webcam-images">
-						<a class="navlink lightbox" id="webcam" rel="webcam" data-lightbox="webcam" title="View from Joknuden" href="/sd.jpg" alt="">Webcam</a>
-
-<?php
-
-if ($host == '127.0.0.1'){
-	$day    = date("Y-m-d");
-	$dir    = 'timelapse/'.$day;
-	$images = scandir($dir, 1);
-	$images = array_slice($images, 1, -2);
-	foreach ($images as $image){
-		echo '
-				<a id="webcam" class="lightbox hidden" rel="webcam" title="View from Joknuden" data-lightbox="webcam" href="/timelapse/'.$day.'/'.$image.'" alt="">'.$image.'</a>';
-	}
-}
-
-?>
+						<!-- a class="navlink lightbox" id="webcam" rel="webcam" data-lightbox="webcam" title="View from Joknuden" href="/sd.jpg" alt="">Webcam</a -->
 					</li>
 				</ul>
 			</div><!--/.nav-collapse -->
@@ -290,8 +275,20 @@ if ($host == '127.0.0.1'){
 				<div class="webcam webcam-group realtime-group vertical col-md-3 col-xs-12">
 					<div class="realtime-container">
 						<div class="webcam-image-container img-circle">
-							<a class="webcam-link lightbox" rel="webcam" data-lightbox="webcam" title="View from Joknuden" href="/sd.jpg" alt="">
-								<img src="/sd.jpg" class="webcam-image">
+<?php
+if ($host == '127.0.0.1'){
+	$day    = date("Y-m-d");
+	$dir    = 'timelapse/'.$day;
+	$images = scandir($dir, 1);
+	$first = $images[0];
+	$images = array_slice($images, 1, -2);
+	echo '<a id="webcam" class="webcam-link lightbox" rel="webcam" title="View from Joknuden @ '.substr($first, 0 , -4).'" data-lightbox="webcam" href="/timelapse/'.$day.'/'.$first.'" alt=""><img src="/timelapse/'.$day.'/'.$first.'" class="webcam-image">/timelapse/'.$day.'/'.$first.'</a>';
+	foreach ($images as $image){
+		echo '
+				<a id="webcam" class="lightbox hidden" rel="webcam" title="View from Joknuden @ '.substr($image, 0 , -4).'" data-lightbox="webcam" href="/timelapse/'.$day.'/'.$image.'" alt="">'.$image.'</a>';
+	}
+}
+?>
 							</a>	
 						</div>
 					</div>
