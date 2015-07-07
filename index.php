@@ -110,14 +110,6 @@ include('data/host.php');
 
 	</head>
 	<body>
-
-<?php
-
-if ($host == 'joknuden.no'){
-	echo '<embed id="phpinfo" src="/data/server.php" width="700" height="800" style="margin: 0 auto; display: block;">';
-}
-
-?>
 		<div class="navbar navbar-inverse navbar-static-top" role="navigation">
 			<div class="container">
 				<div class="navbar-header">
@@ -141,9 +133,6 @@ if ($host == 'joknuden.no'){
 					<li><a class="navlink" id="ytd" href="/ytd/">YTD</a></li>
 					<li><a class="navlink" id="year" href="/year/1/">Year</a></li>
 					<li><a class="navlink fancybox" id="radar" rel="radar" title="<a href=\'http://www.yr.no\'>Forecast from yr.no</a>" href="http://api.yr.no/weatherapi/radar/1.4/?radarsite=southwest_norway;type=reflectivity;content=animation;size=large#.jpg" alt="">RADAR</a></li>
-					<li id="webcam-images">
-						<!-- a class="navlink lightbox" id="webcam" rel="webcam" data-lightbox="webcam" title="View from Joknuden" href="/sd.jpg" alt="">Webcam</a -->
-					</li>
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
@@ -303,8 +292,6 @@ if ($host == '127.0.0.1'){
 			<div id="warning" class="warning-container" style="background-color: rgba(0,0,0,0);">
 			</div>
 		</div>
-		
-		<br>
 		
 		<div class="container-fluid">
 			<div class="row topChart-container">
