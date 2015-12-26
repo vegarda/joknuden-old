@@ -1,13 +1,15 @@
 <?php
-include('host.php');
-include('config.php');
+
 include('startend.php');
+
 if(is_integer($start) && (is_integer($end))){
     
     $zero4d = array('max'=>0,'maxtime'=>0,'min'=>0,'mintime'=>0);
     $measurements = array('barometer', 'outTemp', 'outHumidity');//, 'rain', 'rainRate');
     $units = array('barometer'=>$zero4d, 'outTemp'=>$zero4d, 'outHumidity'=>$zero4d);//, 'rain'=>$zero4d, 'rainRate'=>$zero4d);
     
+	include('config.php');
+	
 	$joknuden = mysqli_connect($host, $user, $pass) or die(mysql_error()); 
     foreach (array('max', 'min') as $maxOrMin){
         foreach ($measurements as $measurement){

@@ -1,5 +1,4 @@
 <?php
-include('host.php');
 include('config.php');
 $joknuden = mysqli_connect($host, $user, $pass) or die(mysql_error()); 
 

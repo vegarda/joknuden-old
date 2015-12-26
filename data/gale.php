@@ -12,10 +12,6 @@ curl_setopt($session, CURLOPT_HTTPHEADER, array(
 
 curl_exec($session);
 
-/*if(curl_errno($session)){
-	esessiono 'Curl error: ' . curl_error($session);
-}*/
-
 curl_close($session);
     
 ?>

@@ -1,27 +1,26 @@
 <?php
-session_start();
 
-$_SESSION['what'] = isset($_GET['what']) ? $_GET['what'] : "today";
-$what = $_SESSION['what'];
-$_SESSION['amount'] = isset($_GET['amount']) ? $_GET['amount'] : 1;
-$amount = $_SESSION['amount'];
+$what_array = array('yesterday', 'day', 'week', 'month', 'ytd', 'year');
 
+$what = isset($_GET['what']) ? $_GET['what'] : "day";
 
-if ($what == "today" || $what == "yesterday"){
-    $start = strtotime($what);
-    if ($what == "yesterday"){
-        $end = strtotime("today");   
-    }
-}else if ($what == "ytd"){
-	$start = strtotime(date("Y")."-01-01 00:00:00");
+if (in_array($what, $what_array)){
+
+	$amount = isset($_GET['amount']) ? intval($_GET['amount']) : 1;
+	header("Z-amount2: ".$amount);
+	$amount = $amount > 0 ? $amount : 1;
+
+	if ($what == "yesterday"){
+		$start = strtotime($what);
+		$end = strtotime("today");   
+	}else if ($what == "ytd"){
+		$start = strtotime(date("Y")."-01-01 00:00:00");
+	}
+	else{
+		$start = strtotime("today - ".$amount." ".$what."s");
+	}
+
+	$end = isset($end) ? $end : strtotime("tomorrow");
+
 }
-else{
-    $start = strtotime("today - ".$amount." ".$what."s");
-}
-
-$end = isset($end) ? $end : strtotime("tomorrow");
-
-$_SESSION['start'] = $start;
-$_SESSION['end'] = $end;
-
 ?>

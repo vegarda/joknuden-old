@@ -1,8 +1,10 @@
 <?php
 
-include('host.php');
 include('config.php');
-$joknuden = mysqli_connect($host, $user, $pass) or die(mysql_error()); 
+
+$joknuden = mysqli_connect($host, $user, $pass) or die(mysql_error());
+
+include('startend.php');
 
 $temperatureMin_q = mysqli_query($joknuden, "SELECT * FROM weewx.archive_day_outTemp WHERE min=(SELECT MIN(min) FROM weewx.archive_day_outTemp WHERE dateTime >= ".$start." ORDER BY dateTime DESC) ORDER BY dateTime DESC LIMIT 1") or die(mysqli_error());
 $temperatureMax_q = mysqli_query($joknuden, "SELECT * FROM weewx.archive_day_outTemp WHERE max=(SELECT MAX(max) FROM weewx.archive_day_outTemp WHERE dateTime >= ".$start." ORDER BY dateTime DESC) ORDER BY dateTime DESC LIMIT 1") or die(mysqli_error());
@@ -111,8 +113,7 @@ $windDirAvg = "-";
 $what = strtoupper($what);
 $amount = intval($amount) > 1 ? $amount." " : "";
 
-function hiloTime($time){
-	global $what;
+function hiloTime($what, $time){
 	if ($what == "TODAY" || $what == "YESTERDAY"){
 		return date("H:i", $time);
 	}
@@ -124,67 +125,56 @@ function hiloTime($time){
 echo '
         <div class="container-fluid">
             <div class="row hilo-container">
-                <div class="col-md-6 hilo-temp">
+                <div class="col-md-8 col-md-offset-2 hilo-temp">
                     <table class="table table-condensed hilo">
                       <tr>
-                        <th></th>
-                        <th colspan="2" style="border-left: 1px solid #ddd;">'.$amount.$what.' MAX</th>
-                        <th colspan="2" style="border-left: 1px solid #ddd;">'.$amount.$what.' MIN</th>
-                        <th style="border-left: 1px solid #ddd;">'.$amount.$what.' AVG</th>
+                        <th class="icon"></th>
+                        <th colspan="3" style="border-left: 1px solid #ddd;">'.$amount.$what.' HIGH</th>
+                        <th colspan="3" style="border-left: 1px solid #ddd;">'.$amount.$what.' LOW</th>
+                        <th colspan="2" style="border-left: 1px solid #ddd;">'.$amount.$what.' AVG</th>
                       </tr>
                       <tr>
                         <td><i class="wi wi-thermometer"></i></td>
-                        <td style="border-left: 1px solid #ddd;">'.round($temperatureMax['max'], 1).' °C</td>
-                        <td>'.hiloTime($temperatureMax['maxtime']).'</td>
-                        <td style="border-left: 1px solid #ddd;">'.round(    $temperatureMin['min'], 1).' °C</td>
-                        <td>'.hiloTime($temperatureMin['mintime']).'</td>
-                        <td style="border-left: 1px solid #ddd;">'.round($avg['temperature'], 1).' °C</td>
+                        <td colspan="2" style="border-left: 1px solid #ddd;">'.round($temperatureMax['max'], 1).'°C</td>
+                        <td>'.hiloTime($what, $temperatureMax['maxtime']).'</td>
+                        <td colspan="2" style="border-left: 1px solid #ddd;">'.round(    $temperatureMin['min'], 1).'°C</td>
+                        <td>'.hiloTime($what, $temperatureMin['mintime']).'</td>
+                        <td colspan="2" style="border-left: 1px solid #ddd;">'.round($avg['temperature'], 1).'°C</td>
                       </tr>
                       <tr>
-                        <td><i class="fa fa-signal"></i></td>
-                        <td style="border-left: 1px solid #ddd;">'.number_format(round($barometerMax['max'], 1), 1, '.', '').' hPa</td>
-                        <td>'.hiloTime($barometerMax['maxtime']).'</td>
-                        <td style="border-left: 1px solid #ddd;">'.number_format(round($barometerMin['min'], 1), 1, '.', '').' hPa</td>
-                        <td>'.hiloTime($barometerMin['mintime']).'</td>
-                        <td style="border-left: 1px solid #ddd;">'.number_format(round($avg['barometer'], 1), 1, '.', '').' hPa</td>
+                        <td><i class="wi wi-barometer"></i></td>
+                        <td colspan="2" style="border-left: 1px solid #ddd;">'.number_format(round($barometerMax['max'], 1), 1, '.', '').' hPa</td>
+                        <td>'.hiloTime($what, $barometerMax['maxtime']).'</td>
+                        <td colspan="2" style="border-left: 1px solid #ddd;">'.number_format(round($barometerMin['min'], 1), 1, '.', '').' hPa</td>
+                        <td>'.hiloTime($what, $barometerMin['mintime']).'</td>
+                        <td colspan="2" style="border-left: 1px solid #ddd;">'.number_format(round($avg['barometer'], 1), 1, '.', '').' hPa</td>
                       </tr>
                       <tr>
-                        <td><i class="fa fa-tachometer"></i></td>
-                        <td style="border-left: 1px solid #ddd;">'.$humidityMax['max'].' %</td>
-                        <td>'.hiloTime($humidityMax['maxtime']).'</td>
-                        <td style="border-left: 1px solid #ddd;">'.$humidityMin['min'].' %</td>
-                        <td>'.hiloTime($humidityMin['mintime']).'</td>
-                        <td style="border-left: 1px solid #ddd;">'.round($avg['humidity'], 0).' %</td>
+                        <td><i class="wi wi-humidity"></i></td>
+                        <td colspan="2" style="border-left: 1px solid #ddd;">'.$humidityMax['max'].'%</td>
+                        <td>'.hiloTime($what, $humidityMax['maxtime']).'</td>
+                        <td colspan="2" style="border-left: 1px solid #ddd;">'.$humidityMin['min'].'%</td>
+                        <td>'.hiloTime($what, $humidityMin['mintime']).'</td>
+                        <td colspan="2" style="border-left: 1px solid #ddd;">'.round($avg['humidity'], 0).'%</td>
                       </tr>
-                      <tr>
+                      './*<tr>
                         <td><i class="wi wi-thermometer-exterior"></i></td>
-                        <td style="border-left: 1px solid #ddd;">'.round($dewpointMax['max'], 1).' °C</td>
-                        <td>'.hiloTime($dewpointMax['maxtime']).'</td>
-                        <td style="border-left: 1px solid #ddd;">'.round($dewpointMin['min'], 1).' °C</td>
-                        <td>'.hiloTime($dewpointMin['mintime']).'</td>
-                        <td style="border-left: 1px solid #ddd;">'.round($avg['dewpoint'], 1).' °C</td>
-                      </tr>
-                    </table>
-                </div>
-                <div class="col-md-6 hilo-wind">
-                    <table class="table table-condensed hilo">
-                      <tr>
-                        <th></th>
-                        <th colspan="3" style="border-left: 1px solid #ddd;">'.$amount.$what.' MAX</th>
-                        <th colspan="3" style="border-left: 1px solid #ddd;">'.$amount.$what.' MIN</th>
-                        <th colspan="2" style="border-left: 1px solid #ddd;">10 MIN AVG</th>
-                        <th colspan="2" style="border-left: 1px solid #ddd;">'.$amount.$what.' AVG</th>
-                      </tr>
+                        <td style="border-left: 1px solid #ddd;">'.round($dewpointMax['max'], 1).'</td>
+                        <td>'.hiloTime($what, $dewpointMax['maxtime']).'</td>
+                        <td style="border-left: 1px solid #ddd;">'.round($dewpointMin['min'], 1).'</td>
+                        <td>'.hiloTime($what, $dewpointMin['mintime']).'</td>
+                        <td style="border-left: 1px solid #ddd;">'.round($avg['dewpoint'], 1).'</td>
+                        <td style="border-left: 1px solid #ddd;">°C</td>
+                      </tr>*/'
+					  
                       <tr>
                         <td><i class="wi wi-windy"></i></td>
                         <td style="border-left: 1px solid #ddd;">'.number_format(round($windSpeedMax, 1), 1).' m/s</td>
                         <td>'.round($windSpeedMaxDir, 0).'°</td>
-                        <td>'.hiloTime($windSpeedMaxTime).'</td>
+                        <td>'.hiloTime($what, $windSpeedMaxTime).'</td>
                         <td style="border-left: 1px solid #ddd;">'.number_format(round($windSpeedMin, 1), 1).' m/s</td>
                         <td>'.round($windSpeedMinDir, 0).'°</td>
-                        <td>'.hiloTime($windSpeedMinTime).'</td>
-                        <td style="border-left: 1px solid #ddd;">'.round($windspeed10, 1).' m/s</td>
-                        <td>'.round($winddir10, 0).'°</td>
+                        <td>'.hiloTime($what, $windSpeedMinTime).'</td>
                         <td style="border-left: 1px solid #ddd;">'.round($windSpeedAvg, 1).' m/s</td>
                         <td>'.round($windDirAvg, 0).'°</td>
                       </tr>
@@ -192,16 +182,15 @@ echo '
                         <td><i class="wi wi-strong-wind"></i></td>
                         <td style="border-left: 1px solid #ddd;">'.number_format(round($windGustMax, 1), 1).' m/s</td>
                         <td>'.round($windGustMaxDir, 0).'°</td>
-                        <td>'.hiloTime($windGustMaxTime).'</td>
+                        <td>'.hiloTime($what, $windGustMaxTime).'</td>
                         <td style="border-left: 1px solid #ddd;">'.number_format(round($windGustMin, 1), 1).' m/s</td>
                         <td>'.round($windGustMinDir, 0).'°</td>
-                        <td>'.hiloTime($windGustMinTime).'</td>
-                        <td style="border-left: 1px solid #ddd;">'.round($gust10, 1).' m/s</td>
-                        <td>'.round($gustdir10, 0).'°</td>
+                        <td>'.hiloTime($what, $windGustMinTime).'</td>
                         <td style="border-left: 1px solid #ddd;">'.round($windGustAvg, 1).' m/s</td>
                         <td>-</td>
                       </tr>    
                     </table>
+
                 </div>
             </div>
         </div>';

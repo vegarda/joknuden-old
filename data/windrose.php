@@ -1,9 +1,10 @@
 <?php
-include('host.php');
-include('config.php');
+
 include('startend.php');
+
 if(is_integer($start) && (is_integer($end))){
     
+	include('config.php');
 	$joknuden = mysqli_connect($host, $user, $pass) or die(mysql_error()); 
 
     $query = mysqli_query($joknuden, 

@@ -102,13 +102,11 @@ table.hilo th{
 }
 
 .windrose{
-    height: 300px;
 }
 
 .container-fluid{
     border: 1px solid #ddd;
     background-color: rgba(254,254,254,0.95);
-    padding: 0;
 }
 
 /*
@@ -165,3 +163,43 @@ footer{
 #phpinfo{
 	display:  none;
 }
+
+.warning-icon{
+	font-size: 28px;
+	height: 0;
+	margin: -10px 10px -10px 0;
+}
+
+.warning-icon-div{
+	line-height: 0;
+}
+
+.warning-icon-div, .warning-span {
+        display: table-cell;
+        vertical-align: middle;
+}
+
+.warning-credits{
+    font-size: 9px;
+    float: right;
+    position: absolute;
+    bottom: 3px;
+    right: 36px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

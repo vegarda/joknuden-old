@@ -1,26 +1,20 @@
 <?php
-session_start();
 
-include('host.php');
-include('config.php');
-#include('startend.php');
+include('startend.php');
 
-$start = $_SESSION['start'];
-$end = $_SESSION['end'];
-
-if(is_integer($start) && (is_integer($end))){
+if (is_integer($start) && (is_integer($end))){
+	
+	include('config.php');
 
 	$joknuden = mysqli_connect($host, $user, $pass) or die(mysql_error()); 
 
-    /*$query = mysqli_query($joknuden, 
-    "SELECT dateTime, barometer, outTemp, outHumidity, windSpeed, windDir, windGust, windGustDir, rainRate, dayRain
-    FROM weewx.archive 
-    WHERE dateTime > ".$start."
-    AND dateTime < ".$end."
-    ORDER BY dateTime ASC");*/
-	
 	$what = $_SESSION['what'];
 	$amount = $_SESSION['amount'];
+
+	header("X-start: ".$start);
+	header("X-end: ".$end);
+	header("X-what: ".$what);
+	header("X-amount: ".$amount);
 
 	$start = mysqli_fetch_assoc(mysqli_query($joknuden, "SELECT dateTime FROM weewx.archive WHERE dateTime >= ".$start." ORDER BY dateTIME ASC LIMIT 1;"))['dateTime'];
 
@@ -65,4 +59,5 @@ if(is_integer($start) && (is_integer($end))){
 
     echo json_encode($newrows,  JSON_NUMERIC_CHECK);
 }
+
 ?>

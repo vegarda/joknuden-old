@@ -20,8 +20,9 @@
 }
 
 .stats-title{
-	width: 100px;
+	width: 24px;
 	display: inline-block;
+	text-align: center;
 }
 
 .stats-high-low{
@@ -140,4 +141,8 @@
 
 .webcam-link{
 	height: 100%;
+}
+
+.dateTime-group{
+	text-align:	center;
 }
