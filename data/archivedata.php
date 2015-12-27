@@ -8,9 +8,6 @@ if (is_integer($start) && (is_integer($end))){
 
 	$joknuden = mysqli_connect($host, $user, $pass) or die(mysql_error()); 
 
-	$what = $_SESSION['what'];
-	$amount = $_SESSION['amount'];
-
 	header("X-start: ".$start);
 	header("X-end: ".$end);
 	header("X-what: ".$what);
