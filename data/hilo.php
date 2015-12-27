@@ -120,7 +120,7 @@ function hiloTime($what, $amount, $time){
 		return date("H:i", $time);
 	}
 	else{
-		return date("Y-m-d", $time);
+		return date("Y-m-d H:i", $time);
 	}	
 }
 
