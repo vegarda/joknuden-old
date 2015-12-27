@@ -1,5 +1,7 @@
 <?php
 
+$archivedatastart = microtime(true);
+
 include('startend.php');
 
 if (is_integer($start) && (is_integer($end))){
@@ -74,6 +76,7 @@ if (is_integer($start) && (is_integer($end))){
 	}
 
 	header('X-Query: '.preg_replace('/\s\s+/', ' ', trim($queryString)));
+	header('X-time: '.(microtime(true) - $archivedatastart));
 
     echo json_encode($newrows,  JSON_NUMERIC_CHECK);
 }

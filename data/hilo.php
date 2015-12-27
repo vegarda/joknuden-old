@@ -1,5 +1,7 @@
 <?php
 
+$hilostart = microtime(true);
+
 include('config.php');
 
 $joknuden = mysqli_connect($host, $user, $pass) or die(mysql_error());
@@ -195,5 +197,8 @@ echo '
             </div>
         </div>';
 
+$hiloend = microtime(true);
+
+echo '<!--- hilo.php time: '.($hiloend-$hilostart).'s --->';
 
 ?>
