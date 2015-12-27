@@ -16,11 +16,21 @@ if (is_integer($start) && (is_integer($end))){
 	header("X-what: ".$what);
 	header("X-amount: ".$amount);
 
-	$start = mysqli_fetch_assoc(mysqli_query($joknuden, "SELECT dateTime FROM weewx.archive WHERE dateTime >= ".$start." ORDER BY dateTIME ASC LIMIT 1;"))['dateTime'];
+	//$start = mysqli_fetch_assoc(mysqli_query($joknuden, "SELECT dateTime FROM weewx.archive WHERE dateTime >= ".$start." ORDER BY dateTIME ASC LIMIT 1;"))['dateTime'];
+	
+	$seconds = ($end - $start);
 
-	$interval = (($end - $start)/288) <= 300 ? 300 : (($end - $start)/288);
+	//$interval = (($end - $start)/288) <= 300 ? 300 : (($end - $start)/288);
+	$interval = $seconds/288;
 	header('Interval: '.$interval);
 	//$queryString = "SELECT (FLOOR(dateTime / 3600) * 3600) dateTime, 
+	/*$queryString = "SELECT *
+	
+	FROM weewx.archive 
+	WHERE dateTime >= ".$start." and dateTime <= ".$end." 
+	AND dateTime mod ".$interval." = 0
+	ORDER BY dateTime ASC;";*/
+	
 	$queryString = "SELECT dateTime, 
 
 	ROUND(AVG(barometer), 1) barometer, 
@@ -31,12 +41,15 @@ if (is_integer($start) && (is_integer($end))){
 	ROUND(MAX(windDir), 1) windDir, 
 	ROUND(MAX(windGust), 1) windGust, 
 	ROUND(MAX(windGustDir), 1) windGustDir, 
+	ROUND(MAX(rain), 1) rain, 
 	ROUND(AVG(dayRain), 1) dayRain
 	
 	FROM weewx.archive 
 	WHERE dateTime >= ".$start." and dateTime <= ".$end." 
 	GROUP BY FLOOR(dateTime / ".$interval.")  
 	ORDER BY dateTime ASC;";
+	
+//	AND dateTime mod ".$interval." = 0
 	
 	$query = mysqli_query($joknuden, $queryString);
     $rows = Array();
@@ -48,12 +61,20 @@ if (is_integer($start) && (is_integer($end))){
     foreach ($rows[0] as $key => $value){
       $newrows[$key] = Array();
     }
-
+	
     foreach ($rows as $row){
         foreach ($row as $key => $value){
             array_push($newrows[$key], $value);
         }
     }
+	
+	$newrows['accumRain'] = Array();
+	$newrows['accumRain'][0] = $newrows['rain'][0];
+	foreach ($newrows['rain'] as $key => $value){
+		if ($key > 0){
+			$newrows['accumRain'][$key] = $newrows['accumRain'][$key - 1] + $newrows['rain'][$key];
+		}
+	}
 
 	header('X-Query: '.preg_replace('/\s\s+/', ' ', trim($queryString)));
 

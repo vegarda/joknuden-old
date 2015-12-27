@@ -17,7 +17,7 @@ if (in_array($what, $what_array)){
 		$start = strtotime(date("Y")."-01-01 00:00:00");
 	}
 	else{
-		$start = strtotime("today - ".$amount." ".$what."s");
+		$start = strtotime("tomorrow - ".$amount." ".$what."s");
 	}
 
 	$end = isset($end) ? $end : strtotime("tomorrow");
