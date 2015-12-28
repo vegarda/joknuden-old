@@ -10,25 +10,18 @@ if(is_integer($start) && (is_integer($end))){
 	$joknuden = mysqli_connect($host, $user, $pass) or die(mysql_error()); 
 
 	$seconds = ($end - $start);
-	$interval = $seconds/288;
+	$count = $seconds/60;
+	$interval = 3*$count/$seconds;
 	header('Interval: '.$interval);
 	
 	$queryString = "SELECT dateTime, 
 
-	ROUND(AVG(barometer), 1) barometer, 
-	ROUND(AVG(outTemp), 1) outTemp, 
-	ROUND(AVG(outHumidity), 1) outHumidity,
-	ROUND(MAX(rainRate), 1) rainRate, 
 	ROUND(MAX(windSpeed), 1) windSpeed, 
-	ROUND(MAX(windDir), 1) windDir, 
-	ROUND(MAX(windGust), 1) windGust, 
-	ROUND(MAX(windGustDir), 1) windGustDir, 
-	ROUND(MAX(rain), 1) rain, 
-	ROUND(AVG(dayRain), 1) dayRain
+	ROUND(MAX(windDir), 1) windDir
 	
 	FROM weewx.archive 
 	WHERE dateTime >= ".$start." and dateTime <= ".$end." 
-	GROUP BY FLOOR(dateTime / ".$interval.")  
+	GROUP BY ROUND(dateTime / ".$interval.")  
 	ORDER BY dateTime ASC;";
 	
 	$query = mysqli_query($joknuden, $queryString);
@@ -47,6 +40,8 @@ if(is_integer($start) && (is_integer($end))){
       array_push($rows, $row);
     }
 
+	header('Rows: '.count($rows));
+	
     $windfreq = array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
     $windvelocity = array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 
