@@ -259,19 +259,7 @@ $today = true;
 					<div class="realtime-container">
 						<div class="webcam-image-container img-circle">
 <?php
-include('data/config.php');
-if ($host == '127.0.0.1'){
-	$day    = date("Y-m-d");
-	$dir    = 'timelapse/'.$day;
-	$images = scandir($dir, 1);
-	$first = $images[0];
-	$images = array_slice($images, 1, -2);
-	echo '<a id="webcam" class="webcam-link lightbox" rel="webcam" title="View from Joknuden @ '.substr($first, 0 , -4).'" data-lightbox="webcam" href="/timelapse/'.$day.'/'.$first.'"><img src="/timelapse/'.$day.'/'.$first.'" class="webcam-image">/timelapse/'.$day.'/'.$first.'</a>';
-	foreach ($images as $image){
-		echo '
-				<a id="webcam" class="lightbox hidden" rel="webcam" title="View from Joknuden @ '.substr($image, 0 , -4).'" data-lightbox="webcam" href="/timelapse/'.$day.'/'.$image.'">'.$image.'</a>';
-	}
-}
+include('webcam.php');
 ?>
 							</a>	
 						</div>
