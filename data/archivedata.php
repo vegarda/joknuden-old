@@ -1,6 +1,6 @@
 <?php
 
-$archivedatastart = microtime(true);
+$scriptstart = microtime(true);
 
 include('startend.php');
 
@@ -15,20 +15,11 @@ if (is_integer($start) && (is_integer($end))){
 	header("X-what: ".$what);
 	header("X-amount: ".$amount);
 
-	//$start = mysqli_fetch_assoc(mysqli_query($joknuden, "SELECT dateTime FROM weewx.archive WHERE dateTime >= ".$start." ORDER BY dateTIME ASC LIMIT 1;"))['dateTime'];
-	
 	$seconds = ($end - $start);
 
-	//$interval = (($end - $start)/288) <= 300 ? 300 : (($end - $start)/288);
-	$interval = $seconds/288;
+	$n = 288;
+	$interval = $seconds/$n;
 	header('Interval: '.$interval);
-	//$queryString = "SELECT (FLOOR(dateTime / 3600) * 3600) dateTime, 
-	/*$queryString = "SELECT *
-	
-	FROM weewx.archive 
-	WHERE dateTime >= ".$start." and dateTime <= ".$end." 
-	AND dateTime mod ".$interval." = 0
-	ORDER BY dateTime ASC;";*/
 	
 	$queryString = "SELECT dateTime, 
 
@@ -48,7 +39,6 @@ if (is_integer($start) && (is_integer($end))){
 	GROUP BY FLOOR(dateTime / ".$interval.")  
 	ORDER BY dateTime ASC;";
 	
-//	AND dateTime mod ".$interval." = 0
 	
 	$query = mysqli_query($joknuden, $queryString);
     $rows = Array();
@@ -76,7 +66,7 @@ if (is_integer($start) && (is_integer($end))){
 	}
 
 	header('X-Query: '.preg_replace('/\s\s+/', ' ', trim($queryString)));
-	header('X-time: '.(microtime(true) - $archivedatastart));
+	header('X-Time: '.(microtime(true) - $scriptstart));
 
     echo json_encode($newrows,  JSON_NUMERIC_CHECK);
 }
