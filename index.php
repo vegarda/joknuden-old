@@ -45,11 +45,12 @@ $today = true;
 		<link href="/css/realtime.css" rel="stylesheet">
 		<link href="/css/joknuden.css" rel="stylesheet">
 		<link href="/lib/weather-icons/css/weather-icons.min.css" rel="stylesheet">
-		<link href="/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
 		<!-- Highcharts -->
-		<script type="text/javascript" src="/lib/highcharts/js/highcharts.js"></script>
-		<script type="text/javascript" src="/lib/highcharts/js/highcharts-more.js"></script>
+		<!--script type="text/javascript" src="/lib/highcharts/js/highcharts.js"></script-->
+		<script src="http://code.highcharts.com/stock/highstock.js"></script>
+		<script type="text/javascript" src="http://code.highcharts.com/stock/highcharts-more.js"></script>
+		<!--script type="text/javascript" src="/lib/highcharts/js/highcharts-more.js"></script-->
 
 		<!-- Joknuden -->
 		<script type="text/javascript" src="/lib/joknuden/charts.js"></script>
