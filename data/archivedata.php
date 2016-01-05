@@ -17,7 +17,8 @@ if (is_integer($start) && (is_integer($end))){
 
 	$seconds = ($end - $start);
 	
-	header("floor: ". floor($seconds/(6 * $month)));
+	header("what: ".$what);
+	header("amount: ".$amount);
 	
 	$minute = 60;
 	$hour = 60 * $minute;
@@ -26,8 +27,23 @@ if (is_integer($start) && (is_integer($end))){
 	$month = 4 * $week;
 	
 
-	$n = 576 * (1 + floor($seconds/(6 * $month)));
-	$interval = $seconds/$n;
+	//$n = 576 * (1 + floor($seconds/(6 * $month)));
+	if ($what == "week"){
+		$interval = 1 * $hour;
+	}
+	else if ($what == "month"){
+		$interval = (6 * $hour);
+	}
+	else if ($what == "year"){
+		$interval = 24 * $hour;
+	}
+	else{
+		$interval = 30 * $minute;
+	}
+	
+	$interval = $interval * ceil($amount/2);
+	
+	//$interval = $seconds/$n;
 	header('Interval: '.$interval);
 	
 	$queryString = "SELECT dateTime, 
@@ -57,6 +73,7 @@ if (is_integer($start) && (is_integer($end))){
 	$query = mysqli_query($joknuden, $queryString);
     $rows = Array();
 	$rows["dateTime"] = Array();
+	$rows["avgTemp"] = Array();
 	$rows["outTemp"] = Array();
 	$rows["barometer"] = Array();
 	$rows["outHumidity"] = Array();
@@ -73,6 +90,7 @@ if (is_integer($start) && (is_integer($end))){
 		//array_push($rows, $row);
 		$dateTime = $row["dateTime"] * 1000;
 		array_push($rows["dateTime"], $dateTime);
+		array_push($rows["avgTemp"], Array($dateTime, $row["outTemp"]));
 		array_push($rows["outTemp"], Array($dateTime, $row["minoutTemp"], $row["maxoutTemp"]));
 		array_push($rows["barometer"], Array($dateTime, $row["barometer"]));
 		array_push($rows["outHumidity"], Array($dateTime, $row["outHumidity"]));
