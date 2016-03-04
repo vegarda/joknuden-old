@@ -2,7 +2,7 @@
 
 header('Content-type: text/xml; charset=utf-8');
 
-$forecast_url = 'http://api.yr.no/weatherapi/forestfireindex/1.1/';
+$forecast_url = 'http://api.met.no/weatherapi/forestfireindex/1.1/';
 $session = curl_init();
 
 curl_setopt($session, CURLOPT_URL, $forecast_url);

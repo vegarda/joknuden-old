@@ -2,7 +2,7 @@
 
 header('Content-type: text/xml; charset=utf-8');
 
-$forecast_url = 'http://api.yr.no/weatherapi/textforecast/1.6/?forecast=obs;language=nb';
+$forecast_url = 'http://api.met.no/weatherapi/textforecast/1.6/?forecast=obs;language=nb';
 $session = curl_init();
 
 curl_setopt($session, CURLOPT_URL, $forecast_url);
