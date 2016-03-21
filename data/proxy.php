@@ -1,5 +1,5 @@
 <?php
-    error_reporting(E_ALL);
+    //error_reporting(E_ALL);
 
 	if(($_GET['type'] == 'json') || ($_GET['content-type'] == 'xml')){
 		$content_type = $_GET['content-type'];

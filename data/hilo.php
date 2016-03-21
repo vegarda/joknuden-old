@@ -8,32 +8,20 @@ $joknuden = mysqli_connect($host, $user, $pass) or die(mysql_error());
 
 include('startend.php');
 
-$temperatureMin_q = mysqli_query($joknuden, "SELECT * FROM weewx.archive_day_outTemp WHERE min=(SELECT MIN(min) FROM weewx.archive_day_outTemp WHERE dateTime >= ".$start." ORDER BY dateTime DESC) ORDER BY dateTime DESC LIMIT 1") or die(mysqli_error());
-$temperatureMax_q = mysqli_query($joknuden, "SELECT * FROM weewx.archive_day_outTemp WHERE max=(SELECT MAX(max) FROM weewx.archive_day_outTemp WHERE dateTime >= ".$start." ORDER BY dateTime DESC) ORDER BY dateTime DESC LIMIT 1") or die(mysqli_error());
-$dewpointMin_q = mysqli_query($joknuden, "SELECT * FROM weewx.archive_day_dewpoint WHERE min=(SELECT MIN(min) FROM weewx.archive_day_dewpoint WHERE dateTime >= ".$start." ORDER BY dateTime DESC) ORDER BY dateTime DESC LIMIT 1") or die(mysqli_error());
-$dewpointMax_q = mysqli_query($joknuden, "SELECT * FROM weewx.archive_day_dewpoint WHERE max=(SELECT MAX(max) FROM weewx.archive_day_dewpoint WHERE dateTime >= ".$start." ORDER BY dateTime DESC) ORDER BY dateTime DESC LIMIT 1") or die(mysqli_error());
-$humidityMin_q = mysqli_query($joknuden, "SELECT * FROM weewx.archive_day_outHumidity WHERE min=(SELECT MIN(min) FROM weewx.archive_day_outHumidity WHERE dateTime >= ".$start." ORDER BY dateTime DESC) ORDER BY dateTime DESC LIMIT 1") or die(mysqli_error());
-$humidityMax_q = mysqli_query($joknuden, "SELECT * FROM weewx.archive_day_outHumidity WHERE max=(SELECT MAX(max) FROM weewx.archive_day_outHumidity WHERE dateTime >= ".$start." ORDER BY dateTime DESC) ORDER BY dateTime DESC LIMIT 1") or die(mysqli_error());
-$precipitationMin_q = mysqli_query($joknuden, "SELECT * FROM weewx.archive_day_rain WHERE min=(SELECT MIN(min) FROM weewx.archive_day_rain WHERE dateTime >= ".$start." ORDER BY dateTime DESC) ORDER BY dateTime DESC LIMIT 1") or die(mysqli_error());
-$precipitationMax_q = mysqli_query($joknuden, "SELECT * FROM weewx.archive_day_rain WHERE max=(SELECT MAX(max) FROM weewx.archive_day_rain WHERE dateTime >= ".$start." ORDER BY dateTime DESC) ORDER BY dateTime DESC LIMIT 1") or die(mysqli_error());
-$windMin_q = mysqli_query($joknuden, "SELECT * FROM weewx.archive_day_wind WHERE min=(SELECT MIN(min) FROM weewx.archive_day_wind WHERE dateTime >= ".$start." ORDER BY dateTime DESC) ORDER BY dateTime DESC LIMIT 1") or die(mysqli_error());
-$windMax_q = mysqli_query($joknuden, "SELECT * FROM weewx.archive_day_wind WHERE max=(SELECT MAX(max) FROM weewx.archive_day_wind WHERE dateTime >= ".$start." ORDER BY dateTime DESC) ORDER BY dateTime DESC LIMIT 1") or die(mysqli_error());
-$barometerMin_q = mysqli_query($joknuden, "SELECT * FROM weewx.archive_day_barometer WHERE min=(SELECT MIN(min) FROM weewx.archive_day_barometer WHERE dateTime >= ".$start." ORDER BY dateTime DESC) ORDER BY dateTime DESC LIMIT 1") or die(mysqli_error());
-$barometerMax_q = mysqli_query($joknuden, "SELECT * FROM weewx.archive_day_barometer WHERE max=(SELECT MAX(max) FROM weewx.archive_day_barometer WHERE dateTime >= ".$start." ORDER BY dateTime DESC) ORDER BY dateTime DESC LIMIT 1") or die(mysqli_error());
+$temperatureMin_q = mysqli_query($joknuden, "SELECT dateTime, outTemp FROM weewx.archive WHERE outTemp=(SELECT MIN(outTemp) FROM weewx.archive WHERE dateTime >= ".$start." AND dateTime < ".$end."	ORDER BY dateTime DESC) ORDER BY dateTime DESC LIMIT 1") or die(mysqli_error($joknuden));
+$temperatureMax_q = mysqli_query($joknuden, "SELECT dateTime, outTemp FROM weewx.archive WHERE outTemp=(SELECT MAX(outTemp) FROM weewx.archive WHERE dateTime >= ".$start." AND dateTime < ".$end."	ORDER BY dateTime DESC) ORDER BY dateTime DESC LIMIT 1") or die(mysqli_error($joknuden));
+$humidityMin_q = mysqli_query($joknuden, "SELECT dateTime, outHumidity FROM weewx.archive WHERE outHumidity=(SELECT MIN(outHumidity) FROM weewx.archive WHERE dateTime >= ".$start." AND dateTime < ".$end."	ORDER BY dateTime DESC) ORDER BY dateTime DESC LIMIT 1") or die(mysqli_error($joknuden));
+$humidityMax_q = mysqli_query($joknuden, "SELECT dateTime, outHumidity FROM weewx.archive WHERE outHumidity=(SELECT MAX(outHumidity) FROM weewx.archive WHERE dateTime >= ".$start." AND dateTime < ".$end."	ORDER BY dateTime DESC) ORDER BY dateTime DESC LIMIT 1") or die(mysqli_error($joknuden));
+$barometerMin_q = mysqli_query($joknuden, "SELECT dateTime, barometer FROM weewx.archive WHERE barometer=(SELECT MIN(barometer) FROM weewx.archive WHERE dateTime >= ".$start." AND dateTime < ".$end."	ORDER BY dateTime DESC) ORDER BY dateTime DESC LIMIT 1") or die(mysqli_error($joknuden));
+$barometerMax_q = mysqli_query($joknuden, "SELECT dateTime, barometer FROM weewx.archive WHERE barometer=(SELECT MAX(barometer) FROM weewx.archive WHERE dateTime >= ".$start." AND dateTime < ".$end."	ORDER BY dateTime DESC) ORDER BY dateTime DESC LIMIT 1") or die(mysqli_error($joknuden));
 
 $avg_q = mysqli_query($joknuden, "SELECT dateTime, AVG(outTemp) temperature, AVG(barometer) barometer, AVG(outHumidity) humidity, AVG(dewpoint) dewpoint FROM weewx.archive WHERE dateTime >= ".$start." ORDER BY dateTime DESC") or die(mysqli_error());
 $avg = mysqli_fetch_array($avg_q) or die(mysqli_error()); 
 
 $temperatureMin = mysqli_fetch_array($temperatureMin_q) or die(mysqli_error()); 
 $temperatureMax = mysqli_fetch_array($temperatureMax_q) or die(mysqli_error()); 
-$dewpointMin = mysqli_fetch_array($dewpointMin_q) or die(mysqli_error()); 
-$dewpointMax = mysqli_fetch_array($dewpointMax_q) or die(mysqli_error()); 
 $humidityMin = mysqli_fetch_array($humidityMin_q) or die(mysqli_error()); 
 $humidityMax = mysqli_fetch_array($humidityMax_q) or die(mysqli_error()); 
-$precipitationMin = mysqli_fetch_array($precipitationMin_q) or die(mysqli_error()); 
-$precipitationMax = mysqli_fetch_array($precipitationMax_q) or die(mysqli_error()); 
-$windMin = mysqli_fetch_array($windMin_q) or die(mysqli_error()); 
-$windMax = mysqli_fetch_array($windMax_q) or die(mysqli_error()); 
 $barometerMin = mysqli_fetch_array($barometerMin_q) or die(mysqli_error()); 
 $barometerMax = mysqli_fetch_array($barometerMax_q) or die(mysqli_error()); 
 
@@ -84,12 +72,6 @@ $windSpeedMaxDir = $windSpeedMax['windDir'];
 $windSpeedMaxTime = $windSpeedMax['dateTime'];
 $windSpeedMax = $windSpeedMax['windSpeed'];
 
-#$windSpeedMin_q = mysqli_query($joknuden, "SELECT * FROM weewx.archive WHERE windSpeed=(SELECT min(windSpeed) FROM weewx.archive WHERE dateTime >= ".$start." ORDER BY dateTime DESC) ORDER BY dateTime DESC LIMIT 1") or die(mysqli_error());
-#$windSpeedMin = mysqli_fetch_array($windSpeedMin_q) or die(mysqli_error());	
-#$windSpeedMinDir = $windSpeedMin['windDir'];
-#$windSpeedMinTime = $windSpeedMin['dateTime'];
-#$windSpeedMin = $windSpeedMin['windSpeed'];
-
 $windGustMax_q = mysqli_query($joknuden, "SELECT * FROM weewx.archive WHERE windGust=(SELECT MAX(windGust) FROM weewx.archive WHERE dateTime >= ".$start." ORDER BY dateTime DESC) ORDER BY dateTime DESC LIMIT 1") or die(mysqli_error());
 $windGustMax = mysqli_fetch_array($windGustMax_q) or die(mysqli_error());
 $windGustMaxDir = $windGustMax['windGustDir'];
@@ -108,12 +90,9 @@ $windSpeedAvg = mysqli_fetch_array($windSpeedAvg_q)['AVG(windSpeed)'] or die(mys
 $windGustAvg_q = mysqli_query($joknuden, "SELECT AVG(windGust) FROM weewx.archive WHERE dateTime >= ".$start	." ORDER BY dateTime DESC LIMIT 1") or die(mysql_error());
 $windGustAvg = mysqli_fetch_array($windGustAvg_q)['AVG(windGust)'] or die(mysqli_error());
 
-
-//$windDirAvg = minusTo360(atan($wind['xsum']/$wind['ysum'])*180/3.14);
 $windDirAvg = "-";
 
 $what = strtoupper($what);
-#$amount = intval($amount) > 1 ? $amount." " : "1 ";
 
 function hiloTime($what, $amount, $time){
 	if ($what == "YESTERDAY" || ($what == "DAY" && $amount == 1)){
@@ -137,26 +116,26 @@ echo '
                       </tr>
                       <tr>
                         <td><i class="wi wi-thermometer"></i></td>
-                        <td colspan="2" style="border-left: 1px solid #ddd;">'.round($temperatureMax['max'], 1).'°C</td>
-                        <td>'.hiloTime($what, $amount, $temperatureMax['maxtime']).'</td>
-                        <td colspan="2" style="border-left: 1px solid #ddd;">'.round($temperatureMin['min'], 1).'°C</td>
-                        <td>'.hiloTime($what, $amount, $temperatureMin['mintime']).'</td>
+                        <td colspan="2" style="border-left: 1px solid #ddd;">'.round($temperatureMax['outTemp'], 1).'°C</td>
+                        <td>'.hiloTime($what, $amount, $temperatureMax['dateTime']).'</td>
+                        <td colspan="2" style="border-left: 1px solid #ddd;">'.round($temperatureMin['outTemp'], 1).'°C</td>
+                        <td>'.hiloTime($what, $amount, $temperatureMin['dateTime']).'</td>
                         <td colspan="2" style="border-left: 1px solid #ddd;">'.round($avg['temperature'], 1).'°C</td>
                       </tr>
                       <tr>
                         <td><i class="wi wi-barometer"></i></td>
-                        <td colspan="2" style="border-left: 1px solid #ddd;">'.number_format(round($barometerMax['max'], 1), 1, '.', '').' hPa</td>
-                        <td>'.hiloTime($what, $amount, $barometerMax['maxtime']).'</td>
-                        <td colspan="2" style="border-left: 1px solid #ddd;">'.number_format(round($barometerMin['min'], 1), 1, '.', '').' hPa</td>
-                        <td>'.hiloTime($what, $amount, $barometerMin['mintime']).'</td>
+                        <td colspan="2" style="border-left: 1px solid #ddd;">'.number_format(round($barometerMax['barometer'], 1), 1, '.', '').' hPa</td>
+                        <td>'.hiloTime($what, $amount, $barometerMax['dateTime']).'</td>
+                        <td colspan="2" style="border-left: 1px solid #ddd;">'.number_format(round($barometerMin['barometer'], 1), 1, '.', '').' hPa</td>
+                        <td>'.hiloTime($what, $amount, $barometerMin['dateTime']).'</td>
                         <td colspan="2" style="border-left: 1px solid #ddd;">'.number_format(round($avg['barometer'], 1), 1, '.', '').' hPa</td>
                       </tr>
                       <tr>
                         <td><i class="wi wi-humidity"></i></td>
-                        <td colspan="2" style="border-left: 1px solid #ddd;">'.$humidityMax['max'].'%</td>
-                        <td>'.hiloTime($what, $amount, $humidityMax['maxtime']).'</td>
-                        <td colspan="2" style="border-left: 1px solid #ddd;">'.$humidityMin['min'].'%</td>
-                        <td>'.hiloTime($what, $amount, $humidityMin['mintime']).'</td>
+                        <td colspan="2" style="border-left: 1px solid #ddd;">'.$humidityMax['outHumidity'].'%</td>
+                        <td>'.hiloTime($what, $amount, $humidityMax['dateTime']).'</td>
+                        <td colspan="2" style="border-left: 1px solid #ddd;">'.round($humidityMin['outHumidity'], 0).'%</td>
+                        <td>'.hiloTime($what, $amount, $humidityMin['dateTime']).'</td>
                         <td colspan="2" style="border-left: 1px solid #ddd;">'.round($avg['humidity'], 0).'%</td>
                       </tr>
 					  

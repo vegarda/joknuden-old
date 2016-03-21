@@ -1,5 +1,8 @@
 <?php
 
+header("Cache-Control: no-cache");
+header("Expires: -1");
+
 $what_array = array('yesterday', 'day', 'week', 'month', 'ytd', 'year');
 
 $what = isset($_GET['what']) ? $_GET['what'] : "day";
