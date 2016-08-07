@@ -2,11 +2,16 @@
 include('config.php');
 $joknuden = mysqli_connect($host, $user, $pass) or die(mysql_error()); 
 
-    $query = mysqli_query($joknuden, 
-    "SELECT windSpeed, windDir
-    FROM weewx.archive 
-    ORDER BY dateTime DESC
-    LIMIT 10");
+    $queryString = "SELECT 
+windSpeed, 
+windDir 
+FROM weewx.archive 
+ORDER BY dateTime 
+DESC LIMIT 10";
+
+    header("X-Query: ".str_replace("\n", " ", $queryString));
+
+    $query = mysqli_query($joknuden, $queryString);
 
     $rows = Array();
     while($row = mysqli_fetch_assoc($query)){

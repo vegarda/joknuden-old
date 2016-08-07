@@ -9,17 +9,18 @@ if(is_integer($start) && (is_integer($end))){
 	include('config.php');
 	$joknuden = mysqli_connect($host, $user, $pass) or die(mysql_error()); 
 	
-	$queryString = "SELECT dateTime, 
-	ROUND(MAX(windSpeed), 1) windSpeed, 
-	ROUND(MAX(windDir), 1) windDir
-	FROM weewx.archive 
-	WHERE dateTime >= ".$start." and dateTime <= ".$end." 
-	GROUP BY dateTime
-	ORDER BY dateTime ASC;";
+	$queryString = "SELECT 
+dateTime, 
+ROUND(MAX(windSpeed), 1) windSpeed, 
+ROUND(MAX(windDir), 1) windDir 
+ROM weewx.archive 
+WHERE dateTime >= ".$start." and dateTime <= ".$end." 
+GROUP BY dateTime 
+ORDER BY dateTime ASC;";
 	
 	header("X-Query: ".$queryString."");
 	
-	$query = mysqli_query($joknuden, $queryString);
+	header("X-Query: ".str_replace("\n", " ", $queryString));
 	
     $windfreq = array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
     $windvelocity = array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);

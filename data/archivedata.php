@@ -47,26 +47,23 @@ if (is_integer($start) && (is_integer($end))){
 	header('Interval: '.$interval);
 	
 	$queryString = "SELECT dateTime, 
+ROUND(AVG(barometer), 1) barometer, 
+ROUND(MIN(outTemp), 1) minoutTemp, 
+ROUND(MAX(outTemp), 1) maxoutTemp, 
+ROUND(AVG(outTemp), 1) outTemp, 
+ROUND(AVG(outHumidity), 1) outHumidity,
+ROUND(MAX(rainRate), 1) rainRate, 
+ROUND(MAX(windSpeed), 1) windSpeed, 
+ROUND(AVG(windDir), 1) windDir, 
+ROUND(MAX(windGust), 1) windGust, 
+ROUND(AVG(windGustDir), 1) windGustDir, 
+ROUND(SUM(rain), 1) rain 
+FROM weewx.archive 
+WHERE dateTime >= ".$start." and dateTime <= ".$end." 
+GROUP BY FLOOR(dateTime / ".$interval."), dateTime 
+ORDER BY dateTime ASC;";
 
-	ROUND(AVG(barometer), 1) barometer, 
-	
-	ROUND(MIN(outTemp), 1) minoutTemp, 
-	ROUND(MAX(outTemp), 1) maxoutTemp, 
-	ROUND(AVG(outTemp), 1) outTemp, 
-	
-	ROUND(AVG(outHumidity), 1) outHumidity,
-
-	ROUND(MAX(rainRate), 1) rainRate, 
-	ROUND(MAX(windSpeed), 1) windSpeed, 
-	ROUND(AVG(windDir), 1) windDir, 
-	ROUND(MAX(windGust), 1) windGust, 
-	ROUND(AVG(windGustDir), 1) windGustDir, 
-	ROUND(SUM(rain), 1) rain
-	
-	FROM weewx.archive 
-	WHERE dateTime >= ".$start." and dateTime <= ".$end." 
-	GROUP BY FLOOR(dateTime / ".$interval.")  
-	ORDER BY dateTime ASC;";
+	header("X-Query: ".str_replace("\n", " ", $queryString));
 	
 //	GROUP BY dateTime 
 	
