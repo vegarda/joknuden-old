@@ -19,6 +19,8 @@ GROUP BY dateTime
 ORDER BY dateTime ASC;";
 	
 	header("X-Query: ".str_replace("\n", " ", $queryString));
+
+	$query = mysqli_query($joknuden, $queryString);
 	
     $windfreq = array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
     $windvelocity = array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
