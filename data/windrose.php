@@ -13,12 +13,10 @@ if(is_integer($start) && (is_integer($end))){
 dateTime, 
 ROUND(MAX(windSpeed), 1) windSpeed, 
 ROUND(MAX(windDir), 1) windDir 
-ROM weewx.archive 
+FROM weewx.archive 
 WHERE dateTime >= ".$start." and dateTime <= ".$end." 
 GROUP BY dateTime 
 ORDER BY dateTime ASC;";
-	
-	header("X-Query: ".$queryString."");
 	
 	header("X-Query: ".str_replace("\n", " ", $queryString));
 	
