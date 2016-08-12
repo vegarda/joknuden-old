@@ -32,8 +32,8 @@ $today = true;
 		<title>Joknuden Weather Station</title>
 
 		<!-- jQuery-->
-		<script type="text/javascript" src="/lib/jquery/jquery-2.1.4.min.js"></script>
-
+		<script type="text/javascript" src="/lib/jquery/jquery-2.2.4.min.js"></script>
+		
 		<!-- google analytics-->
 		<script type="text/javascript" src="/lib/analytics.js"></script>
 

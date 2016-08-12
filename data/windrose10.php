@@ -1,6 +1,6 @@
 <?php
 include('config.php');
-$joknuden = mysqli_connect($host, $user, $pass) or die(mysql_error()); 
+$joknuden = mysqli_connect($host, $user, $pass) or die(mysqli_error($joknuden)); 
 
     $queryString = "SELECT 
 windSpeed, 

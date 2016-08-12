@@ -8,7 +8,7 @@ if (is_integer($start) && (is_integer($end))){
 	
 	include('config.php');
 
-	$joknuden = mysqli_connect($host, $user, $pass) or die(mysql_error()); 
+	$joknuden = mysqli_connect($host, $user, $pass) or die(mysqli_error($joknuden)); 
 
 	header("X-start: ".$start);
 	header("X-end: ".$end);

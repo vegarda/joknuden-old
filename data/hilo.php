@@ -4,9 +4,10 @@ $hilostart = microtime(true);
 
 include('config.php');
 
-$joknuden = mysqli_connect($host, $user, $pass) or die(mysql_error());
+$joknuden = mysqli_connect($host, $user, $pass) or die(mysqli_error($joknuden));
 
 include('startend.php');
+
 
 $temperatureMin_q = mysqli_query($joknuden, "SELECT dateTime, outTemp FROM weewx.archive WHERE outTemp=(SELECT MIN(outTemp) FROM weewx.archive WHERE dateTime >= ".$start." AND dateTime < ".$end."	ORDER BY dateTime DESC) ORDER BY dateTime DESC LIMIT 1") or die(mysqli_error($joknuden));
 $temperatureMax_q = mysqli_query($joknuden, "SELECT dateTime, outTemp FROM weewx.archive WHERE outTemp=(SELECT MAX(outTemp) FROM weewx.archive WHERE dateTime >= ".$start." AND dateTime < ".$end."	ORDER BY dateTime DESC) ORDER BY dateTime DESC LIMIT 1") or die(mysqli_error($joknuden));
@@ -15,17 +16,17 @@ $humidityMax_q = mysqli_query($joknuden, "SELECT dateTime, outHumidity FROM weew
 $barometerMin_q = mysqli_query($joknuden, "SELECT dateTime, barometer FROM weewx.archive WHERE barometer=(SELECT MIN(barometer) FROM weewx.archive WHERE dateTime >= ".$start." AND dateTime < ".$end."	ORDER BY dateTime DESC) ORDER BY dateTime DESC LIMIT 1") or die(mysqli_error($joknuden));
 $barometerMax_q = mysqli_query($joknuden, "SELECT dateTime, barometer FROM weewx.archive WHERE barometer=(SELECT MAX(barometer) FROM weewx.archive WHERE dateTime >= ".$start." AND dateTime < ".$end."	ORDER BY dateTime DESC) ORDER BY dateTime DESC LIMIT 1") or die(mysqli_error($joknuden));
 
-$avg_q = mysqli_query($joknuden, "SELECT dateTime, AVG(outTemp) temperature, AVG(barometer) barometer, AVG(outHumidity) humidity, AVG(dewpoint) dewpoint FROM weewx.archive WHERE dateTime >= ".$start." ORDER BY dateTime DESC") or die(mysqli_error());
-$avg = mysqli_fetch_array($avg_q) or die(mysqli_error()); 
+$avg_q = mysqli_query($joknuden, "SELECT dateTime, AVG(outTemp) temperature, AVG(barometer) barometer, AVG(outHumidity) humidity, AVG(dewpoint) dewpoint FROM weewx.archive WHERE dateTime >= ".$start." GROUP BY dateTime ORDER BY dateTime DESC") or die(mysqli_error($joknuden));
+$avg = mysqli_fetch_array($avg_q) or die(mysqli_error($joknuden)); 
 
-$temperatureMin = mysqli_fetch_array($temperatureMin_q) or die(mysqli_error()); 
-$temperatureMax = mysqli_fetch_array($temperatureMax_q) or die(mysqli_error()); 
-$humidityMin = mysqli_fetch_array($humidityMin_q) or die(mysqli_error()); 
-$humidityMax = mysqli_fetch_array($humidityMax_q) or die(mysqli_error()); 
-$barometerMin = mysqli_fetch_array($barometerMin_q) or die(mysqli_error()); 
-$barometerMax = mysqli_fetch_array($barometerMax_q) or die(mysqli_error()); 
+$temperatureMin = mysqli_fetch_array($temperatureMin_q) or die(mysqli_error($joknuden)); 
+$temperatureMax = mysqli_fetch_array($temperatureMax_q) or die(mysqli_error($joknuden)); 
+$humidityMin = mysqli_fetch_array($humidityMin_q) or die(mysqli_error($joknuden)); 
+$humidityMax = mysqli_fetch_array($humidityMax_q) or die(mysqli_error($joknuden)); 
+$barometerMin = mysqli_fetch_array($barometerMin_q) or die(mysqli_error($joknuden)); 
+$barometerMax = mysqli_fetch_array($barometerMax_q) or die(mysqli_error($joknuden)); 
 
-$raw10_q = mysqli_query($joknuden, "SELECT * FROM weewx.raw ORDER BY dateTime DESC LIMIT 240") or die(mysqli_error());
+$raw10_q = mysqli_query($joknuden, "SELECT * FROM weewx.raw ORDER BY dateTime DESC LIMIT 240") or die(mysqli_error($joknuden));
 
 $windspeed10 = 0;
 $wind10x = 0;
@@ -66,20 +67,20 @@ function minusTo360($degrees){
 	return $degrees < 0 ? 180 + $degrees : $degrees;
 }
 
-$windSpeedMax_q = mysqli_query($joknuden, "SELECT * FROM weewx.archive WHERE windSpeed=(SELECT MAX(windSpeed) FROM weewx.archive WHERE dateTime >= ".$start." ORDER BY dateTime DESC) ORDER BY dateTime DESC LIMIT 1") or die(mysqli_error());
-$windSpeedMax = mysqli_fetch_array($windSpeedMax_q) or die(mysqli_error());
+$windSpeedMax_q = mysqli_query($joknuden, "SELECT * FROM weewx.archive WHERE windSpeed=(SELECT MAX(windSpeed) FROM weewx.archive WHERE dateTime >= ".$start." ORDER BY dateTime DESC) ORDER BY dateTime DESC LIMIT 1") or die(mysqli_error($joknuden));
+$windSpeedMax = mysqli_fetch_array($windSpeedMax_q) or die(mysqli_error($joknuden));
 $windSpeedMaxDir = $windSpeedMax['windDir'];
 $windSpeedMaxTime = $windSpeedMax['dateTime'];
 $windSpeedMax = $windSpeedMax['windSpeed'];
 
-$windGustMax_q = mysqli_query($joknuden, "SELECT * FROM weewx.archive WHERE windGust=(SELECT MAX(windGust) FROM weewx.archive WHERE dateTime >= ".$start." ORDER BY dateTime DESC) ORDER BY dateTime DESC LIMIT 1") or die(mysqli_error());
-$windGustMax = mysqli_fetch_array($windGustMax_q) or die(mysqli_error());
+$windGustMax_q = mysqli_query($joknuden, "SELECT * FROM weewx.archive WHERE windGust=(SELECT MAX(windGust) FROM weewx.archive WHERE dateTime >= ".$start." ORDER BY dateTime DESC) ORDER BY dateTime DESC LIMIT 1") or die(mysqli_error($joknuden));
+$windGustMax = mysqli_fetch_array($windGustMax_q) or die(mysqli_error($joknuden));
 $windGustMaxDir = $windGustMax['windGustDir'];
 $windGustMaxTime = $windGustMax['dateTime'];
 $windGustMax = $windGustMax['windGust'];
 
-$windGustMin_q = mysqli_query($joknuden, "SELECT * FROM weewx.archive WHERE windGust=(SELECT MIN(windGust) FROM weewx.archive WHERE dateTime >= ".$start." ORDER BY dateTime DESC) ORDER BY dateTime DESC LIMIT 1") or die(mysqli_error());
-$windGustMin = mysqli_fetch_array($windGustMin_q) or die(mysqli_error());
+$windGustMin_q = mysqli_query($joknuden, "SELECT * FROM weewx.archive WHERE windGust=(SELECT MIN(windGust) FROM weewx.archive WHERE dateTime >= ".$start." ORDER BY dateTime DESC) ORDER BY dateTime DESC LIMIT 1") or die(mysqli_error($joknuden));
+$windGustMin = mysqli_fetch_array($windGustMin_q) or die(mysqli_error($joknuden));
 $windGustMinDir = $windGustMin['windGustDir'];
 $windGustMinTime = $windGustMin['dateTime'];
 $windGustMin = $windGustMin['windGust'];
@@ -88,7 +89,7 @@ $windSpeedAvg_q = mysqli_query($joknuden, "SELECT AVG(windSpeed) FROM weewx.arch
 $windSpeedAvg = mysqli_fetch_array($windSpeedAvg_q)['AVG(windSpeed)'] or die(mysql_error());
 
 $windGustAvg_q = mysqli_query($joknuden, "SELECT AVG(windGust) FROM weewx.archive WHERE dateTime >= ".$start	." ORDER BY dateTime DESC LIMIT 1") or die(mysql_error());
-$windGustAvg = mysqli_fetch_array($windGustAvg_q)['AVG(windGust)'] or die(mysqli_error());
+$windGustAvg = mysqli_fetch_array($windGustAvg_q)['AVG(windGust)'] or die(mysqli_error($joknuden));
 
 $windDirAvg = "-";
 
