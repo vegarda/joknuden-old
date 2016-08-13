@@ -46,7 +46,7 @@ if (is_integer($start) && (is_integer($end))){
 	//$interval = $seconds/$n;
 	header('Interval: '.$interval);
 	
-	$queryString = "SELECT FLOOR(dateTime / ".$interval.") dateTime, 
+	$queryString = "SELECT dateTime, 
 ROUND(AVG(barometer), 1) barometer, 
 ROUND(MIN(outTemp), 1) minoutTemp, 
 ROUND(MAX(outTemp), 1) maxoutTemp, 
@@ -60,7 +60,7 @@ ROUND(AVG(windGustDir), 1) windGustDir,
 ROUND(SUM(rain), 1) rain 
 FROM weewx.archive 
 WHERE dateTime >= ".$start." and dateTime <= ".$end." 
-GROUP BY dateTime 
+GROUP BY FLOOR(dateTime/".$interval.") 
 ORDER BY dateTime ASC;";
 
 	header("X-Query: ".str_replace("\n", " ", $queryString));
